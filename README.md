@@ -1,1 +1,1 @@
-team_project_SlimMom
+Slim Mom
