@@ -1,5 +1,14 @@
 import { Typography, TextField, Box, Button } from '@mui/material';
+import * as yup from 'yup';
 import { Formik, Form } from 'formik';
+
+const validationSchemeForm = yup.object().shape({
+  email: yup.string().email('Email is invalid').required('Email is required'),
+  password: yup
+    .string()
+    .min(8)
+    .required('Password may contain at least 8 characters'),
+});
 
 const initialValues = {
   email: '',
@@ -10,12 +19,12 @@ export const LoginForm = () => {
   const handleSubmit = (values, { setSubmitting, resetForm }) => {
     setSubmitting(true);
 
-    const newUser = {
+    const user = {
       email: values.email,
       password: values.password,
     };
 
-    console.log(newUser);
+    console.log(user);
     resetForm();
     setSubmitting(false);
   };
@@ -25,8 +34,12 @@ export const LoginForm = () => {
         Log In
       </Typography>
 
-      <Formik initialValues={initialValues} onSubmit={handleSubmit}>
-        {({ values, handleChange, handleBlur }) => (
+      <Formik
+        initialValues={initialValues}
+        onSubmit={handleSubmit}
+        validationSchema={validationSchemeForm}
+      >
+        {({ values, handleChange, handleBlur, touched, errors }) => (
           <Form>
             <Box
               sx={{
@@ -47,6 +60,8 @@ export const LoginForm = () => {
                 placeholder="example@mail.com"
                 variant="standard"
                 onChange={handleChange}
+                error={Boolean(touched.email && errors.email)}
+                helperText={touched.email && errors.email}
               />
 
               <TextField
@@ -59,9 +74,11 @@ export const LoginForm = () => {
                 value={values.password}
                 label="Password"
                 type="password"
-                placeholder="Min 8 symbols"
+                placeholder="Min 8 characters"
                 variant="standard"
                 onChange={handleChange}
+                error={Boolean(touched.password && errors.password)}
+                helperText={touched.password && errors.password}
               />
             </Box>
 
