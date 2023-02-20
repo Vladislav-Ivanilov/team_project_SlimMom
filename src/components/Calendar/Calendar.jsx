@@ -8,6 +8,7 @@ import { DesktopDatePicker } from '@mui/x-date-pickers/DesktopDatePicker';
 const Calendar = () => {
   const [date, setDate] = useState(Date.now());
 
+
   const onChange = newValue => {
     setDate(newValue.format('YYYY-MM-DD'));
   };
@@ -18,6 +19,7 @@ const Calendar = () => {
         <DesktopDatePicker
           inputFormat="MM/DD/YYYY"
           value={date}
+
           onChange={onChange}
           renderInput={params => <TextField {...params} />}
         />
