@@ -1,12 +1,12 @@
-import { Formic } from 'formik';
+import { Formik } from 'formik';
 
 export const CalculateForm = () => {
   return (
-    <Formic>
+    <Formik>
       <form action="">
         <label htmlFor="123">1234</label>
         <input type="text" />
       </form>
-    </Formic>
+    </Formik>
   );
 };
