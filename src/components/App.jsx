@@ -1,3 +1,6 @@
+import { CalculatorPage } from '../pages/Calculator';
+
 export const App = () => {
-  return <div>Hello</div>;
+  return <CalculatorPage />;
+  // return <div>Hello</div>;
 };
