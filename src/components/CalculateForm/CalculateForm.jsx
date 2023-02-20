@@ -8,20 +8,18 @@ import FormControl from '@mui/material/FormControl';
 import FormLabel from '@mui/material/FormLabel';
 import Button from '@mui/material/Button';
 
-
 export const CalculateForm = () => {
   const initialValues = {
-    id: "",
-    weight: "",
-    height: "",
-    age: "",
-    desiredWeight: "",
-    bloodType: "",
+    id: '',
+    weight: '',
+    height: '',
+    age: '',
+    desiredWeight: '',
+    bloodType: '',
   };
 
   return (
     <Formik>
-      
       <div>
         <Box
           component="form"
