@@ -7,7 +7,7 @@ import FormControlLabel from '@mui/material/FormControlLabel';
 import FormControl from '@mui/material/FormControl';
 import FormLabel from '@mui/material/FormLabel';
 import Button from '@mui/material/Button';
-import { useDispatch } from 'react-redux';
+//import { useDispatch } from 'react-redux';
 //import { fetchDaily } from 'redux/dailyRate/operation';
 import { Recommendation } from 'components/Recommendation/Recommendation';
 import { useState } from 'react';
@@ -30,7 +30,7 @@ export const CalculateForm = () => {
 
   //const dispatch = useDispatch();
 
-  const handlSubmit = (values, { resetForm }) => {
+  const handelSubmit = (values, { resetForm }) => {
     const { bloodType, ...res } = values;
     const newFormData = {
       ...res,
@@ -47,7 +47,7 @@ export const CalculateForm = () => {
 
   return (
     <>
-      <Formik initialValues={initialValues} onSubmit={handlSubmit}>
+      <Formik initialValues={initialValues} onSubmit={handelSubmit}>
         {({
           values,
 
