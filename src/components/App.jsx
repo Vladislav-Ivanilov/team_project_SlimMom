@@ -1,5 +1,12 @@
+import { CalculateForm } from './CalculateForm/CalculateForm';
+import { Recommendation } from './Recommendation/Recommendation';
 export const App = () => {
-  return <div>Hello</div>;
+  return (
+    <>
+      <CalculateForm />
+      {/* <Recommendation /> */}
+    </>
+  );
 };
 
 // import { LoginForm } from './LoginForm/LoginForm';
