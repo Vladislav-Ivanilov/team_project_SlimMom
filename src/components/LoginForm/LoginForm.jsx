@@ -21,19 +21,11 @@ export const LoginForm = () => {
   const dispatch = useDispatch();
 
   const handleSubmit = (values, { setSubmitting, resetForm }) => {
-    setSubmitting(true);
+    dispatch(login(values));
 
-    const user = {
-      email: values.email,
-      password: values.password,
-    };
-
-    dispatch(login(user));
-
-    //  console.log(user);
     resetForm();
-    setSubmitting(false);
   };
+
   return (
     <Box>
       <Typography sx={{ marginBottom: '10px' }} variant="h6">
