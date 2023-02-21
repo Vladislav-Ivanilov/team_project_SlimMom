@@ -8,7 +8,7 @@ import FormControl from '@mui/material/FormControl';
 import FormLabel from '@mui/material/FormLabel';
 import Button from '@mui/material/Button';
 import { useDispatch } from 'react-redux';
-import { fetchDaily } from 'redux/dailyRate/operation';
+//import { fetchDaily } from 'redux/dailyRate/operation';
 import { Recommendation } from 'components/Recommendation/Recommendation';
 import { useState } from 'react';
 
@@ -28,7 +28,7 @@ export const CalculateForm = () => {
     setOpen(!open);
   };
 
-  const dispatch = useDispatch();
+  //const dispatch = useDispatch();
 
   const handlSubmit = (values, { resetForm }) => {
     const { bloodType, ...res } = values;

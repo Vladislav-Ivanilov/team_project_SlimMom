@@ -25,7 +25,6 @@ const style = {
 };
 
 export const Recommendation = memo(({ open, close, values }) => {
-  // console.log(values.length);
   const dispatch = useDispatch();
   const dailyRateState = useSelector(dailyRate);
   const notAllowedProductsState = useSelector(notAllowedProducts);
@@ -36,7 +35,7 @@ export const Recommendation = memo(({ open, close, values }) => {
 
   useEffect(() => {
     dispatch(fetchDaily(values));
-  }, [values]);
+  }, [dispatch, values]);
 
   return (
     <div>
