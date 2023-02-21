@@ -3,7 +3,7 @@ import axios from 'axios';
 
 axios.defaults.baseURL = 'https://slimmom-backend.goit.global';
 
-export const fetchDiely = createAsyncThunk(
+export const fetchDaily = createAsyncThunk(
   'daily',
   async (userData, { rejectWithValue }) => {
     try {

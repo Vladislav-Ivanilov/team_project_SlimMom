@@ -8,7 +8,7 @@ import FormControl from '@mui/material/FormControl';
 import FormLabel from '@mui/material/FormLabel';
 import Button from '@mui/material/Button';
 import { useDispatch } from 'react-redux';
-import { fetchDiely } from 'redux/dailyRate/operation';
+import { fetchDaily } from 'redux/dailyRate/operation';
 import { Recommendation } from 'components/Recommendation/Recommendation';
 import { useState } from 'react';
 
@@ -39,9 +39,9 @@ export const CalculateForm = () => {
 
     setFormData(newFormData);
 
-    // isLoggedIn ? dispatch(fetchDiely(values)) : handleModalOpen();
+    // isLoggedIn ? dispatch(fetchDaily(values)) : handleModalOpen();
 
-    // dispatch(fetchDiely(newFormData));
+    // dispatch(fetchDaily(newFormData));
     handleModalOpen();
   };
 

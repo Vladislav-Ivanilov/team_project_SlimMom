@@ -1,6 +1,6 @@
 import { useEffect, memo } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { fetchDiely } from 'redux/dailyRate/operation';
+import { fetchDaily } from 'redux/dailyRate/operation';
 import { dailyRate, notAllowedProducts } from 'redux/dailyRate/selection';
 import * as React from 'react';
 import Backdrop from '@mui/material/Backdrop';
@@ -35,7 +35,7 @@ export const Recommendation = memo(({ open, close, values }) => {
   }
 
   useEffect(() => {
-    dispatch(fetchDiely(values));
+    dispatch(fetchDaily(values));
   }, [values]);
 
   return (

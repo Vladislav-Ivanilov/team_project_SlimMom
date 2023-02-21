@@ -1,5 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { fetchDiely } from './operation';
+import { fetchDaily } from './operation';
 
 const initialState = {
   dailyRate: 0,
@@ -13,7 +13,7 @@ const dailySlice = createSlice({
   initialState,
   reducers: {},
   extraReducers: {
-    [fetchDiely.fulfilled]: (state, action) => {
+    [fetchDaily.fulfilled]: (state, action) => {
       state.dailyRate = action.payload.dailyRate;
       state.notAllowedProducts = action.payload.notAllowedProducts;
     },
