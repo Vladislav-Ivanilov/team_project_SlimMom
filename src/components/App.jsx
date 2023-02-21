@@ -17,6 +17,7 @@ import { ErrorPage } from 'pages/ErrorPage';
 import { Layout } from './Layout/Layout';
 
 export const App = () => {
+
   const dispatch = useDispatch();
   const { sid } = useAuth();
 
@@ -54,4 +55,5 @@ export const App = () => {
       </Routes>
     </>
   );
-};
+
+
