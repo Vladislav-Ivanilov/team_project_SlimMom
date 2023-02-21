@@ -19,7 +19,7 @@ export const CalculateForm = () => {
   };
 
   return (
-    <Formik>
+    <Formik initialValues={initialValues}>
       <div>
         <Box
           component="form"
