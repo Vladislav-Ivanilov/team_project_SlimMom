@@ -1,6 +1,8 @@
+import { useDispatch } from 'react-redux';
 import { Typography, TextField, Box, Button } from '@mui/material';
 import * as yup from 'yup';
 import { Formik, Form } from 'formik';
+import { register } from 'redux/auth/operation';
 
 const validationSchemeForm = yup.object().shape({
   name: yup
@@ -22,16 +24,20 @@ const initialValues = {
 };
 
 export const RegisterForm = () => {
+  const dispatch = useDispatch();
+
   const handleSubmit = (values, { setSubmitting, resetForm }) => {
     setSubmitting(true);
 
     const newUser = {
-      name: values.name,
+      username: values.name,
       email: values.email,
       password: values.password,
     };
 
-    console.log(newUser);
+    dispatch(register(newUser));
+
+    //  console.log(newUser);
     resetForm();
     setSubmitting(false);
   };
