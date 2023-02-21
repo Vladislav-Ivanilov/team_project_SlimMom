@@ -20,8 +20,8 @@ const GlobalStyle = createGlobalStyle`
 
   body {
     color: #9B9FAA;
-  background-color: #FFFF;
-  font-family: 'Verdana';
+  	background-color: #FFFF;
+ 		 font-family: 'Verdana';
   font-size: 14px;
   line-height: 1.2;
     width: 100%;
