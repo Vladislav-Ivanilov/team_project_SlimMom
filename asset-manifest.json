@@ -1,12 +1,12 @@
 {
   "files": {
-    "main.js": "/team_project_SlimMom/static/js/main.c1624105.js",
+    "main.js": "/team_project_SlimMom/static/js/main.dfe8cf58.js",
     "static/media/Verdana.ttf": "/team_project_SlimMom/static/media/Verdana.06356c47838279a6fe85.ttf",
     "static/media/Verdana-Bold.ttf": "/team_project_SlimMom/static/media/Verdana-Bold.8aec3990e9cd04b52419.ttf",
     "index.html": "/team_project_SlimMom/index.html",
-    "main.c1624105.js.map": "/team_project_SlimMom/static/js/main.c1624105.js.map"
+    "main.dfe8cf58.js.map": "/team_project_SlimMom/static/js/main.dfe8cf58.js.map"
   },
   "entrypoints": [
-    "static/js/main.c1624105.js"
+    "static/js/main.dfe8cf58.js"
   ]
 }
