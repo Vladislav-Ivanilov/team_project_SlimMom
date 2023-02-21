@@ -1,14 +1,17 @@
-import { AddProduct } from 'components/AddProduct/AddProduct';
-import { InformationBlock } from 'components/InformationBlock/InformationBlock';
-import { ProductList } from 'components/ProductList/ProductList';
+import AddProduct from 'components/AddProduct/AddProduct';
+// import { InformationBlock } from 'components/InformationBlock/InformationBlock';
+import ProductList from 'components/ProductList/ProductList';
+import Calendar from 'components/Calendar/Calendar';
 
 export const DiaryPage = () => {
   return (
     <>
-      <div>тут будет календарь</div>
+      <Calendar></Calendar>
       <AddProduct />
       <ProductList />
-      <InformationBlock />
+      {/* <InformationBlock /> */}
     </>
   );
 };
+
+export default DiaryPage;

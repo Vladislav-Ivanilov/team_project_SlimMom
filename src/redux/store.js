@@ -1,4 +1,3 @@
-//store
 import { configureStore } from '@reduxjs/toolkit';
 import {
     FLUSH,
@@ -41,3 +40,4 @@ export const store = configureStore({
 });
 
 export const persistor = persistStore(store);
+
