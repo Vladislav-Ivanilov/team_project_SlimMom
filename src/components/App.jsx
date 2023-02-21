@@ -9,21 +9,5 @@ import { LoginForm } from './LoginForm/LoginForm';
 import { RegisterForm } from './RegisterForm/RegisterForm';
 
 export const App = () => {
-  const dispatch = useDispatch();
-  const { sid } = useAuth();
-
-  useEffect(() => {
-    if (!sid) {
-      return;
-    }
-    dispatch(sessionRefreshing());
-    // eslint-disable-next-line
-  }, [dispatch]);
-
-  return (
-    <>
-      <LoginForm />
-      <RegisterForm />
-    </>
-  );
+  return <div>Hello</div>;
 };
