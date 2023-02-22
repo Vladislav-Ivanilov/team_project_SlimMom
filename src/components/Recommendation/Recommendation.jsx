@@ -8,6 +8,7 @@ import Box from '@mui/material/Box';
 import Modal from '@mui/material/Modal';
 import Fade from '@mui/material/Fade';
 import Typography from '@mui/material/Typography';
+import { useAuth } from 'hooks/useAuth';
 
 const style = {
   position: 'absolute',
@@ -25,17 +26,18 @@ const style = {
 };
 
 export const Recommendation = memo(({ open, close, values }) => {
-  // console.log(values.length);
   const dispatch = useDispatch();
   const dailyRateState = useSelector(dailyRate);
   const notAllowedProductsState = useSelector(notAllowedProducts);
+  const { user } = useAuth();
+  console.log(!!('username' in user));
 
   function getRandomElement() {
     return Math.floor(Math.random() * notAllowedProductsState.length - 1);
   }
 
   useEffect(() => {
-    dispatch(fetchDaily(values));
+    'username' in user ? console.log('yes') : dispatch(fetchDaily(values));
   }, [values]);
 
   return (

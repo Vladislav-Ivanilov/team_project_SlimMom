@@ -8,6 +8,8 @@ import { sessionRefreshing } from 'redux/auth/operation';
 import { LoginForm } from './LoginForm/LoginForm';
 import { RegisterForm } from './RegisterForm/RegisterForm';
 
+import { Recommendation } from './Recommendation/Recommendation';
+
 export const App = () => {
-  return <div>Hello</div>;
+  return <Recommendation />;
 };
