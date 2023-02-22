@@ -1,5 +1,5 @@
 import { useDispatch, useSelector } from 'react-redux';
-// import { useEffect, useState } from 'react';
+// import { useState } from 'react';
 // import debounce from 'lodash.debounce';
 import {
   Formik,
@@ -32,7 +32,8 @@ const AddProduct = () => {
     // actions.setFieldValue();
     console.log(values);
     console.log(actions);
-    // actions.resetForm();
+    actions.setSubmitting(false);
+    actions.resetForm();
   };
 
   // const formik = useFormik({
@@ -80,7 +81,7 @@ const AddProduct = () => {
   return (
     <>
       <Formik initialValues={initialValues} onSubmit={handleSubmit}>
-        {({ values, handleChange, handleBlur }) => (
+        {({ values, handleChange, setFieldValue }) => (
           <Form>
             <Autocomplete
               // value={query}
@@ -91,6 +92,11 @@ const AddProduct = () => {
               id="combo-box-demo"
               options={autocompleteOptions}
               sx={{ width: 300 }}
+              value={values.name}
+              onChange={(e, newValue) => {
+                handleChange(e);
+                setFieldValue('name', newValue.label);
+              }}
               renderInput={params => (
                 <TextField
                   // value={formik.values.name}
@@ -112,6 +118,8 @@ const AddProduct = () => {
               type="input"
               variant="standard"
               name="weight"
+              value={values.weight}
+              onChange={handleChange}
             />
             <Fab type="submit" color="primary" aria-label="add">
               <AddIcon />
