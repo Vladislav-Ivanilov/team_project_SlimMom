@@ -20,11 +20,11 @@ const breakpoints = createBreakpoints({});
 const theme = createTheme({
   breakpoints: {
     values: {
-      xs: '0px',
-      sm: '320px',
-      md: '768px',
-      lg: '1200px',
-      xl: '1536px',
+      xs: 0,
+      sm: 320,
+      md: 768,
+      lg: 1200,
+      xl: 1536,
     },
   },
   palette: {
@@ -99,6 +99,30 @@ const theme = createTheme({
     },
   },
   components: {
+    MuiFormControl: {
+      styleOverrides: {
+        root: ({ ownerState }) => ({
+          ...(ownerState.variant === 'standard' &&
+            ownerState.color === 'primary' && {
+              fontFamily: VERDANA_BOLD,
+              fontSize: '14px',
+              lineHeight: 1.2,
+            }),
+        }),
+      },
+    },
+    MuiTextField: {
+      styleOverrides: {
+        root: ({ ownerState }) => ({
+          ...(ownerState.variant === 'standard' &&
+            ownerState.color === 'primary' && {
+              fontFamily: VERDANA_BOLD,
+              fontSize: '14px',
+              lineHeight: 1.2,
+            }),
+        }),
+      },
+    },
     MuiButton: {
       styleOverrides: {
         root: ({ ownerState }) => ({
