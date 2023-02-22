@@ -149,7 +149,7 @@ export const CalculateForm = () => {
                 </FormControl>
               </div>
             </Box>
-            <Button variant="contained" type="submit">
+            <Button variant="contained" color='primary' type="submit" >
               Start losing weight
             </Button>
           </Form>

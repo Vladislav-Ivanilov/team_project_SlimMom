@@ -1,4 +1,4 @@
-import { createTheme } from '@mui/material';
+import { createTheme } from '@mui/material/styles';
 import { createBreakpoints } from '@mui/system';
 
 const VERDANA = `'Verdana', sans-serif`;
@@ -6,6 +6,7 @@ const VERDANA_BOLD = `'Verdana Bold', sans-serif`;
 
 const COLOR = {
   orange: '#FC842D',
+  darkOrange: '#be611e',
   white: '#FFFF',
   blue: '#264061',
   grey: '#9B9FAA',
@@ -14,19 +15,16 @@ const COLOR = {
   inputColor: '#E0E0E0',
 };
 
-
-const breakpoints = createBreakpoints({
-  lg: 1200,
-  md: 768,
-  sm: 320,
-});
+const breakpoints = createBreakpoints({});
 
 const theme = createTheme({
   breakpoints: {
     values: {
-      lg: 1200,
-      md: 768,
-      sm: 320,
+      xs: '0px',
+      sm: '320px',
+      md: '768px',
+      lg: '1200px',
+      xl: '1536px',
     },
   },
   palette: {
@@ -38,6 +36,7 @@ const theme = createTheme({
       bgGrey: '#F0F1F3',
       black: '#212121',
       inputColor: '#E0E0E0',
+      dark: '#be611e',
     },
   },
   typography: {
@@ -45,24 +44,16 @@ const theme = createTheme({
       verdana: VERDANA,
       verdanaBold: VERDANA_BOLD,
     },
-    fontSize: {
-      xs: '14px',
-      s: '18px',
-      m: '24px',
-      l: '26px',
-      xl: '34px',
-      xxl: '48px',
-    },
     h1: {
       // главный заголовок
       fontFamily: VERDANA_BOLD,
-      fontSize: '18px',
+      fontSize: 18,
       lineHeight: '1.4',
       fontWeight: 700,
       color: COLOR.black,
       marginBottom: '34px',
       [breakpoints.up('md')]: {
-        fontSize: '34px',
+        fontSize: 34,
         marginBottom: '68px',
       },
     },
@@ -70,13 +61,13 @@ const theme = createTheme({
       //       Your recommended daily
       // calorie intake is
       fontFamily: VERDANA_BOLD,
-      fontSize: '18px',
+      fontSize: 18,
       lineHeight: '1.4',
       fontWeight: 700,
       color: COLOR.black,
       marginBottom: '42px',
       [breakpoints.up('md')]: {
-        fontSize: '26px',
+        fontSize: 26,
         marginBottom: '20px',
         textAlign: 'center',
       },
@@ -84,7 +75,7 @@ const theme = createTheme({
     h3: {
       // 2800 ккал
       fontFamily: VERDANA_BOLD,
-      fontSize: '48px',
+      fontSize: 48,
       lineHeight: '1.2',
       fontWeight: 700,
       textAlign: 'center',
@@ -94,7 +85,7 @@ const theme = createTheme({
     h4: {
       /* Foods you should not eat */
       fontFamily: VERDANA_BOLD,
-      fontSize: '14px',
+      fontSize: 14,
       lineHeight: '1.2',
       fontWeight: 700,
       color: COLOR.black,
@@ -103,28 +94,44 @@ const theme = createTheme({
     li: {
       fontFamily: VERDANA,
       fontWeight: 400,
-      fontSize: '14px',
+      fontSize: 14,
       marginBottom: '10px',
     },
   },
-  component: {
+  components: {
     MuiButton: {
-      variants: [
-        {
-          props: { variant: 'contained' },
-          style: ({ theme: t }) => ({
-            color: COLOR.white,
-            height: '17px',
-            fontFamily: t.typography.fontFamily.verdanaBold,
-            lineHeight: '1.2',
-            textAlign: 'center',
-            backgroundColor: t.palette.primary.main,
-            borderRadius: '30px',
-            boxShadow: `0px 4px 10px rgba(252, 132, 45, 0.5)`,
-            dropShadow: `0px 4px 4px rgba(0, 0, 0, 0.25)`,
-          }),
-        },
-      ],
+      styleOverrides: {
+        root: ({ ownerState }) => ({
+          ...(ownerState.variant === 'contained' &&
+            ownerState.color === 'primary' && {
+              backgroundColor: COLOR.orange,
+              color: COLOR.white,
+              fontFamily: VERDANA_BOLD,
+              fontWeight: 700,
+              fontSize: 14,
+              padding: '13px 25px',
+              borderRadius: '30px',
+              textAlign: 'center',
+              boxShadow: `0px 4px 10px rgba(252, 132, 45, 0.5)`,
+              dropShadow: `0px 4px 4px rgba(0, 0, 0, 0.25)`,
+
+              '&:hover': {
+                backgroundColor: COLOR.darkOrange,
+              },
+            }),
+          ...(ownerState.variant === 'outlined' &&
+            ownerState.color === 'primary' && {
+              color: COLOR.orange,
+              fontFamily: VERDANA_BOLD,
+              fontWeight: 700,
+              fontSize: 14,
+              padding: '13px 25px',
+              borderRadius: '30px',
+              textAlign: 'center',
+              minWidth: '181px',
+            }),
+        }),
+      },
     },
   },
   options: {
