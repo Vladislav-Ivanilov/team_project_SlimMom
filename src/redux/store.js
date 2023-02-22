@@ -11,7 +11,8 @@ import {
 } from 'redux-persist';
 import storage from 'redux-persist/lib/storage';
 import { authReducer } from './auth/slice';
-import dailySlice from './dailyRate/slice';
+import dailySlice from './daily-rate/slice';
+import { productReducer } from './productSearch/slice';
 
 const authPersistConfig = {
   key: 'auth',
@@ -24,6 +25,7 @@ export const store = configureStore({
     auth: persistReducer(authPersistConfig, authReducer),
     user: dailySlice,
     daily: dailySlice,
+    product: productReducer,
   },
   middleware: getDefaultMiddleware =>
     getDefaultMiddleware({

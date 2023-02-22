@@ -1,22 +1,18 @@
-//import { createSlice } from '@reduxjs/toolkit';
-//import { search } from './operation';
+import { createSlice } from '@reduxjs/toolkit';
+import { search } from './operation';
 
-//const initialState = {
-//  products: [],
-//};
+const initialState = {
+  products: [],
+};
 
-//const productSlice = createSlice({
-//  name: 'auth',
-//  initialState,
-//  extraReducers: {
-//    [register.fulfilled](state, action) {
-//      state.user = action.payload.username;
-//      state.accessToken = action.payload.accessToken;
-//      state.refreshToken = action.payload.refreshToken;
-//      state.sid = action.payload.sid;
-//      state.isLoggedIn = true;
-//    },
-//  },
-//});
+const productSlice = createSlice({
+  name: 'products',
+  initialState,
+  extraReducers: {
+    [search.fulfilled](state, action) {
+      state.products = [...action.payload];
+    },
+  },
+});
 
-//export const productReducer = productSlice.reducer;
+export const productReducer = productSlice.reducer;

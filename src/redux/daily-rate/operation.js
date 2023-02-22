@@ -14,3 +14,15 @@ export const fetchDaily = createAsyncThunk(
     }
   }
 );
+
+export const fetchDailyRateByUserId = createAsyncThunk(
+  'daily/ByUserId',
+  async ({ userId, userData }, { rejectWithValue }) => {
+    try {
+      const { data } = await axios.post(`/daily-rate/${userId}`, userData);
+      return data;
+    } catch (error) {
+      return rejectWithValue(error.massage);
+    }
+  }
+);

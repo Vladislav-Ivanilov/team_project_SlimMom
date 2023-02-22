@@ -1,8 +1,7 @@
 import { useEffect, memo } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { fetchDaily } from 'redux/dailyRate/operation';
-import { dailyRate, notAllowedProducts } from 'redux/dailyRate/selection';
-import * as React from 'react';
+import { fetchDaily, fetchDailyRateByUserId } from 'redux/daily-rate/operation';
+import { dailyRate, notAllowedProducts } from 'redux/daily-rate/selection';
 import Backdrop from '@mui/material/Backdrop';
 import Box from '@mui/material/Box';
 import Modal from '@mui/material/Modal';
@@ -30,14 +29,20 @@ export const Recommendation = memo(({ open, close, values }) => {
   const dailyRateState = useSelector(dailyRate);
   const notAllowedProductsState = useSelector(notAllowedProducts);
   const { user } = useAuth();
-  console.log(!!('username' in user));
+
+  const userLoginedInfo = {
+    userId: user.id,
+    userData: values,
+  };
 
   function getRandomElement() {
     return Math.floor(Math.random() * notAllowedProductsState.length - 1);
   }
 
   useEffect(() => {
-    'username' in user ? console.log('yes') : dispatch(fetchDaily(values));
+    'id' in user
+      ? dispatch(fetchDailyRateByUserId(userLoginedInfo))
+      : dispatch(fetchDaily(values));
   }, [values]);
 
   return (
