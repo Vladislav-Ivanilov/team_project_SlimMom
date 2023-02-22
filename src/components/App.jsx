@@ -7,51 +7,9 @@ import { PrivateRoute } from './PrivateRoute';
 
 import { useAuth } from 'hooks/useAuth';
 import { sessionRefreshing } from 'redux/auth/operation';
-
-import { CalculatorPage } from 'pages/Calculator';
-import { RegisterPage } from 'pages/Register';
-import { LoginPage } from 'pages/Login';
-import { DiaryPage } from 'pages/Diary';
-import { ErrorPage } from 'pages/ErrorPage';
-
-import { Layout } from './Layout/Layout';
+import { LoginForm } from './LoginForm/LoginForm';
+import { RegisterForm } from './RegisterForm/RegisterForm';
 
 export const App = () => {
-  const dispatch = useDispatch();
-  const { sid } = useAuth();
-
-  useEffect(() => {
-    if (!sid) {
-      return;
-    }
-    dispatch(sessionRefreshing());
-    // eslint-disable-next-line
-  }, [dispatch]);
-
-  return (
-    <>
-      <Routes>
-        <Route path="/" element={<Layout />}>
-          <Route index element={<CalculatorPage />} />
-          <Route
-            path="/register"
-            element={
-              <RestrictedRoute component={RegisterPage} redirectTo="/diary" />
-            }
-          />
-          <Route
-            path="/login"
-            element={
-              <RestrictedRoute component={LoginPage} redirectTo="/diary" />
-            }
-          />
-          <Route
-            path="/diary"
-            element={<PrivateRoute component={DiaryPage} redirectTo="/login" />}
-          />
-        </Route>
-        <Route element={<ErrorPage />} path="*" />
-      </Routes>
-    </>
-  );
+  return <div>Hello</div>;
 };
