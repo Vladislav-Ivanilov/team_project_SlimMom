@@ -8,6 +8,6 @@ export const search = createAsyncThunk('product/search', async product => {
     const { data } = await axios.get(`/product?search=${product}`);
     return data;
   } catch (error) {
-    console.log(error.message);
+    return product.rejectWithValue(error.massage);
   }
 });
