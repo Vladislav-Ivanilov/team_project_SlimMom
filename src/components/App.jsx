@@ -16,8 +16,6 @@ import { ErrorPage } from 'pages/ErrorPage';
 
 import { Layout } from './Layout/Layout';
 
-// import { Recommendation } from './Recommendation/Recommendation';
-
 export const App = () => {
   const dispatch = useDispatch();
   const { sid } = useAuth();
