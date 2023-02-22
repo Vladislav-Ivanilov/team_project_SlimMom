@@ -1,8 +1,7 @@
 import { useEffect, memo } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { fetchDaily } from 'redux/DailyRate/operation';
-import { dailyRate, notAllowedProducts } from 'redux/DailyRate/selection';
-import * as React from 'react';
+import { fetchDaily } from 'redux/daily-rate/operation';
+import { dailyRate, notAllowedProducts } from 'redux/daily-rate/selection';
 import Backdrop from '@mui/material/Backdrop';
 import Box from '@mui/material/Box';
 import Modal from '@mui/material/Modal';
