@@ -1,13 +1,11 @@
-import { useEffect } from 'react';
+import { useEffect, memo } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { fetchDiely } from 'redux/DailyRate/operation';
-import { dailyRate, notAllowedProducts } from 'redux/DailyRate/selection';
-import * as React from 'react';
+import { fetchDaily } from 'redux/daily-rate/operation';
+import { dailyRate, notAllowedProducts } from 'redux/daily-rate/selection';
 import Backdrop from '@mui/material/Backdrop';
 import Box from '@mui/material/Box';
 import Modal from '@mui/material/Modal';
 import Fade from '@mui/material/Fade';
-import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 
 const style = {
@@ -25,26 +23,26 @@ const style = {
   height: '500px',
 };
 
-export const Recommendation = () => {
+export const Recommendation = memo(({ open, close, values }) => {
   const dispatch = useDispatch();
   const dailyRateState = useSelector(dailyRate);
   const notAllowedProductsState = useSelector(notAllowedProducts);
 
-  const [open, setOpen] = React.useState(false);
-  const handleOpen = () => setOpen(true);
-  const handleClose = () => setOpen(false);
+  function getRandomElement() {
+    return Math.floor(Math.random() * notAllowedProductsState.length - 1);
+  }
 
   useEffect(() => {
-    dispatch(fetchDiely());
-  }, []);
+    dispatch(fetchDaily(values));
+  }, [dispatch, values]);
+
   return (
     <div>
-      <Button onClick={handleOpen}>Open modal</Button>
       <Modal
         aria-labelledby="transition-modal-title"
         aria-describedby="transition-modal-description"
         open={open}
-        onClose={handleClose}
+        onClose={() => close(false)}
         closeAfterTransition
         slots={{ backdrop: Backdrop }}
         slotProps={{
@@ -62,9 +60,10 @@ export const Recommendation = () => {
             </Typography>
             <Typography id="transition-modal-description" sx={{ mt: 2 }}>
               <ol>
-                {notAllowedProductsState.map(product => {
-                  return <li>{product} </li>;
-                })}
+                <li>{notAllowedProductsState[getRandomElement()]}</li>
+                <li>{notAllowedProductsState[getRandomElement()]}</li>
+                <li>{notAllowedProductsState[getRandomElement()]}</li>
+                <li>{notAllowedProductsState[getRandomElement()]}</li>
               </ol>
             </Typography>
             <button>Start losing weight</button>
@@ -73,4 +72,4 @@ export const Recommendation = () => {
       </Modal>
     </div>
   );
-};
+});
