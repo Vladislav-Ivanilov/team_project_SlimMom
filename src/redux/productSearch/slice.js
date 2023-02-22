@@ -6,7 +6,7 @@ const initialState = {
 };
 
 const productSlice = createSlice({
-  name: 'auth',
+  name: 'products',
   initialState,
   extraReducers: {
     [search.fulfilled](state, action) {
