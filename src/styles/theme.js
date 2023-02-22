@@ -14,6 +14,7 @@ const COLOR = {
   inputColor: '#E0E0E0',
 };
 
+
 const breakpoints = createBreakpoints({
   lg: 1200,
   md: 768,
