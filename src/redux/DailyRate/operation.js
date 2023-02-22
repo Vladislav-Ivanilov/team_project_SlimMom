@@ -8,7 +8,6 @@ export const fetchDaily = createAsyncThunk(
   async (userData, { rejectWithValue }) => {
     try {
       const { data } = await axios.post('/daily-rate', userData);
-      console.log('data:', data);
       return data;
     } catch (error) {
       return rejectWithValue(error.massage);
