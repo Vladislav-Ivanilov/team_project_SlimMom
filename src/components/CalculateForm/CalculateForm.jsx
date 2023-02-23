@@ -1,12 +1,12 @@
-import { Formik, Form } from 'formik';
 import Box from '@mui/material/Box';
-import TextField from '@mui/material/TextField';
+import Button from '@mui/material/Button';
+import FormControl from '@mui/material/FormControl';
+import FormControlLabel from '@mui/material/FormControlLabel';
+import FormLabel from '@mui/material/FormLabel';
 import Radio from '@mui/material/Radio';
 import RadioGroup from '@mui/material/RadioGroup';
-import FormControlLabel from '@mui/material/FormControlLabel';
-import FormControl from '@mui/material/FormControl';
-import FormLabel from '@mui/material/FormLabel';
-import Button from '@mui/material/Button';
+import TextField from '@mui/material/TextField';
+import { Form, Formik } from 'formik';
 //import { useDispatch } from 'react-redux';
 //import { fetchDaily } from 'redux/dailyRate/operation';
 import { Recommendation } from 'components/Recommendation/Recommendation';
@@ -149,7 +149,7 @@ export const CalculateForm = () => {
                 </FormControl>
               </div>
             </Box>
-            <Button variant="contained" type="submit">
+            <Button variant="contained" color="primary" type="submit">
               Start losing weight
             </Button>
           </Form>

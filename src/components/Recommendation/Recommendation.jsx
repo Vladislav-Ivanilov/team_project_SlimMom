@@ -1,13 +1,13 @@
-import { useEffect, memo } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { fetchDaily } from 'redux/dailyRate/operation';
-import { dailyRate, notAllowedProducts } from 'redux/dailyRate/selection';
-import * as React from 'react';
 import Backdrop from '@mui/material/Backdrop';
 import Box from '@mui/material/Box';
-import Modal from '@mui/material/Modal';
 import Fade from '@mui/material/Fade';
+import Modal from '@mui/material/Modal';
 import Typography from '@mui/material/Typography';
+import { FoodList } from 'components/FoodList/FoodList';
+import { useAuth } from 'hooks';
+import { memo } from 'react';
+import { useSelector } from 'react-redux';
+import { dailyRate } from 'redux/daily-rate/selection';
 
 const style = {
   position: 'absolute',
@@ -25,17 +25,12 @@ const style = {
 };
 
 export const Recommendation = memo(({ open, close, values }) => {
-  const dispatch = useDispatch();
-  const dailyRateState = useSelector(dailyRate);
-  const notAllowedProductsState = useSelector(notAllowedProducts);
+  const { user, isLoggedIn } = useAuth();
+  let dailyRateState = useSelector(dailyRate);
 
-  function getRandomElement() {
-    return Math.floor(Math.random() * notAllowedProductsState.length - 1);
+  if (isLoggedIn) {
+    dailyRateState = user.userData.dailyRate;
   }
-
-  useEffect(() => {
-    dispatch(fetchDaily(values));
-  }, [dispatch, values]);
 
   return (
     <div>
@@ -60,12 +55,7 @@ export const Recommendation = memo(({ open, close, values }) => {
               <p>Foods you should not eat</p>
             </Typography>
             <Typography id="transition-modal-description" sx={{ mt: 2 }}>
-              <ol>
-                <li>{notAllowedProductsState[getRandomElement()]}</li>
-                <li>{notAllowedProductsState[getRandomElement()]}</li>
-                <li>{notAllowedProductsState[getRandomElement()]}</li>
-                <li>{notAllowedProductsState[getRandomElement()]}</li>
-              </ol>
+              <FoodList values={values} />
             </Typography>
             <button>Start losing weight</button>
           </Box>

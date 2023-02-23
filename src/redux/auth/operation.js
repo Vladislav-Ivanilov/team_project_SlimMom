@@ -49,22 +49,41 @@ export const logout = createAsyncThunk(
   }
 );
 
-export const sessionRefreshing = createAsyncThunk(
-  'auth/refresh',
-  async (_, { rejectWithValue, getState }) => {
-    const state = getState();
-    const persistedSid = { sid: state.auth.sid };
+export const fetchCurrentUser = createAsyncThunk(
+  'user/info',
+  async (_, thunkApi) => {
+    const state = thunkApi.getState();
+    const persistedToken = state.auth.accessToken;
 
-    if (persistedSid === null) {
-      return rejectWithValue('Ops...');
+    if (persistedToken === null) {
+      return thunkApi.rejectWithValue();
     }
     try {
-      token.set(state.auth.refreshToken);
-      const { data } = await axios.post('/auth/refresh', persistedSid);
-      token.set(data.newAccessToken);
+      token.set(persistedToken);
+      const { data } = await axios.get('/user');
       return data;
     } catch (error) {
-      return rejectWithValue(error.massage);
+      console.log(error.message);
     }
   }
 );
+
+// export const sessionRefreshing = createAsyncThunk(
+//   'auth/refresh',
+//   async (_, { rejectWithValue, getState }) => {
+//     const state = getState();
+//     const persistedsessionId = { sessionId: state.auth.sessionId };
+
+//     if (persistedsessionId === null) {
+//       return rejectWithValue('Ops...');
+//     }
+//     try {
+//       token.set(state.auth.refreshToken);
+//       const { data } = await axios.post('/auth/refresh', persistedsessionId);
+//       token.set(data.newAccessToken);
+//       return data;
+//     } catch (error) {
+//       return rejectWithValue(error.massage);
+//     }
+//   }
+// );

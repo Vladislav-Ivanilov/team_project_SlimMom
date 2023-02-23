@@ -1,1 +1,1 @@
-//123123123123123123
+export const selectProducts = state => state.products;
