@@ -42,8 +42,37 @@ export const RegisterForm = () => {
     setSubmitting(false);
   };
   return (
-    <Box>
-      <Typography sx={{ marginBottom: '10px' }} variant="h6">
+    <Box
+      component="div"
+      sx={{
+        display: 'flex',
+
+        flexDirection: { xs: 'column' },
+        paddingTop: {
+          sm: '40px',
+          md: '160px ',
+          lg: '160px ',
+        },
+        paddingLeft: {
+          sm: '20px',
+          md: '32px ',
+          lg: '16px ',
+        },
+        paddingBottom: {
+          sm: '100px',
+          md: '419px ',
+          lg: '179px ',
+        },
+        paddingRight: { sm: '20px' },
+      }}
+    >
+      <Typography
+        sx={{
+          marginLeft: { xs: 'auto', md: '0px' },
+          marginRight: { xs: 'auto', md: '0px' },
+        }}
+        variant="h5"
+      >
         Register
       </Typography>
 
@@ -57,86 +86,128 @@ export const RegisterForm = () => {
             <Box
               sx={{
                 display: 'flex',
-                flexDirection: 'column',
-                gap: '15px',
+                flexDirection: { xs: 'column' },
               }}
             >
-              <TextField
-                required
-                sx={{ width: '240px' }}
-                InputLabelProps={{
-                  shrink: true,
-                }}
-                name="name"
-                label="Name"
-                value={values.name}
-                placeholder="Enter your name"
-                variant="standard"
-                onChange={handleChange}
-                error={Boolean(touched.name && errors.name)}
-                helperText={touched.name && errors.name}
-              />
+              <Box
+                sx={{
+                  display: 'flex',
+                  flexDirection: 'column',
+                  gap: '40px',
 
-              <TextField
-                required
-                sx={{ width: '240px' }}
-                InputLabelProps={{
-                  shrink: true,
+                  marginLeft: { xs: 'auto', md: '0px' },
+                  marginRight: { xs: 'auto', md: '0px' },
+                  marginBottom: '60px',
+                  maxWidth: { sm: '280px', md: '240px' },
+                  width: '100%',
                 }}
-                name="email"
-                label="Email"
-                value={values.email}
-                placeholder="example@mail.com"
-                variant="standard"
-                onChange={handleChange}
-                error={Boolean(touched.email && errors.email)}
-                helperText={touched.email && errors.email}
-              />
+              >
+                <TextField
+                  fullWidth
+                  required
+                  //  sx={{ width: '240px' }}
+                  InputLabelProps={{
+                    shrink: true,
+                  }}
+                  sx={{
+                    label: { color: '#9B9FAA' },
+                    //   input: {
+                    //     paddingBottom: { md: '20px' },
+                    //     input: { paddingBottom: { md: '20px' } },
+                    //   },
+                  }}
+                  name="name"
+                  label="Name"
+                  value={values.name}
+                  placeholder="Enter your name"
+                  variant="standard"
+                  onChange={handleChange}
+                  error={Boolean(touched.name && errors.name)}
+                  helperText={touched.name && errors.name}
+                />
 
-              <TextField
-                required
-                sx={{ width: '240px' }}
-                InputLabelProps={{
-                  shrink: true,
+                <TextField
+                  fullWidth
+                  sx={{
+                    label: { color: '#9B9FAA' },
+                    //   input: {
+                    //     paddingBottom: { md: '20px' },
+                    //     input: { paddingBottom: { md: '20px' } },
+                    //   },
+                  }}
+                  required
+                  //  sx={{ width: '240px' }}
+                  InputLabelProps={{
+                    shrink: true,
+                  }}
+                  name="email"
+                  label="Email"
+                  value={values.email}
+                  placeholder="example@mail.com"
+                  variant="standard"
+                  onChange={handleChange}
+                  error={Boolean(touched.email && errors.email)}
+                  helperText={touched.email && errors.email}
+                />
+
+                <TextField
+                  fullWidth
+                  sx={{
+                    label: { color: '#9B9FAA' },
+                    //   input: {
+                    //     paddingBottom: { md: '20px' },
+                    //     input: { paddingBottom: { md: '20px' } },
+                    //   },
+                  }}
+                  required
+                  //  sx={{ width: '240px' }}
+                  InputLabelProps={{
+                    shrink: true,
+                  }}
+                  name="password"
+                  value={values.password}
+                  label="Password"
+                  type="password"
+                  placeholder="Min 8 characters"
+                  variant="standard"
+                  onChange={handleChange}
+                  error={Boolean(touched.password && errors.password)}
+                  helperText={touched.password && errors.password}
+                />
+              </Box>
+
+              <Box
+                sx={{
+                  display: 'flex',
+                  flexDirection: { xs: 'column', md: 'row' },
+                  marginLeft: { xs: 'auto', md: '0px' },
+                  marginRight: { xs: 'auto', md: '0px' },
                 }}
-                name="password"
-                value={values.password}
-                label="Password"
-                type="password"
-                placeholder="Min 8 characters"
-                variant="standard"
-                onChange={handleChange}
-                error={Boolean(touched.password && errors.password)}
-                helperText={touched.password && errors.password}
-              />
+              >
+                <Button
+                  sx={{
+                    textTransform: 'capitalize',
+                    marginBottom: { xs: '20px', md: '0px' },
+                    marginRight: { md: '32px' },
+                    padding: { xs: '13px 50px', lg: '13px 37px' },
+                  }}
+                  type="submit"
+                  variant="contained"
+                >
+                  Register
+                </Button>
+
+                <Button
+                  sx={{
+                    textTransform: 'capitalize',
+                  }}
+                  variant="outlined"
+                  href="/team_project_SlimMom/login"
+                >
+                  Log in
+                </Button>
+              </Box>
             </Box>
-
-            <Button
-              sx={{
-                bgcolor: 'orange',
-                borderRadius: '30px',
-                marginX: '10px',
-                marginY: '10px',
-              }}
-              type="submit"
-              variant="contained"
-            >
-              Register
-            </Button>
-
-            <Button
-              sx={{
-                color: 'orange',
-                borderColor: 'orange',
-                borderRadius: '30px',
-
-                marginY: '10px',
-              }}
-              variant="outlined"
-              href="#contained-buttons"
-            >
-              Log in
-            </Button>
           </Form>
         )}
       </Formik>
