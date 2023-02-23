@@ -33,6 +33,7 @@ const dayEndpointsSlice = createSlice({
     [getDayInfo.fulfilled](state, action) {
       console.log(action.payload);
       if (!action.payload.eatenProducts) {
+        state.eatenProducts = [];
         return;
       }
       state.dateId = action.payload.id;
