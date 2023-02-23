@@ -115,6 +115,7 @@ export const CalculateForm = () => {
                   }}
                 />
                 <TextField
+                  fullWidth
                   name="age"
                   value={values.age || ''}
                   type="number"
@@ -130,6 +131,7 @@ export const CalculateForm = () => {
                   }}
                 />
                 <TextField
+                  fullWidth
                   value={values.weight || ''}
                   onChange={handleChange}
                   type="number"
@@ -157,6 +159,7 @@ export const CalculateForm = () => {
                 }}
               >
                 <TextField
+                  fullWidth
                   name="desiredWeight"
                   value={values.desiredWeight || ''}
                   onChange={handleChange}

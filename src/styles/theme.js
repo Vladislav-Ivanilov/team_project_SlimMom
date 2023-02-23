@@ -91,6 +91,15 @@ const theme = createTheme({
       color: COLOR.black,
       marginBottom: '20px',
     },
+    h5: {
+      /* Login/ register */
+      fontFamily: VERDANA_BOLD,
+      fontSize: 14,
+      lineHeight: '1.2',
+      textTransform: 'uppercase',
+      color: COLOR.orange,
+      marginBottom: '60px',
+    },
     li: {
       fontFamily: VERDANA,
       fontWeight: 400,
@@ -133,7 +142,9 @@ const theme = createTheme({
               fontFamily: VERDANA_BOLD,
               fontWeight: 700,
               fontSize: 14,
+              textTransform: 'capitalize',
               padding: '13px 25px',
+              minWidth: '181px',
               borderRadius: '30px',
               textAlign: 'center',
               boxShadow: `0px 4px 10px rgba(252, 132, 45, 0.5)`,
@@ -149,6 +160,7 @@ const theme = createTheme({
               fontFamily: VERDANA_BOLD,
               fontWeight: 700,
               fontSize: 14,
+              textTransform: 'capitalize',
               padding: '13px 25px',
               borderRadius: '30px',
               textAlign: 'center',
