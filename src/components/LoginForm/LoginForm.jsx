@@ -1,6 +1,5 @@
 import { useDispatch } from 'react-redux';
-import { NavLink } from 'react-router-dom';
-import { TextField, Box, Button } from '@mui/material';
+import { TextField, Box, Button, Typography } from '@mui/material';
 import * as yup from 'yup';
 import { Formik, Form } from 'formik';
 import { login } from 'redux/auth/operation';
@@ -28,109 +27,142 @@ export const LoginForm = () => {
   };
 
   return (
-    <Formik
-      initialValues={initialValues}
-      onSubmit={handleSubmit}
-      validationSchema={validationSchemeForm}
+    <Box
+      component="div"
+      sx={{
+        display: 'flex',
+
+        flexDirection: { xs: 'column' },
+        paddingTop: {
+          sm: '40px',
+          md: '160px ',
+          lg: '160px ',
+        },
+        paddingLeft: {
+          sm: '20px',
+          md: '32px ',
+          lg: '16px ',
+        },
+        paddingBottom: {
+          sm: '100px',
+          md: '419px ',
+          lg: '179px ',
+        },
+        paddingRight: { sm: '20px' },
+      }}
     >
-      {({ values, handleChange, handleBlur, touched, errors }) => (
-        <Form>
-          <Box
-            sx={{
-              display: 'flex',
-              flexDirection: 'column',
-              //   width: '100%',
-            }}
-          >
+      <Typography
+        sx={{
+          marginLeft: { xs: 'auto', md: '0px' },
+          marginRight: { xs: 'auto', md: '0px' },
+        }}
+        variant="h5"
+      >
+        Log In
+      </Typography>
+
+      <Formik
+        initialValues={initialValues}
+        onSubmit={handleSubmit}
+        validationSchema={validationSchemeForm}
+      >
+        {({ values, handleChange, handleBlur, touched, errors }) => (
+          <Form>
             <Box
-              component="div"
               sx={{
-                gap: '40px',
-                maxWidth: { sm: '280px', md: '240px' },
+                display: 'flex',
+                flexDirection: { xs: 'column' },
               }}
             >
-              <TextField
-                required
-                fullWidth
-                InputLabelProps={{
-                  shrink: true,
-                }}
+              <Box
                 sx={{
-                  label: { color: '#9B9FAA' },
-                }}
-                name="email"
-                label="Email"
-                value={values.email}
-                placeholder="example@mail.com"
-                variant="standard"
-                onChange={handleChange}
-                error={Boolean(touched.email && errors.email)}
-                helperText={touched.email && errors.email}
-              />
+                  display: 'flex',
+                  flexDirection: 'column',
+                  gap: '40px',
 
-              <TextField
-                required
-                fullWidth
-                InputLabelProps={{
-                  shrink: true,
+                  marginLeft: { xs: 'auto', md: '0px' },
+                  marginRight: { xs: 'auto', md: '0px' },
+                  marginBottom: '60px',
+                  maxWidth: { sm: '280px', md: '240px' },
+                  width: '100%',
                 }}
-                sx={{
-                  label: { color: '#9B9FAA' },
-                }}
-                name="password"
-                value={values.password}
-                label="Password"
-                type="password"
-                placeholder="Min 8 characters"
-                variant="standard"
-                onChange={handleChange}
-                error={Boolean(touched.password && errors.password)}
-                helperText={touched.password && errors.password}
-              />
-            </Box>
-
-            <Box
-              component="div"
-              sx={{
-                display: { sm: 'flex' },
-                flexDirection: { sm: 'column', md: 'row' },
-                marginTop: '60px',
-                gap: '20px',
-              }}
-            >
-              <Button
-                type="submit"
-                variant="contained"
-                color="primary"
-                sx={{ textTransform: 'none', marginRight: { md: '32px' } }}
               >
-                Log in
-              </Button>
-
-              <Button
-                sx={{
-                  textTransform: 'none',
-                }}
-                variant="outlined"
-              >
-                <NavLink
-                  to="/register"
+                <TextField
+                  required
+                  fullWidth
+                  InputLabelProps={{
+                    shrink: true,
+                  }}
                   sx={{
-                    fontFamily: 'Verdana',
-                    fontWeight: '700',
-                    fontSize: ' 14px',
-                    lineHeight: '1.2',
-                    color: '#FC842D',
-                    //  a: { color: '#FC842D' },
+                    label: { color: '#9B9FAA' },
+                  }}
+                  name="email"
+                  label="Email"
+                  value={values.email}
+                  placeholder="example@mail.com"
+                  variant="standard"
+                  onChange={handleChange}
+                  error={Boolean(touched.email && errors.email)}
+                  helperText={touched.email && errors.email}
+                />
+
+                <TextField
+                  required
+                  fullWidth
+                  InputLabelProps={{
+                    shrink: true,
+                  }}
+                  sx={{
+                    label: { color: '#9B9FAA' },
+                  }}
+                  name="password"
+                  value={values.password}
+                  label="Password"
+                  type="password"
+                  placeholder="Min 8 characters"
+                  variant="standard"
+                  onChange={handleChange}
+                  error={Boolean(touched.password && errors.password)}
+                  helperText={touched.password && errors.password}
+                />
+              </Box>
+
+              <Box
+                sx={{
+                  display: 'flex',
+                  flexDirection: { xs: 'column', md: 'row' },
+                  marginLeft: { xs: 'auto', md: '0px' },
+                  marginRight: { xs: 'auto', md: '0px' },
+                }}
+              >
+                <Button
+                  type="submit"
+                  variant="contained"
+                  color="primary"
+                  sx={{
+                    textTransform: 'capitalize',
+                    marginBottom: { xs: '20px', md: '0px' },
+                    marginRight: { md: '32px' },
+                    padding: { xs: '13px 50px', lg: '13px 37px' },
                   }}
                 >
+                  Log in
+                </Button>
+
+                <Button
+                  sx={{
+                    textTransform: 'capitalize',
+                  }}
+                  variant="outlined"
+                  href="/team_project_SlimMom/register"
+                >
                   Register
-                </NavLink>
-              </Button>
+                </Button>
+              </Box>
             </Box>
-          </Box>
-        </Form>
-      )}
-    </Formik>
+          </Form>
+        )}
+      </Formik>
+    </Box>
   );
 };
