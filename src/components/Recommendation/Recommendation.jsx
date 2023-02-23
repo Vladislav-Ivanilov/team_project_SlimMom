@@ -1,12 +1,13 @@
-import { useEffect, memo } from 'react';
-import { useSelector } from 'react-redux';
-import { dailyRate } from 'redux/daily-rate/selection';
 import Backdrop from '@mui/material/Backdrop';
 import Box from '@mui/material/Box';
-import Modal from '@mui/material/Modal';
 import Fade from '@mui/material/Fade';
+import Modal from '@mui/material/Modal';
 import Typography from '@mui/material/Typography';
 import { FoodList } from 'components/FoodList/FoodList';
+import { useAuth } from 'hooks';
+import { memo } from 'react';
+import { useSelector } from 'react-redux';
+import { dailyRate } from 'redux/daily-rate/selection';
 
 const style = {
   position: 'absolute',
@@ -24,7 +25,12 @@ const style = {
 };
 
 export const Recommendation = memo(({ open, close, values }) => {
-  const dailyRateState = useSelector(dailyRate);
+  const { user, isLoggedIn } = useAuth();
+  let dailyRateState = useSelector(dailyRate);
+
+  if (isLoggedIn) {
+    dailyRateState = user.userData.dailyRate;
+  }
 
   return (
     <div>
