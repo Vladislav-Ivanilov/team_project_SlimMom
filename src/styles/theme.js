@@ -108,6 +108,15 @@ const theme = createTheme({
     },
   },
   components: {
+    MuiFormControlLabel: {
+      styleOverrides: {
+        root: ({ ownerState }) => ({
+          ...(ownerState.checked === true
+            ? { color: '#FC842D' }
+            : { color: '#9B9FAA' }),
+        }),
+      },
+    },
     MuiFormControl: {
       styleOverrides: {
         root: ({ ownerState }) => ({
