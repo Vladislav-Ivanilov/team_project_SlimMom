@@ -1,60 +1,36 @@
 import { useDispatch, useSelector } from 'react-redux';
-// import { useState } from 'react';
-// import debounce from 'lodash.debounce';
-import {
-  Formik,
-  Form,
-  // useFormik
-} from 'formik';
+
+import { Formik, Form } from 'formik';
 import { TextField, Fab, Autocomplete } from '@mui/material';
 import AddIcon from '@mui/icons-material/Add';
 import { productSearch } from 'redux/productSearch/operation';
-// import { useAuth } from 'hooks';
-// import { fetchDailyRateByUserId } from 'redux/daily-rate/operation';
 import { selectProduct } from 'redux/productSearch/selection';
-// import { addEatenProduct } from 'redux/day-endpoints/operation';
-
-const initialValues = {
-  name: '',
-  weight: '',
-};
+import { addEatenProduct } from 'redux/day-endpoints/operation';
+import { selectDay } from 'redux/day-endpoints/selectors';
 
 const AddProduct = () => {
   const dispatch = useDispatch();
-  // const [selectedProduct, setSelectedProduct] = useState('');
-  // const [query, setQuery] = useState('');
 
-  // useEffect(() => {
-  //   dispatch(productSearch(query));
-  // }, [dispatch, query]);
+  const day = useSelector(selectDay);
 
-  const handleSubmit = (values, actions) => {
-    // actions.setFieldValue();
-    console.log(values);
-    console.log(actions);
-    actions.setSubmitting(false);
-    actions.resetForm();
+  const initialValues = {
+    weight: '',
+    id: null,
   };
 
-  // const formik = useFormik({
-  //   initialValues: {
-  //     name: '',
-  //     weight: '',
-  //   },
+  const handleSubmit = (values, actions) => {
+    console.log(values.id);
+    console.log(values.weight);
+    const requestInfo = {
+      date: day.date,
+      productId: values.id,
+      weight: values.weight,
+    };
+    console.log('requestInfo:', requestInfo);
+    dispatch(addEatenProduct(requestInfo));
 
-  //   onSubmit: handleSubmit,
-  // });
-
-  // const onSubmit = (values, { resetForm }) => {
-  //   const newProduct = {
-  //     name: values.name,
-  //     weight: values.weight,
-  //   };
-  //   console.log(newProduct);
-  //   // resetForm();
-  //   console.log('values', values);
-  //   // dispatch(addEatenProduct(newProduct));
-  // };
+    actions.resetForm();
+  };
 
   const onChange = evt => {
     dispatch(productSearch(evt.target.value));
@@ -65,44 +41,32 @@ const AddProduct = () => {
   // }, 300);
 
   const products = useSelector(selectProduct);
-  // console.log('products', products);
   const autocompleteOptions = products.map(product => {
     return {
       label: product.title.ua,
       id: product._id,
-      // calories: product.calories,
     };
   });
 
-  // console.log('selectedProduct', selectedProduct);
-
-  // console.log('autocompleteOptions:', autocompleteOptions);
-  // console.log('query', query);
   return (
     <>
       <Formik initialValues={initialValues} onSubmit={handleSubmit}>
         {({ values, handleChange, setFieldValue }) => (
           <Form>
             <Autocomplete
-              // value={query}
               disablePortal
-              // onChange={(_, value) => {
-              //   setSelectedProduct(value);
-              // }}
               id="combo-box-demo"
               options={autocompleteOptions}
               sx={{ width: 300 }}
               value={values.name}
               onChange={(e, newValue) => {
                 handleChange(e);
-                setFieldValue('name', newValue.label);
+                setFieldValue('id', newValue.id);
               }}
               renderInput={params => (
                 <TextField
-                  // value={formik.values.name}
                   type="input"
                   onChange={onChange}
-                  // onChange={debounceQuery}
                   {...params}
                   label="Enter product name"
                   name="name"
@@ -111,8 +75,6 @@ const AddProduct = () => {
               )}
             />
             <TextField
-              // onChange={handleChange}
-              // value={formik.values.weight}
               id="grams"
               label="Grams"
               type="input"
