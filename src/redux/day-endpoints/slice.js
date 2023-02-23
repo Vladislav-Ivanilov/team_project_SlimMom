@@ -33,6 +33,7 @@ const dayEndpointsSlice = createSlice({
     },
     [getDayInfo.fulfilled](state, action) {
       if (!action.payload.eatenProducts) {
+        state.eatenProducts = [];
         return;
       }
       state.daySummary = action.payload.daySummary;

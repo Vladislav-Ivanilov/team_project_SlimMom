@@ -12,7 +12,9 @@ const Item = styled(Paper)(({ theme }) => ({
   backgroundColor: theme.palette.mode === 'dark' ? '#1A2027' : '#fff',
   ...theme.typography.body2,
   padding: theme.spacing(1),
-  textAlign: 'center',
+  textAlign: 'start',
+  boxShadow: 'none',
+  borderBottom: ' 1px solid #E0E0E0;',
   color: theme.palette.text.secondary,
 }));
 
@@ -45,7 +47,7 @@ const ProductList = () => {
       <Grid container spacing={2}>
         {eatenProducts.map(item => {
           return (
-            <div key={item.id}>
+            <Grid container item key={item.id}>
               <Grid item xs={5}>
                 <Item>{item.title}</Item>
               </Grid>
@@ -62,7 +64,7 @@ const ProductList = () => {
                   </IconButton>
                 </Item>
               </Grid>
-            </div>
+            </Grid>
           );
         })}
       </Grid>
