@@ -1,10 +1,12 @@
 import { CalculateForm } from 'components/CalculateForm/CalculateForm';
 import { Box, Typography } from '@mui/material';
+import BackgroundCalc from '../components/Background/BackgroundCalc/BackgroundCalc'
 
 export const CalculatorPage = () => {
   return (
     <>
       <Box component="main" sx={{ display: 'flex' }}>
+      <BackgroundCalc/>
         <Box
           component="div"
           sx={{
