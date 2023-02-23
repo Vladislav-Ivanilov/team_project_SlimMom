@@ -1,11 +1,29 @@
-import styled from 'styled-components';
+import styled, { keyframes }  from 'styled-components';
 import bgTablet from '../../Image/bg_768.png';
 import bgDesc from '../../Image/bg_1280.png';
 import strawberry from '../../Image/Strawberry_1280.png';
 import leaves from '../../Image/leaves_1280.png';
 import banana from '../../Image/Banan_1280.png';
 
+const desctop = keyframes`
+  0% {
+    transform: translatex(420px);
+  }
 
+  100% {
+    transform: translatex(0);
+  }
+`;
+
+const tablet = keyframes`
+  0% {
+    transform: translatey(420px);
+  }
+
+  100% {
+    transform: translatey(0);
+  }
+`;
 
 export const BGContainer = styled.div`
   display: none;
@@ -29,7 +47,6 @@ export const BGContainer = styled.div`
 export const Decspot = styled.div`
   display: none;
 @media screen and (min-width: 768px) {
-  
     display: block;
     position: absolute;
     background-repeat: no-repeat;
@@ -38,7 +55,6 @@ export const Decspot = styled.div`
     width: 553px;
     height: 750px;
     background-image: url(${bgTablet});
-  
 }
 @media screen and (min-width: 1200px) {
     top: 34px;
@@ -62,6 +78,8 @@ export const Strawberry = styled.div`
     width: 265px;
     height: 273px;
     background-image: url(${strawberry});
+
+    animation: ${tablet} 1s;
   }
 @media screen and (min-width: 1200px) {
       top: 458px;
@@ -69,6 +87,8 @@ export const Strawberry = styled.div`
     width: 362px;
     height: 374px;
     background-image: url(${strawberry});
+
+    animation: ${desctop} 1s;
   }
 `
 
@@ -89,7 +109,7 @@ export const Leaves = styled.div`
     background-image: url(${leaves});
   
 }
-@media screen and (min-width: 1280px) {
+@media screen and (min-width: 1200px) {
  
     top: 0;
     right: 195px;
@@ -112,6 +132,8 @@ display: none;
     width: 740px;
     height: 527px;
     background-image: url(${banana});
+
+    animation: ${tablet} 1s;
   
 }
 @media screen and (min-width: 1200px) {
@@ -120,4 +142,6 @@ display: none;
     width: 773px;
     height: 552px;
     background-image: url(${banana});
+
+    animation: ${desctop} 1s;
   }`
