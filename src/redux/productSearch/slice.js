@@ -1,15 +1,15 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { search } from './operation';
+import { productSearch } from './operation';
 
 const initialState = {
   products: [],
 };
 
 const productSlice = createSlice({
-  name: 'auth',
+  name: 'products',
   initialState,
   extraReducers: {
-    [search.fulfilled](state, action) {
+    [productSearch.fulfilled](state, action) {
       state.products = [...action.payload];
     },
   },

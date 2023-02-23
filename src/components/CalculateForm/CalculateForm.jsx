@@ -9,8 +9,12 @@ import TextField from '@mui/material/TextField';
 import { Form, Formik } from 'formik';
 //import { useDispatch } from 'react-redux';
 //import { fetchDaily } from 'redux/dailyRate/operation';
+import { Typography } from '@mui/material';
 import { Recommendation } from 'components/Recommendation/Recommendation';
 import { useState } from 'react';
+
+import { useRadioGroup } from '@mui/material/RadioGroup';
+import { styled } from '@mui/material/styles';
 
 const initialValues = {
   weight: '',
@@ -45,6 +49,26 @@ export const CalculateForm = () => {
     handleModalOpen();
   };
 
+  const StyledFormControlLabel = styled(props => (
+    <FormControlLabel {...props} />
+  ))(({ theme, checked }) => ({
+    '.MuiFormControlLabel-label': checked && {
+      color: theme.palette.primary.main,
+    },
+  }));
+
+  function MyFormControlLabel(props) {
+    const radioGroup = useRadioGroup();
+
+    let checked = false;
+
+    if (radioGroup) {
+      checked = radioGroup.value === props.value;
+    }
+
+    return <StyledFormControlLabel checked={checked} {...props} />;
+  }
+
   return (
     <>
       <Formik initialValues={initialValues} onSubmit={handelSubmit}>
@@ -58,23 +82,37 @@ export const CalculateForm = () => {
         }) => (
           <Form>
             <Box
-              component="form"
+              component="div"
               sx={{
-                '& .MuiTextField-root': { m: 1, width: '25ch' },
+                display: { sm: 'flex' },
+                flexDirection: { sm: 'column', md: 'row' },
+                marginBottom: { sm: '40px', md: '60px' },
               }}
-              noValidate
-              autoComplete="off"
             >
-              <div>
+              <Box
+                component="div"
+                sx={{
+                  marginRight: { md: '32px' },
+                  display: { sm: 'flex' },
+                  flexDirection: { sm: 'column' },
+                  maxWidth: '240px',
+                }}
+              >
                 <TextField
+                  fullWidth
                   name="height"
                   value={values.height || ''}
                   type="number"
                   onChange={handleChange}
                   required
                   id="standard-required"
-                  label="height"
+                  label="Height"
                   variant="standard"
+                  color="primary"
+                  sx={{
+                    label: { color: '#9B9FAA' },
+                    input: { paddingBottom: { md: '20px' } },
+                  }}
                 />
                 <TextField
                   name="age"
@@ -83,8 +121,13 @@ export const CalculateForm = () => {
                   onChange={handleChange}
                   required
                   id="standard-required"
-                  label="age"
+                  label="Age"
                   variant="standard"
+                  color="primary"
+                  sx={{
+                    label: { color: '#9B9FAA' },
+                    input: { paddingBottom: { md: '20px' } },
+                  }}
                 />
                 <TextField
                   value={values.weight || ''}
@@ -93,11 +136,26 @@ export const CalculateForm = () => {
                   name="weight"
                   required
                   id="standard-required"
-                  label="weight"
+                  label="Weight"
                   variant="standard"
+                  color="primary"
+                  sx={{
+                    label: { color: '#9B9FAA' },
+                    input: {
+                      paddingBottom: { md: '20px' },
+                      input: { paddingBottom: { md: '20px' } },
+                    },
+                  }}
                 />
-              </div>
-              <div>
+              </Box>
+              <Box
+                component="div"
+                sx={{
+                  display: { sm: 'flex' },
+                  flexDirection: { sm: 'column' },
+                  maxWidth: '240px',
+                }}
+              >
                 <TextField
                   name="desiredWeight"
                   value={values.desiredWeight || ''}
@@ -105,10 +163,21 @@ export const CalculateForm = () => {
                   type="number"
                   required
                   id="standard-required"
-                  label="desiredWeight"
+                  label="DesiredWeight"
                   variant="standard"
+                  color="primary"
+                  sx={{
+                    label: { color: '#9B9FAA' },
+                    input: { paddingBottom: { md: '20px' } },
+                  }}
                 />
-                <FormControl>
+                <FormControl
+                  variant="standard"
+                  sx={{
+                    marginTop: { sm: '32px', md: '40px' },
+                    label: { color: '#9B9FAA' },
+                  }}
+                >
                   <FormLabel id="demo-row-radio-buttons-group-label">
                     Blood type *
                   </FormLabel>
@@ -121,37 +190,54 @@ export const CalculateForm = () => {
                       onChange={handleChange}
                       value={1}
                       checked={values.bloodType === '1'}
-                      control={<Radio />}
+                      control={<Radio sx={{ color: '#9B9FAA' }} />}
                       label="1"
                     />
                     <FormControlLabel
                       onChange={handleChange}
                       value={2}
                       checked={values.bloodType === '2'}
-                      control={<Radio />}
+                      control={<Radio sx={{ color: '#9B9FAA' }} />}
                       label="2"
                     />
                     <FormControlLabel
                       onChange={handleChange}
                       value={3}
                       checked={values.bloodType === '3'}
-                      control={<Radio />}
+                      control={<Radio sx={{ color: '#9B9FAA' }} />}
                       label="3"
                     />
                     <FormControlLabel
                       onChange={handleChange}
                       value={4}
                       checked={values.bloodType === '4'}
-                      control={<Radio />}
+                      control={<Radio sx={{ color: '#9B9FAA' }} />}
                       label="4"
                     />
                   </RadioGroup>
                 </FormControl>
-              </div>
+              </Box>
             </Box>
-            <Button variant="contained" color="primary" type="submit">
-              Start losing weight
-            </Button>
+            <Box
+              component="div"
+              sx={{
+                display: 'flex',
+                width: { sm: '320px', md: '100%' },
+                justifyContent: { md: 'flex-start' },
+              }}
+            >
+              <Button
+                variant="contained"
+                color="primary"
+                type="submit"
+                sx={{
+                  marginLeft: { sm: 'auto', md: '0', lg: '307px' },
+                  marginRight: { sm: 'auto', md: '0' },
+                }}
+              >
+                Start losing weight
+              </Button>
+            </Box>
           </Form>
         )}
       </Formik>
