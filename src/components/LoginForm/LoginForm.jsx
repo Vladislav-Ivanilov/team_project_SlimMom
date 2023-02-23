@@ -1,5 +1,6 @@
 import { useDispatch } from 'react-redux';
-import { Typography, TextField, Box, Button } from '@mui/material';
+import { NavLink } from 'react-router-dom';
+import { TextField, Box, Button } from '@mui/material';
 import * as yup from 'yup';
 import { Formik, Form } from 'formik';
 import { login } from 'redux/auth/operation';
@@ -27,30 +28,35 @@ export const LoginForm = () => {
   };
 
   return (
-    <Box>
-      <Typography sx={{ marginBottom: '10px' }} variant="h6">
-        Log In
-      </Typography>
-
-      <Formik
-        initialValues={initialValues}
-        onSubmit={handleSubmit}
-        validationSchema={validationSchemeForm}
-      >
-        {({ values, handleChange, handleBlur, touched, errors }) => (
-          <Form>
+    <Formik
+      initialValues={initialValues}
+      onSubmit={handleSubmit}
+      validationSchema={validationSchemeForm}
+    >
+      {({ values, handleChange, handleBlur, touched, errors }) => (
+        <Form>
+          <Box
+            sx={{
+              display: 'flex',
+              flexDirection: 'column',
+              //   width: '100%',
+            }}
+          >
             <Box
+              component="div"
               sx={{
-                display: 'flex',
-                flexDirection: 'column',
-                gap: '15px',
+                gap: '40px',
+                maxWidth: { sm: '280px', md: '240px' },
               }}
             >
               <TextField
                 required
-                sx={{ width: '240px' }}
+                fullWidth
                 InputLabelProps={{
                   shrink: true,
+                }}
+                sx={{
+                  label: { color: '#9B9FAA' },
                 }}
                 name="email"
                 label="Email"
@@ -64,9 +70,12 @@ export const LoginForm = () => {
 
               <TextField
                 required
-                sx={{ width: '240px' }}
+                fullWidth
                 InputLabelProps={{
                   shrink: true,
+                }}
+                sx={{
+                  label: { color: '#9B9FAA' },
                 }}
                 name="password"
                 value={values.password}
@@ -80,35 +89,48 @@ export const LoginForm = () => {
               />
             </Box>
 
-            <Button
+            <Box
+              component="div"
               sx={{
-                bgcolor: 'orange',
-                borderRadius: '30px',
-                marginX: '10px',
-                marginY: '10px',
+                display: { sm: 'flex' },
+                flexDirection: { sm: 'column', md: 'row' },
+                marginTop: '60px',
+                gap: '20px',
               }}
-              type="submit"
-              variant="contained"
             >
-              Log in
-            </Button>
+              <Button
+                type="submit"
+                variant="contained"
+                color="primary"
+                sx={{ textTransform: 'none', marginRight: { md: '32px' } }}
+              >
+                Log in
+              </Button>
 
-            <Button
-              sx={{
-                color: 'orange',
-                borderColor: 'orange',
-                borderRadius: '30px',
-
-                marginY: '10px',
-              }}
-              variant="outlined"
-              href="#contained-buttons"
-            >
-              Register
-            </Button>
-          </Form>
-        )}
-      </Formik>
-    </Box>
+              <Button
+                sx={{
+                  textTransform: 'none',
+                }}
+                variant="outlined"
+              >
+                <NavLink
+                  to="/register"
+                  sx={{
+                    fontFamily: 'Verdana',
+                    fontWeight: '700',
+                    fontSize: ' 14px',
+                    lineHeight: '1.2',
+                    color: '#FC842D',
+                    //  a: { color: '#FC842D' },
+                  }}
+                >
+                  Register
+                </NavLink>
+              </Button>
+            </Box>
+          </Box>
+        </Form>
+      )}
+    </Formik>
   );
 };

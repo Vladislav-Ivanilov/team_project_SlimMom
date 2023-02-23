@@ -1,20 +1,20 @@
-import { Formik, Form } from 'formik';
 import Box from '@mui/material/Box';
-import TextField from '@mui/material/TextField';
+import Button from '@mui/material/Button';
+import FormControl from '@mui/material/FormControl';
+import FormControlLabel from '@mui/material/FormControlLabel';
+import FormLabel from '@mui/material/FormLabel';
 import Radio from '@mui/material/Radio';
 import RadioGroup from '@mui/material/RadioGroup';
-import FormControlLabel from '@mui/material/FormControlLabel';
-import FormControl from '@mui/material/FormControl';
-import FormLabel from '@mui/material/FormLabel';
-import Button from '@mui/material/Button';
+import TextField from '@mui/material/TextField';
+import { Form, Formik } from 'formik';
 //import { useDispatch } from 'react-redux';
 //import { fetchDaily } from 'redux/dailyRate/operation';
+import { Typography } from '@mui/material';
 import { Recommendation } from 'components/Recommendation/Recommendation';
 import { useState } from 'react';
-import { Typography } from '@mui/material';
 
-import { styled } from '@mui/material/styles';
 import { useRadioGroup } from '@mui/material/RadioGroup';
+import { styled } from '@mui/material/styles';
 
 const initialValues = {
   weight: '',
@@ -115,6 +115,7 @@ export const CalculateForm = () => {
                   }}
                 />
                 <TextField
+                  fullWidth
                   name="age"
                   value={values.age || ''}
                   type="number"
@@ -130,6 +131,7 @@ export const CalculateForm = () => {
                   }}
                 />
                 <TextField
+                  fullWidth
                   value={values.weight || ''}
                   onChange={handleChange}
                   type="number"
@@ -157,6 +159,7 @@ export const CalculateForm = () => {
                 }}
               >
                 <TextField
+                  fullWidth
                   name="desiredWeight"
                   value={values.desiredWeight || ''}
                   onChange={handleChange}
