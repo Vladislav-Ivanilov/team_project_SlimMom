@@ -17,13 +17,12 @@ import { productReducer } from './productSearch/slice';
 const authPersistConfig = {
   key: 'auth',
   storage,
-  whitelist: ['accessToken', 'refreshToken', 'sid'],
+  whitelist: ['accessToken', 'refreshToken', 'sessionId'],
 };
 
 export const store = configureStore({
   reducer: {
     auth: persistReducer(authPersistConfig, authReducer),
-    user: dailySlice,
     daily: dailySlice,
     product: productReducer,
   },
