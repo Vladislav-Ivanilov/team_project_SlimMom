@@ -1,8 +1,13 @@
+import { useSelector, useDispatch } from 'react-redux';
 import { Box, Paper, Grid, IconButton } from '@mui/material';
 import CloseIcon from '@mui/icons-material/Close';
 
 import { styled } from '@mui/material/styles';
 
+import { selectEatenProducts } from 'redux/day-endpoints/selectors';
+import { deleteEatenProduct } from 'redux/day-endpoints/operation';
+import { selectDateId } from 'redux/day-endpoints/selectors';
+import { setDeleteProductId } from 'redux/day-endpoints/slice';
 const Item = styled(Paper)(({ theme }) => ({
   backgroundColor: theme.palette.mode === 'dark' ? '#1A2027' : '#fff',
   ...theme.typography.body2,
@@ -11,14 +16,26 @@ const Item = styled(Paper)(({ theme }) => ({
   color: theme.palette.text.secondary,
 }));
 
-const items = [
-  { name: 'Eggplant', gram: '100g', kcal: '320kcal' },
-  { name: 'Banana', gram: '100g', kcal: '320kcal' },
-  { name: 'Potato', gram: '100g', kcal: '320kcal' },
-  { name: 'Egg', gram: '100g', kcal: '320kcal' },
-];
-
 const ProductList = () => {
+  const dispatch = useDispatch();
+
+  const dayId = useSelector(selectDateId);
+
+  const eatenProducts = useSelector(selectEatenProducts);
+
+  const onClickDeleteProduct = id => {
+    if (!dayId) {
+      return;
+    }
+    const requestInfo = {
+      dayId: dayId,
+      eatenProductId: id,
+    };
+    console.log(requestInfo);
+    dispatch(deleteEatenProduct(requestInfo));
+    dispatch(setDeleteProductId(id));
+  };
+
   return (
     <Box
       sx={{
@@ -26,26 +43,26 @@ const ProductList = () => {
       }}
     >
       <Grid container spacing={2}>
-        {items.map(item => {
+        {eatenProducts.map(item => {
           return (
-            <>
+            <div key={item.id}>
               <Grid item xs={5}>
-                <Item>{item.name}</Item>
+                <Item>{item.title}</Item>
               </Grid>
               <Grid item xs={2}>
-                <Item>{item.gram}</Item>
+                <Item>{item.weight}</Item>
               </Grid>
               <Grid item xs={2}>
-                <Item>{item.kcal}</Item>
+                <Item>{Math.ceil(item.kcal)}</Item>
               </Grid>
               <Grid item xs={1}>
                 <Item>
-                  <IconButton>
+                  <IconButton onClick={() => onClickDeleteProduct(item.id)}>
                     <CloseIcon sx={{ width: '12px', height: '12px' }} />
                   </IconButton>
                 </Item>
               </Grid>
-            </>
+            </div>
           );
         })}
       </Grid>
