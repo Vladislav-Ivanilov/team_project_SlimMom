@@ -11,6 +11,10 @@ import { Recommendation } from 'components/Recommendation/Recommendation';
 import { useState } from 'react';
 import { useRadioGroup } from '@mui/material/RadioGroup';
 import { styled } from '@mui/material/styles';
+import { Summary } from 'components/Summary/Summary';
+import { useAuth } from 'hooks';
+import { getDayInfo } from 'redux/day-endpoints/operation';
+import { useDispatch } from 'react-redux';
 
 const initialValues = {
   weight: '',
@@ -23,12 +27,14 @@ const initialValues = {
 export const CalculateForm = () => {
   const [formData, setFormData] = useState(initialValues);
 
+  const { isLoggedIn } = useAuth();
+
   const [open, setOpen] = useState(false);
   const handleModalOpen = () => {
     setOpen(!open);
   };
 
-  //const dispatch = useDispatch();
+  const dispatch = useDispatch();
 
   const handelSubmit = (values, { resetForm }) => {
     const { bloodType, ...res } = values;
@@ -39,10 +45,16 @@ export const CalculateForm = () => {
 
     setFormData(newFormData);
 
-    // isLoggedIn ? dispatch(fetchDaily(values)) : handleModalOpen();
+    const dateChoose = {
+      date: '2020-12-31',
+    };
+
+    isLoggedIn ? dispatch(getDayInfo(dateChoose)) : handleModalOpen();
+
+    dispatch(getDayInfo(dateChoose));
 
     // dispatch(fetchDaily(newFormData));
-    handleModalOpen();
+    // handleModalOpen();
   };
 
   const StyledFormControlLabel = styled(props => (
@@ -243,6 +255,8 @@ export const CalculateForm = () => {
         )}
       </Formik>
       {open && <Recommendation open={open} close={setOpen} values={formData} />}
+
+      {isLoggedIn && <Summary />}
     </>
   );
 };

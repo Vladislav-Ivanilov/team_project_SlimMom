@@ -2,12 +2,21 @@ import { memo, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchDaily, fetchDailyRateByUserId } from 'redux/daily-rate/operation';
 import { notAllowedProducts } from 'redux/daily-rate/selection';
+import { randomProducts } from 'redux/daily-rate/selection';
+import { selectAccessProducts } from 'redux/auth/selectors';
 
 import { useAuth } from 'hooks/useAuth';
 
 export const FoodList = memo(({ values }) => {
   const dispatch = useDispatch();
   const { user, isLoggedIn } = useAuth();
+  const randomProductsState = useSelector(randomProducts);
+  const randomProductsAuthState = useSelector(selectAccessProducts);
+  console.log(randomProductsAuthState);
+
+  const notAllowedProductsList = isLoggedIn
+    ? randomProductsAuthState
+    : randomProductsState;
 
   const userLoginedInfo = {
     userId: user.id,
@@ -18,7 +27,6 @@ export const FoodList = memo(({ values }) => {
     isLoggedIn
       ? dispatch(fetchDailyRateByUserId(userLoginedInfo))
       : dispatch(fetchDaily(values));
-    // eslint-disable-next-line
   }, [values]);
 
   let notAllowedProductsState = useSelector(notAllowedProducts);
@@ -26,19 +34,9 @@ export const FoodList = memo(({ values }) => {
     notAllowedProductsState = user.userData.notAllowedProducts;
   }
 
-  function getRandomElement() {
-    return Math.floor(Math.random() * notAllowedProductsState.length - 1);
-  }
-  const food = [
-    notAllowedProductsState[getRandomElement()],
-    notAllowedProductsState[getRandomElement()],
-    notAllowedProductsState[getRandomElement()],
-    notAllowedProductsState[getRandomElement()],
-  ];
-
   return (
     <ol>
-      {food.map(item => {
+      {notAllowedProductsList.map(item => {
         return <li>{item}</li>;
       })}
     </ol>
