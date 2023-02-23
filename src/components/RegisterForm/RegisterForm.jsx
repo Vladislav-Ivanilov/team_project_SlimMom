@@ -105,16 +105,11 @@ export const RegisterForm = () => {
                 <TextField
                   fullWidth
                   required
-                  //  sx={{ width: '240px' }}
                   InputLabelProps={{
                     shrink: true,
                   }}
                   sx={{
                     label: { color: '#9B9FAA' },
-                    //   input: {
-                    //     paddingBottom: { md: '20px' },
-                    //     input: { paddingBottom: { md: '20px' } },
-                    //   },
                   }}
                   name="name"
                   label="Name"
@@ -130,13 +125,8 @@ export const RegisterForm = () => {
                   fullWidth
                   sx={{
                     label: { color: '#9B9FAA' },
-                    //   input: {
-                    //     paddingBottom: { md: '20px' },
-                    //     input: { paddingBottom: { md: '20px' } },
-                    //   },
                   }}
                   required
-                  //  sx={{ width: '240px' }}
                   InputLabelProps={{
                     shrink: true,
                   }}
@@ -154,13 +144,8 @@ export const RegisterForm = () => {
                   fullWidth
                   sx={{
                     label: { color: '#9B9FAA' },
-                    //   input: {
-                    //     paddingBottom: { md: '20px' },
-                    //     input: { paddingBottom: { md: '20px' } },
-                    //   },
                   }}
                   required
-                  //  sx={{ width: '240px' }}
                   InputLabelProps={{
                     shrink: true,
                   }}

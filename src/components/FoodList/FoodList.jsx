@@ -4,6 +4,7 @@ import { fetchDaily, fetchDailyRateByUserId } from 'redux/daily-rate/operation';
 import { notAllowedProducts } from 'redux/daily-rate/selection';
 
 import { useAuth } from 'hooks/useAuth';
+import { Typography } from '@mui/material';
 
 export const FoodList = memo(({ values }) => {
   const dispatch = useDispatch();
@@ -37,10 +38,10 @@ export const FoodList = memo(({ values }) => {
   ];
 
   return (
-    <ol>
+    <Typography variant='ol' component='ol'>
       {food.map(item => {
-        return <li>{item}</li>;
+        return <Typography variant='li' component='li'>{item}</Typography>;
       })}
-    </ol>
+    </Typography>
   );
 });

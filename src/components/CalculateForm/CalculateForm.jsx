@@ -7,12 +7,8 @@ import Radio from '@mui/material/Radio';
 import RadioGroup from '@mui/material/RadioGroup';
 import TextField from '@mui/material/TextField';
 import { Form, Formik } from 'formik';
-//import { useDispatch } from 'react-redux';
-//import { fetchDaily } from 'redux/dailyRate/operation';
-import { Typography } from '@mui/material';
 import { Recommendation } from 'components/Recommendation/Recommendation';
 import { useState } from 'react';
-
 import { useRadioGroup } from '@mui/material/RadioGroup';
 import { styled } from '@mui/material/styles';
 
@@ -178,10 +174,12 @@ export const CalculateForm = () => {
                   variant="standard"
                   sx={{
                     marginTop: { sm: '32px', md: '40px' },
-                    label: { color: '#9B9FAA' },
                   }}
                 >
-                  <FormLabel id="demo-row-radio-buttons-group-label">
+                  <FormLabel
+                    sx={{ color: '#9B9FAA' }}
+                    id="demo-row-radio-buttons-group-label"
+                  >
                     Blood type *
                   </FormLabel>
                   <RadioGroup

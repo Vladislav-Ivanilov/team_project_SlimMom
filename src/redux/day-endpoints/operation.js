@@ -7,9 +7,8 @@ export const addEatenProduct = createAsyncThunk(
   '/addEatenProduct',
   async (productData, thunkApi) => {
     try {
-      const response = await axios.post('/day', productData);
-      console.log(response.data);
-      return response.data;
+      const { data } = await axios.post('/day', productData);
+      return data;
     } catch (error) {
       return thunkApi.rejectWithValue(error.message);
     }
@@ -20,8 +19,9 @@ export const deleteEatenProduct = createAsyncThunk(
   '/deleteEatenProduct',
   async (productData, thunkApi) => {
     try {
-      const response = await axios.delete('/day', productData);
-      return response.data;
+      const { data } = await axios.delete('/day', { data: { ...productData } });
+      // console.log(`deleteEaten:`, productData.eatenProductId, data);
+      return { productId: productData.eatenProductId, data };
     } catch (error) {
       return thunkApi.rejectWithValue(error.message);
     }
@@ -30,12 +30,12 @@ export const deleteEatenProduct = createAsyncThunk(
 
 export const getDayInfo = createAsyncThunk(
   '/getDayInfo',
-  async (date, thunkApi) => {
+  async (date, { rejectWithValue }) => {
     try {
-      const response = await axios.post('/day/info', date);
-      return response.data;
+      const { data } = await axios.post('/day/info', date);
+      return data;
     } catch (error) {
-      return thunkApi.rejectWithValue(error.message);
+      return rejectWithValue(error.message);
     }
   }
 );
