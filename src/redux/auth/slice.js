@@ -4,6 +4,7 @@ import { fetchCurrentUser, login, logout, register } from './operation';
 
 const initialState = {
   user: { username: null, email: null, userData: {} },
+  randomProducts: [],
   todaySummary: null,
   accessToken: null,
   refreshToken: null,
@@ -29,6 +30,17 @@ const authSlice = createSlice({
       state.refreshToken = action.payload.refreshToken;
       state.sessionId = action.payload.sid;
       state.isLoggedIn = true;
+
+      if (!state.random){return}
+      for (let index = 4; index > state.randomProducts.length; index - 1) {
+        state.randomProducts.push(
+          action.payload.userData.notAllowedProducts[
+            getRandomElement(
+              action.payload.userData.notAllowedProducts.length - 1
+            )
+          ]
+        );
+      }
     },
     [logout.fulfilled](state, action) {
       state.user = { username: null, email: null, userData: {} };
@@ -41,6 +53,17 @@ const authSlice = createSlice({
     [fetchCurrentUser.fulfilled](state, action) {
       state.user = action.payload;
       state.isLoggedIn = true;
+
+      for (let index = 4; index > state.randomProducts.length; index - 1) {
+        console.log(123132);
+        state.randomProducts.push(
+          action.payload.userData.notAllowedProducts[
+            getRandomElement(
+              action.payload.userData.notAllowedProducts.length - 1
+            )
+          ]
+        );
+      }
     },
     [fetchDailyRateByUserId.fulfilled](state, action) {
       state.user.userData = action.meta.arg.userData;
@@ -56,5 +79,9 @@ const authSlice = createSlice({
     // },
   },
 });
+
+function getRandomElement(max) {
+  return Math.floor(Math.random() * max - 1);
+}
 
 export const authReducer = authSlice.reducer;

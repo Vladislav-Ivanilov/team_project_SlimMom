@@ -9,3 +9,5 @@ export const selectSessionId = state => state.auth.sessionId;
 export const selectRefreshToken = state => state.auth.refreshToken;
 
 export const selectAccessToken = state => state.auth.accessToken;
+
+export const selectAccessProducts = state => state.auth.randomProducts;

@@ -7,6 +7,7 @@ const initialState = {
   eatenProducts: [],
   deleteProductId: null,
   error: null,
+  daySummary: {},
 };
 
 const handlePending = () => {};
@@ -31,10 +32,11 @@ const dayEndpointsSlice = createSlice({
       state.eatenProducts.push(action.payload.eatenProduct);
     },
     [getDayInfo.fulfilled](state, action) {
-      console.log(action.payload);
       if (!action.payload.eatenProducts) {
+        state.eatenProducts = [];
         return;
       }
+      state.daySummary = action.payload.daySummary;
       state.dateId = action.payload.id;
       state.eatenProducts = [...action.payload.eatenProducts];
     },

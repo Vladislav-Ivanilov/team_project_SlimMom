@@ -1,4 +1,4 @@
-import { Button} from '@mui/material';
+import { Button } from '@mui/material';
 import Backdrop from '@mui/material/Backdrop';
 import Box from '@mui/material/Box';
 import Fade from '@mui/material/Fade';
@@ -12,8 +12,9 @@ import { dailyRate } from 'redux/daily-rate/selection';
 import Divider from '@mui/material/Divider';
 import IconButton from '@mui/material/IconButton';
 import ClearIcon from '@mui/icons-material/Clear';
+import RecommendationPage from './RecommendationPage';
 
-const style = (theme) => ({
+const style = theme => ({
   position: 'absolute',
   top: '50%',
   left: '50%',
@@ -35,11 +36,18 @@ export const Recommendation = memo(({ open, close, values }) => {
     dailyRateState = user.userData.dailyRate;
   }
 
+  // if (window.innerWidth < '768' ){
+  //   return <RecommendationPage/>
+  // }else {
+  //   console.log(window.innerWidth)
+  //   return (
+  //     <Box component='div'
+  // {window.innerWidth < 768 &&  <RecommendationPage/>}
+
   return (
-    <Box component='div'       
-    >
+    <Box component="div">
       <Modal
-      sx={{display: {xs: 'none', md: 'block' }}}
+        sx={{ display: { xs: 'none', md: 'block' } }}
         aria-labelledby="transition-modal-title"
         aria-describedby="transition-modal-description"
         open={open}
@@ -52,25 +60,51 @@ export const Recommendation = memo(({ open, close, values }) => {
           },
         }}
       >
-
         <Fade in={open}>
           <Box sx={style}>
-          <IconButton sx={{position: 'absolute', top: '24px', right: '24px'}} onClick={() => close(false)}>
-            <ClearIcon />
-        </IconButton>
+            <IconButton
+              sx={{ position: 'absolute', top: '24px', right: '24px' }}
+              onClick={() => close(false)}
+            >
+              <ClearIcon />
+            </IconButton>
             <Typography variant="h2" component="h2">
-   Your recommended daily calorie intake is
+              Your recommended daily calorie intake is
             </Typography>
-            <Typography variant='h3' component="p">
-            {dailyRateState} <Typography component='span' sx={{color: '#264061', fontSize: '16px'}}>ккал</Typography>
+            <Typography variant="h3" component="p">
+              {dailyRateState}{' '}
+              <Typography
+                component="span"
+                sx={{ color: '#264061', fontSize: '16px' }}
+              >
+                ккал
+              </Typography>
             </Typography>
-            <Divider variant="middle" sx={{width:"330px", marginBottom: '12px', color: '#E0E0E0', marginLeft: "auto", marginRight: 'auto'}}/>
-            
-              <Box sx={{marginLeft: '89px', marginBottom: "40px"}}>
-              <Typography variant='h4' component='p'>Foods you should not eat</Typography>
+            <Divider
+              variant="middle"
+              sx={{
+                width: '330px',
+                marginBottom: '12px',
+                color: '#E0E0E0',
+                marginLeft: 'auto',
+                marginRight: 'auto',
+              }}
+            />
+
+            <Box sx={{ marginLeft: '89px', marginBottom: '40px' }}>
+              <Typography variant="h4" component="p">
+                Foods you should not eat
+              </Typography>
               <FoodList values={values} />
-              </Box>
-              <Box sx={{display: "flex"}}><Button variant='contained' sx={{marginLeft: 'auto', marginRight: "auto"}}>Start losing weight</Button ></Box>
+            </Box>
+            <Box sx={{ display: 'flex' }}>
+              <Button
+                variant="contained"
+                sx={{ marginLeft: 'auto', marginRight: 'auto' }}
+              >
+                Start losing weight
+              </Button>
+            </Box>
           </Box>
         </Fade>
       </Modal>
