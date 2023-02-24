@@ -26,8 +26,6 @@ const initialValues = {
 };
 
 export const CalculateForm = () => {
-  const [formData, setFormData] = useState(initialValues);
-
   const { user, isLoggedIn } = useAuth();
 
   const [open, setOpen] = useState(false);
@@ -37,35 +35,29 @@ export const CalculateForm = () => {
 
   const dispatch = useDispatch();
 
-  const handelSubmit = (values, { resetForm }) => {
+  const dateChoose = {
+    date: '2020-12-31',
+  };
+
+  const handelSubmit = values => {
     const { bloodType, ...res } = values;
     const newFormData = {
       ...res,
       bloodType: Number(bloodType),
     };
-    isLoggedIn ? dispatch(getDayInfo(dateChoose)) : handleModalOpen();
 
-    isLoggedIn
-      ? dispatch(fetchDailyRateByUserId(userLoginedInfo))
-      : dispatch(fetchDaily(newFormData));
-
-    dispatch(getDayInfo(dateChoose));
-
-    console.log(isLoggedIn);
-
-    const userLoginedInfo = {
+    const userLoginInfo = {
       userId: user.id,
       userData: newFormData,
     };
 
-    setFormData(newFormData);
+    isLoggedIn ? dispatch(getDayInfo(dateChoose)) : handleModalOpen();
 
-    const dateChoose = {
-      date: '2020-12-31',
-    };
+    isLoggedIn
+      ? dispatch(fetchDailyRateByUserId(userLoginInfo))
+      : dispatch(fetchDaily(newFormData));
 
-    // dispatch(fetchDaily(newFormData));
-    // handleModalOpen();
+    dispatch(getDayInfo(dateChoose));
   };
 
   const StyledFormControlLabel = styled(props => (
