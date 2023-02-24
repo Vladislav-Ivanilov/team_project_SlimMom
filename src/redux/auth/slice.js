@@ -33,9 +33,9 @@ const authSlice = createSlice({
 
       for (let index = 4; index > state.randomProducts.length; index - 1) {
         state.randomProducts.push(
-          action.payload.userData.notAllowedProducts[
+          action.payload.user.userData.notAllowedProducts[
             getRandomElement(
-              action.payload.userData.notAllowedProducts.length - 1
+              action.payload.user.userData.notAllowedProducts.length - 1
             )
           ]
         );
@@ -54,7 +54,6 @@ const authSlice = createSlice({
       state.isLoggedIn = true;
 
       for (let index = 4; index > state.randomProducts.length; index - 1) {
-        console.log(123132);
         state.randomProducts.push(
           action.payload.userData.notAllowedProducts[
             getRandomElement(

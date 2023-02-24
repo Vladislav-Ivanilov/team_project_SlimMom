@@ -17,6 +17,7 @@ const dailySlice = createSlice({
 
       state.dailyRate = action.payload.dailyRate;
       state.notAllowedProducts = notAllowedProducts;
+
       for (let index = 4; index > state.randomProducts.length; index - 1) {
         state.randomProducts.push(
           notAllowedProducts[getRandomElement(notAllowedProducts.length - 1)]

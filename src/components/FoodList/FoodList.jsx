@@ -12,7 +12,6 @@ export const FoodList = memo(({ values }) => {
   const { user, isLoggedIn } = useAuth();
   const randomProductsState = useSelector(randomProducts);
   const randomProductsAuthState = useSelector(selectAccessProducts);
-  console.log(randomProductsAuthState);
 
   const notAllowedProductsList = isLoggedIn
     ? randomProductsAuthState
