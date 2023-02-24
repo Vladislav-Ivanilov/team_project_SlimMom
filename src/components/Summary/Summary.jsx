@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useEffect } from 'react';
 import { dayInfo } from 'redux/day-endpoints/selectors';
 import { selectDay } from 'redux/day-endpoints/selectors';
+import BackgroundSummery from 'components/Background/BackgroundSummery/BackgroundSummery';
 
 export const Summary = () => {
   const dispatch = useDispatch();
@@ -27,6 +28,7 @@ export const Summary = () => {
 
   return (
     <>
+    <BackgroundSummery/>
       <h3>{`Summary for ${date}`}</h3>
       <ul>
         <li>Left {Math.round(kcalLeft)} kcal</li>

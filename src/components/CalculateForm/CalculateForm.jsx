@@ -15,6 +15,12 @@ import { Summary } from 'components/Summary/Summary';
 import { useAuth } from 'hooks';
 import { getDayInfo } from 'redux/day-endpoints/operation';
 import { useDispatch } from 'react-redux';
+import { useTheme } from '@mui/material/styles';
+import useMediaQuery from '@mui/material/useMediaQuery';
+import { useSelector } from 'react-redux';
+import { dailyRate } from 'redux/daily-rate/selection';
+ import {Typography} from '@mui/material'
+// import RecommendationPage from './RecommendationPage';
 
 const initialValues = {
   weight: '',
@@ -26,10 +32,16 @@ const initialValues = {
 
 export const CalculateForm = () => {
   const [formData, setFormData] = useState(initialValues);
-
-  const { isLoggedIn } = useAuth();
-
   const [open, setOpen] = useState(false);
+  const { isLoggedIn } = useAuth();
+  const [visible, setVisible] = useState('')
+  const dailyRateState = useSelector(dailyRate);
+
+
+  const theme = useTheme();
+  const mobile = useMediaQuery(theme.breakpoints.down('md'));
+
+  console.log(mobile)
   const handleModalOpen = () => {
     setOpen(!open);
   };
@@ -44,6 +56,7 @@ export const CalculateForm = () => {
     };
 
     setFormData(newFormData);
+    mobile ? setVisible('none') : setVisible('block')
 
     const dateChoose = {
       date: '2020-12-31',
@@ -76,10 +89,40 @@ export const CalculateForm = () => {
 
     return <StyledFormControlLabel checked={checked} {...props} />;
   }
-
+console.log(dailyRateState)
   return (
     <>
-      <Formik initialValues={initialValues} onSubmit={handelSubmit}>
+<Box sx={{display: {xs: dailyRateState > 0 ? 'none': 'block', md: 'block', lg: 'block'}}}>
+<Box component="main" sx={{ display: 'flex' }}>
+<Box
+          component="div"
+          sx={{
+            paddingTop: {
+              sm: '32px',
+              md: '100px ',
+              lg: '140px ',
+            },
+            paddingLeft: {
+              sm: '20px',
+              md: '32px ',
+              lg: '16px ',
+            },
+            paddingBottom: {
+              sm: '100px',
+              md: '398px ',
+              lg: '111px ',
+            },
+            paddingRight: { sm: '20px' },
+            marginLeft: { sm: 'auto', md: '0' },
+            marginRight: { sm: 'auto', md: '0' },
+          }}
+        >
+<Typography component="h1" variant="h1">
+            Calculate your daily calorie
+            <br />
+            intake right now
+          </Typography>
+<Formik initialValues={initialValues} onSubmit={handelSubmit}>
         {({
           values,
 
@@ -254,9 +297,11 @@ export const CalculateForm = () => {
           </Form>
         )}
       </Formik>
+</Box>
+{isLoggedIn && <Summary />}
+</Box>
+</Box>
       {open && <Recommendation open={open} close={setOpen} values={formData} />}
-
-      {isLoggedIn && <Summary />}
     </>
   );
 };
