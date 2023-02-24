@@ -18,15 +18,19 @@ export const AddProduct = () => {
     id: null,
   };
 
-  const handleSubmit = (values, actions) => {
+  const handleSubmit = (values, { resetForm }) => {
     const requestInfo = {
       date: day.date,
       productId: values.id,
       weight: values.weight,
     };
+    if (requestInfo.productId === null) {
+      resetForm();
+      return;
+    }
     dispatch(addEatenProduct(requestInfo));
 
-    actions.resetForm();
+    resetForm();
   };
 
   const onChange = evt => {
@@ -54,6 +58,9 @@ export const AddProduct = () => {
               value={values.name}
               onChange={(e, newValue) => {
                 handleChange(e);
+                if (!newValue) {
+                  return;
+                }
                 setFieldValue('id', newValue.id);
               }}
               renderInput={params => (
