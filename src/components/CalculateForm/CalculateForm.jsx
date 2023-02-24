@@ -63,9 +63,6 @@ export const CalculateForm = () => {
     const dateChoose = {
       date: '2020-12-31',
     };
-
-    // dispatch(fetchDaily(newFormData));
-    // handleModalOpen();
   };
 
   const StyledFormControlLabel = styled(props => (
