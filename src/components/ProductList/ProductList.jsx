@@ -8,7 +8,8 @@ import { selectEatenProducts } from 'redux/day-endpoints/selectors';
 import { deleteEatenProduct } from 'redux/day-endpoints/operation';
 import { selectDateId } from 'redux/day-endpoints/selectors';
 import { setDeleteProductId } from 'redux/day-endpoints/slice';
-const Item = styled(Paper)(({ theme }) => ({
+
+export const Item = styled(Paper)(({ theme }) => ({
   backgroundColor: theme.palette.mode === 'dark' ? '#1A2027' : '#fff',
   ...theme.typography.body2,
   padding: theme.spacing(1),
@@ -18,7 +19,7 @@ const Item = styled(Paper)(({ theme }) => ({
   color: theme.palette.text.secondary,
 }));
 
-const ProductList = () => {
+export const ProductList = () => {
   const dispatch = useDispatch();
 
   const dayId = useSelector(selectDateId);
@@ -33,7 +34,7 @@ const ProductList = () => {
       dayId: dayId,
       eatenProductId: id,
     };
-    console.log(requestInfo);
+
     dispatch(deleteEatenProduct(requestInfo));
     dispatch(setDeleteProductId(id));
   };
@@ -71,5 +72,3 @@ const ProductList = () => {
     </Box>
   );
 };
-
-export default ProductList;

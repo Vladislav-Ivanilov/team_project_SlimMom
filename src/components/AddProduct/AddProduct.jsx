@@ -8,7 +8,7 @@ import { selectProduct } from 'redux/productSearch/selection';
 import { addEatenProduct } from 'redux/day-endpoints/operation';
 import { selectDay } from 'redux/day-endpoints/selectors';
 
-const AddProduct = () => {
+export const AddProduct = () => {
   const dispatch = useDispatch();
 
   const day = useSelector(selectDay);
@@ -19,14 +19,11 @@ const AddProduct = () => {
   };
 
   const handleSubmit = (values, actions) => {
-    console.log(values.id);
-    console.log(values.weight);
     const requestInfo = {
       date: day.date,
       productId: values.id,
       weight: values.weight,
     };
-    console.log('requestInfo:', requestInfo);
     dispatch(addEatenProduct(requestInfo));
 
     actions.resetForm();
@@ -35,10 +32,6 @@ const AddProduct = () => {
   const onChange = evt => {
     dispatch(productSearch(evt.target.value));
   };
-
-  // const debounceQuery = debounce(e => {
-  //   setQuery(e.target.value);
-  // }, 300);
 
   const products = useSelector(selectProduct);
   const autocompleteOptions = products.map(product => {
@@ -92,5 +85,3 @@ const AddProduct = () => {
     </>
   );
 };
-
-export default AddProduct;

@@ -1,3 +1,9 @@
+import { useState } from 'react';
+import { getDayInfo } from 'redux/day-endpoints/operation';
+import { useDispatch } from 'react-redux';
+
+import { Form, Formik } from 'formik';
+
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import FormControl from '@mui/material/FormControl';
@@ -6,15 +12,11 @@ import FormLabel from '@mui/material/FormLabel';
 import Radio from '@mui/material/Radio';
 import RadioGroup from '@mui/material/RadioGroup';
 import TextField from '@mui/material/TextField';
-import { Form, Formik } from 'formik';
-import { Recommendation } from 'components/Recommendation/Recommendation';
-import { useState } from 'react';
-import { useRadioGroup } from '@mui/material/RadioGroup';
-import { styled } from '@mui/material/styles';
-import { Summary } from 'components/Summary/Summary';
+
 import { useAuth } from 'hooks';
-import { getDayInfo } from 'redux/day-endpoints/operation';
-import { useDispatch } from 'react-redux';
+import { fetchDaily, fetchDailyRateByUserId } from 'redux/daily-rate/operation';
+import { Recommendation } from 'components/Recommendation/Recommendation';
+import { Summary } from 'components/Summary/Summary';
 import { useTheme } from '@mui/material/styles';
 import useMediaQuery from '@mui/material/useMediaQuery';
 import { useSelector } from 'react-redux';
@@ -33,7 +35,7 @@ const initialValues = {
 export const CalculateForm = () => {
   const [formData, setFormData] = useState(initialValues);
   const [open, setOpen] = useState(false);
-  const { isLoggedIn } = useAuth();
+  const { isLoggedIn, user } = useAuth();
   const [visible, setVisible] = useState('')
   const dailyRateState = useSelector(dailyRate);
 
@@ -61,34 +63,19 @@ export const CalculateForm = () => {
     const dateChoose = {
       date: '2020-12-31',
     };
+    const userLoginInfo = {
+      userId: user.id,
+      userData: newFormData,
+    };
 
     isLoggedIn ? dispatch(getDayInfo(dateChoose)) : handleModalOpen();
 
+    isLoggedIn
+      ? dispatch(fetchDailyRateByUserId(userLoginInfo))
+      : dispatch(fetchDaily(newFormData));
+
     dispatch(getDayInfo(dateChoose));
-
-    // dispatch(fetchDaily(newFormData));
-    // handleModalOpen();
   };
-
-  const StyledFormControlLabel = styled(props => (
-    <FormControlLabel {...props} />
-  ))(({ theme, checked }) => ({
-    '.MuiFormControlLabel-label': checked && {
-      color: theme.palette.primary.main,
-    },
-  }));
-
-  function MyFormControlLabel(props) {
-    const radioGroup = useRadioGroup();
-
-    let checked = false;
-
-    if (radioGroup) {
-      checked = radioGroup.value === props.value;
-    }
-
-    return <StyledFormControlLabel checked={checked} {...props} />;
-  }
 console.log(dailyRateState)
   return (
     <>
@@ -126,8 +113,8 @@ console.log(dailyRateState)
         {({
           values,
 
-          handleChange,
-          setFieldValue,
+                handleChange,
+                setFieldValue,
 
           handleBlur,
         }) => (

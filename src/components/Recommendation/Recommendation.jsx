@@ -8,11 +8,10 @@ import { useSelector } from 'react-redux';
 import { dailyRate } from 'redux/daily-rate/selection';
 import IconButton from '@mui/material/IconButton';
 import ClearIcon from '@mui/icons-material/Clear';
-import RecommendationPage from './RecommendationPage';
 import useMediaQuery from '@mui/material/useMediaQuery';
 import { useTheme } from '@mui/material/styles';
-import GoBack from '../GoBack/GoBack'
-
+import GoBack from '../GoBack/GoBack';
+import RecommendationPage from '../Recommendation/RecommendationPage'
 
 const style = {
   position: 'absolute',
@@ -39,36 +38,44 @@ export const Recommendation = memo(({ open, close, values }) => {
   const theme = useTheme();
   const mobile = useMediaQuery(theme.breakpoints.down('md'));
 
-if (mobile){
-  return (<>
-  <GoBack /> 
-  <RecommendationPage 
-  dailyRateState={dailyRateState} 
-  values={values}/>
-  </>)
-} else {return <Modal
-          sx={{ display: { xs: 'none', md: 'block' } }}
-          aria-labelledby="transition-modal-title"
-          aria-describedby="transition-modal-description"
-          open={open}
-          onClose={() => close(false)}
-          closeAfterTransition
-          slots={{ backdrop: Backdrop }}
-          slotProps={{
-            backdrop: {
-              timeout: 500,
-            },
-          }}
-        >
-          <Fade in={open}>
-            <Box sx={style}>
-              <IconButton
-                sx={{ position: 'absolute', top: '24px', right: '24px' }}
-                onClick={() => close(false)}
-              >
-                <ClearIcon />
-              </IconButton>
-              <RecommendationPage dailyRateState={dailyRateState} values={values}/>
-            </Box>
-          </Fade>
-        </Modal>}})
+  if (mobile) {
+    return (
+      <>
+        <GoBack />
+        <RecommendationPage dailyRateState={dailyRateState} values={values} />
+      </>
+    );
+  } else {
+    return (
+      <Modal
+        sx={{ display: { xs: 'none', md: 'block' } }}
+        aria-labelledby="transition-modal-title"
+        aria-describedby="transition-modal-description"
+        open={open}
+        onClose={() => close(false)}
+        closeAfterTransition
+        slots={{ backdrop: Backdrop }}
+        slotProps={{
+          backdrop: {
+            timeout: 500,
+          },
+        }}
+      >
+        <Fade in={open}>
+          <Box sx={style}>
+            <IconButton
+              sx={{ position: 'absolute', top: '24px', right: '24px' }}
+              onClick={() => close(false)}
+            >
+              <ClearIcon />
+            </IconButton>
+            <RecommendationPage
+              dailyRateState={dailyRateState}
+              values={values}
+            />
+          </Box>
+        </Fade>
+      </Modal>
+    );
+  }
+});

@@ -1,16 +1,13 @@
-import { memo, useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { fetchDaily, fetchDailyRateByUserId } from 'redux/daily-rate/operation';
+import { memo } from 'react';
+import { useSelector } from 'react-redux';
 import { notAllowedProducts } from 'redux/daily-rate/selection';
 import { randomProducts } from 'redux/daily-rate/selection';
 import { selectAccessProducts } from 'redux/auth/selectors';
 
-
 import { useAuth } from 'hooks/useAuth';
 import { Typography } from '@mui/material';
 
-export const FoodList = memo(({ values }) => {
-  const dispatch = useDispatch();
+export const FoodList = memo(() => {
   const { user, isLoggedIn } = useAuth();
   const randomProductsState = useSelector(randomProducts);
   const randomProductsAuthState = useSelector(selectAccessProducts);
@@ -19,17 +16,6 @@ export const FoodList = memo(({ values }) => {
     ? randomProductsAuthState
     : randomProductsState;
 
-  const userLoginedInfo = {
-    userId: user.id,
-    userData: values,
-  };
-
-  useEffect(() => {
-    isLoggedIn
-      ? dispatch(fetchDailyRateByUserId(userLoginedInfo))
-      : dispatch(fetchDaily(values));
-  }, [values]);
-
   let notAllowedProductsState = useSelector(notAllowedProducts);
   if (isLoggedIn) {
     // eslint-disable-next-line no-unused-vars
@@ -37,9 +23,13 @@ export const FoodList = memo(({ values }) => {
   }
 
   return (
-    <Typography variant='ol' component='ol'>
-      {notAllowedProductsList.map(item => {
-        return <Typography variant='li' component='li'>{item}</Typography>;
+    <Typography variant="ol" component="ol">
+      {notAllowedProductsList.map((item, index) => {
+        return (
+          <Typography key={index} variant="li" component="li">
+            {item}
+          </Typography>
+        );
       })}
     </Typography>
   );
