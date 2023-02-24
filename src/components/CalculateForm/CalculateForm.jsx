@@ -16,7 +16,7 @@ import TextField from '@mui/material/TextField';
 import { useAuth } from 'hooks';
 import { fetchDaily, fetchDailyRateByUserId } from 'redux/daily-rate/operation';
 import { Recommendation } from 'components/Recommendation/Recommendation';
-import { Summary } from 'components/Summary/Summary';
+import BackgroundSummery from '../Background/BackgroundSummery/BackgroundSummery';
 import { useTheme } from '@mui/material/styles';
 import useMediaQuery from '@mui/material/useMediaQuery';
 import { useSelector } from 'react-redux';
@@ -121,16 +121,18 @@ export const CalculateForm = () => {
                 lg: '16px ',
               },
               paddingBottom: {
-                sm: '100px',
-                md: '398px ',
-                lg: '111px ',
+                sm: isLoggedIn ? '41px' : '100px',
+                md: isLoggedIn ? '48px' : '398px ',
+                lg: '88px ',
               },
               paddingRight: { sm: '20px' },
               marginLeft: { sm: 'auto', md: '0' },
               marginRight: { sm: 'auto', md: '0' },
             }}
           >
-            <Typography component="h1" variant="h1">
+            <Typography component="h1" variant="h1" sx={{fontSize: {md: '34px'},
+        marginBottom: {md: '68px'},
+      }}>
               Calculate your daily calorie
               <br />
               intake right now
@@ -344,7 +346,7 @@ export const CalculateForm = () => {
               )}
             </Formik>
           </Box>
-          {isLoggedIn && <Summary />}
+          {isLoggedIn && <BackgroundSummery />}
         </Box>
       </Box>
       {open && <Recommendation open={open} close={setOpen} values={formData} />}
