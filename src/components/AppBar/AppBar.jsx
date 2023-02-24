@@ -6,12 +6,15 @@ import { AuthNav } from 'components/AuthNav/AuthNav';
 import { UserMenu } from 'components/UserMenu/UserMenu';
 import { Navigation } from '../Navigation/Navigation';
 import Divider from '@mui/material/Divider';
+import {Box} from '@mui/material'
 
 export const AppBar = () => {
   const { isLoggedIn } = useAuth();
   return (
     <Header>
-      <Logo />
+<Box sx={{display: 'flex', justifyContent: 'space-between', width: '100%'}}>
+  <Box sx={{display: 'flex', alignItems: 'flex-end'}}>
+  <Logo />
       <Divider
         orientation="vertical"
         flexItem
@@ -24,7 +27,12 @@ export const AppBar = () => {
         }}
       />
       {isLoggedIn && <Navigation />}
-      {isLoggedIn ? <UserMenu /> : <AuthNav />}
+  </Box>
+
+<Box>
+{isLoggedIn ? <UserMenu /> : <AuthNav />}
+</Box>
+</Box>
     </Header>
   );
 };

@@ -1,11 +1,33 @@
-import { BGContainer, BgImages } from './BackgroundSummery.styled';
+import {
+  BGContainer,
+  BgImages,
+  WhiteWrapp,
+  GreyWrapp,
+} from './BackgroundSummery.styled';
+import Box from '@mui/material/Box';
+import Grid from '@mui/material/Grid';
+import { Summary } from 'components/Summary/Summary';
 
 const BackgroundSummery = () => {
-    return (
-        <BGContainer >
-            <BgImages />
-        </BGContainer>
-    );
-}
+  return (
+    <>
+      <BGContainer>
+        <Box sx={{ flexGrow: 1 }}>
+          <Grid container spacing={{ xs: '1', lg: '2' }}>
+            <Grid item xs={12} lg={7}>
+              <WhiteWrapp />
+            </Grid>
+            <Grid item xs={12} lg={5}>
+              <GreyWrapp>
+                <Summary />
+              </GreyWrapp>
+            </Grid>
+          </Grid>
+        </Box>
+        <BgImages />
+      </BGContainer>
+    </>
+  );
+};
 
 export default BackgroundSummery;

@@ -1,5 +1,4 @@
 import { createTheme } from '@mui/material/styles';
-import { createBreakpoints } from '@mui/system';
 
 const VERDANA = `'Verdana', sans-serif`;
 const VERDANA_BOLD = `'Verdana Bold', sans-serif`;
@@ -14,8 +13,6 @@ const COLOR = {
   black: '#212121',
   inputColor: '#E0E0E0',
 };
-
-const breakpoints = createBreakpoints({});
 
 const theme = createTheme({
   breakpoints: {
@@ -52,10 +49,6 @@ const theme = createTheme({
       fontWeight: 700,
       color: COLOR.black,
       marginBottom: '34px',
-      [breakpoints.up('md')]: {
-        fontSize: 34,
-        marginBottom: '68px',
-      },
     },
     h2: {
       //       Your recommended daily
@@ -66,11 +59,6 @@ const theme = createTheme({
       fontWeight: 700,
       color: COLOR.black,
       marginBottom: '42px',
-      [breakpoints.up('md')]: {
-        fontSize: 26,
-        marginBottom: '20px',
-        textAlign: 'center',
-      },
     },
     h3: {
       // 2800 ккал
@@ -106,10 +94,23 @@ const theme = createTheme({
       fontSize: 14,
       marginBottom: '10px',
     },
+    liSummery: {
+      fontFamily: VERDANA,
+      fontWeight: 400,
+      fontSize: 14,
+      marginBottom: '10px',
+    },
     ol: {
       paddingLeft: '17px',
       maxWidth: '330px',
-    }
+    },
+    p: {
+      fontFamily: VERDANA_BOLD,
+      fontSize: 14,
+      lineHeight: '1.2',
+      color: '#212121',
+      textTransform: 'Capitalize',
+    },
   },
   components: {
     MuiFormControlLabel: {
@@ -178,6 +179,15 @@ const theme = createTheme({
               borderRadius: '30px',
               textAlign: 'center',
               minWidth: '181px',
+            }),
+
+          ...(ownerState.variant === 'text' &&
+            ownerState.color === 'primary' && {
+              padding: '0',
+
+              '&:hover': {
+                color: COLOR.darkOrange,
+              },
             }),
         }),
       },

@@ -24,15 +24,14 @@ const animTabl = keyframes`
 `;
 
 export const BGContainer = styled.div`
-display: none;
   position: absolute;
   top: 0px;
   right: 0;
   z-index: -1000;
   width: 100vw;
-  min-height: 1160px;
-  height: 100%;
+  /* min-height: 1160px; */
   overflow: hidden;
+  height: 100%;
 
   @media screen and (min-width: 768px) {
     display: block;
@@ -40,9 +39,10 @@ display: none;
     top: 0;
     z-index: -1000;
     width: 100vw;
-    min-height: 1024px;
-    height: 100%;
+    /* min-height: 1024px; */
+    height: 1000px;
     overflow: hidden;
+
   }
   @media screen and (min-width: 1200px) {
     display: block;
@@ -50,9 +50,10 @@ display: none;
     top: 0;
     z-index: -1000;
     width: 100vw;
-    height: 100%;
-    min-height: 768px;
+    height: 850px;
+    /* min-height: 768px; */
     overflow: hidden;
+
   }
 `;
 
@@ -71,9 +72,9 @@ export const BgImages = styled.div`
   }
   @media screen and (min-width: 1200px) {
     width: 505px;
-    height: 777px;
+    height: 659px;
     position: absolute;
-    top: 35px;
+    top: 30px;
     right: 0px;
     background-image: url(${leavesDesc});
     background-repeat: no-repeat;
@@ -81,3 +82,41 @@ export const BgImages = styled.div`
     animation: ${animDesc} 1s;
   }
 `;
+
+export const WhiteWrapp = styled.div`
+  background-color: #fff;
+  min-height: 659px;
+
+  @media (min-width: 1200px){
+    min-height: 850px;
+  }
+
+  @media (min-width: 768px){
+    min-height: 690px;
+  }
+
+`
+
+export const GreyWrapp = styled.div`
+  background-color: #F0F1F3;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 433px;
+  padding: 40px 20px;
+
+  @media (min-width: 768px){
+    min-height: 326px;
+    align-items: flex-start;
+    padding: 80px 32px;
+  }
+
+  @media (min-width: 1200px){
+    min-height: 850px;
+    height: 100%;
+    align-items: center;
+    padding: 0 106px;
+  }
+
+
+`
