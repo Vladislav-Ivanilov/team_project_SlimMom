@@ -31,6 +31,7 @@ const authSlice = createSlice({
       state.sessionId = action.payload.sid;
       state.isLoggedIn = true;
 
+      if (!state.random){return}
       for (let index = 4; index > state.randomProducts.length; index - 1) {
         state.randomProducts.push(
           action.payload.user.userData.notAllowedProducts[

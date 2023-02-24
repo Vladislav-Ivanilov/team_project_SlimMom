@@ -5,7 +5,9 @@ import { notAllowedProducts } from 'redux/daily-rate/selection';
 import { randomProducts } from 'redux/daily-rate/selection';
 import { selectAccessProducts } from 'redux/auth/selectors';
 
+
 import { useAuth } from 'hooks/useAuth';
+import { Typography } from '@mui/material';
 
 export const FoodList = memo(({ values }) => {
   const dispatch = useDispatch();
@@ -30,14 +32,15 @@ export const FoodList = memo(({ values }) => {
 
   let notAllowedProductsState = useSelector(notAllowedProducts);
   if (isLoggedIn) {
+    // eslint-disable-next-line no-unused-vars
     notAllowedProductsState = user.userData.notAllowedProducts;
   }
 
   return (
-    <ol>
+    <Typography variant='ol' component='ol'>
       {notAllowedProductsList.map(item => {
-        return <li>{item}</li>;
+        return <Typography variant='li' component='li'>{item}</Typography>;
       })}
-    </ol>
+    </Typography>
   );
 });
