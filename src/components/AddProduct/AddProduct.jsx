@@ -24,7 +24,6 @@ export const AddProduct = () => {
       productId: values.id,
       weight: values.weight,
     };
-    console.log('requestInfo:', requestInfo);
     dispatch(addEatenProduct(requestInfo));
 
     actions.resetForm();
