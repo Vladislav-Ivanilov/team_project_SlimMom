@@ -1,7 +1,8 @@
-import { FoodList } from 'components/FoodList/FoodList';
 import { useSelector } from 'react-redux';
 import { dayInfo } from 'redux/day-endpoints/selectors';
 import { selectDay } from 'redux/day-endpoints/selectors';
+import BackgroundSummery from 'components/Background/BackgroundSummery/BackgroundSummery';
+import { FoodList } from 'components/FoodList/FoodList';
 
 export const Summary = () => {
   const { kcalConsumed, kcalLeft, dailyRate, percentsOfDailyRate } =
@@ -20,6 +21,7 @@ export const Summary = () => {
 
   return (
     <>
+    <BackgroundSummery/>
       <h3>{`Summary for ${date}`}</h3>
       <ul>
         <li>Left {Math.round(kcalLeft)} kcal</li>

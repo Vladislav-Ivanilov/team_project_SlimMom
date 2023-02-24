@@ -1,4 +1,4 @@
-import styled, { keyframes }  from 'styled-components';
+import styled, { keyframes } from 'styled-components';
 import bgTablet from '../../Image/bg_768.png';
 import bgDesc from '../../Image/bg_1280.png';
 import strawberry from '../../Image/Strawberry_1280.png';
@@ -34,19 +34,19 @@ export const BGContainer = styled.div`
   width: 100%;
   height: 100%;
   overflow: hidden;
-@media screen and (min-width: 768px) {
+  @media screen and (min-width: 768px) {
     display: block;
     min-height: 1024px;
     height: 100%;
   }
-@media screen and (min-width: 1200px) {
-     min-height: 850px;
+  @media screen and (min-width: 1200px) {
+    min-height: 850px;
   }
 `;
 
 export const Decspot = styled.div`
   display: none;
-@media screen and (min-width: 768px) {
+  @media screen and (min-width: 768px) {
     display: block;
     position: absolute;
     background-repeat: no-repeat;
@@ -55,20 +55,19 @@ export const Decspot = styled.div`
     width: 553px;
     height: 750px;
     background-image: url(${bgTablet});
-}
-@media screen and (min-width: 1200px) {
+  }
+  @media screen and (min-width: 1200px) {
     top: 34px;
     right: 0;
     width: 603px;
     height: 816px;
     background-image: url(${bgDesc});
-}
-`
+  }
+`;
 
 export const Strawberry = styled.div`
-   display: none;
-@media screen and (min-width: 768px) {
-  
+  display: none;
+  @media screen and (min-width: 768px) {
     display: block;
     position: absolute;
     background-repeat: no-repeat;
@@ -81,8 +80,8 @@ export const Strawberry = styled.div`
 
     animation: ${tablet} 1s;
   }
-@media screen and (min-width: 1200px) {
-      top: 458px;
+  @media screen and (min-width: 1200px) {
+    top: 458px;
     right: 2px;
     width: 362px;
     height: 374px;
@@ -90,13 +89,11 @@ export const Strawberry = styled.div`
 
     animation: ${desctop} 1s;
   }
-`
-
+`;
 
 export const Leaves = styled.div`
   display: none;
-@media screen and (min-width: 768px) {
-  
+  @media screen and (min-width: 768px) {
     display: block;
     position: absolute;
     background-repeat: no-repeat;
@@ -107,10 +104,8 @@ export const Leaves = styled.div`
     height: 602px;
     transform: rotate(90deg);
     background-image: url(${leaves});
-  
-}
-@media screen and (min-width: 1200px) {
- 
+  }
+  @media screen and (min-width: 1200px) {
     top: 0;
     right: 195px;
     width: 746px;
@@ -118,12 +113,11 @@ export const Leaves = styled.div`
     transform: rotate(0);
     background-image: url(${leaves});
   }
-`
+`;
 
-export const Banana  = styled.div`  
-display: none;
-@media screen and (min-width: 768px) {
-  
+export const Banana = styled.div`
+  display: none;
+  @media screen and (min-width: 768px) {
     display: block;
     position: absolute;
     background-repeat: no-repeat;
@@ -134,14 +128,14 @@ display: none;
     background-image: url(${banana});
 
     animation: ${tablet} 1s;
-  
-}
-@media screen and (min-width: 1200px) {
-  top: -10px;
+  }
+  @media screen and (min-width: 1200px) {
+    top: -10px;
     right: -287px;
     width: 773px;
     height: 552px;
     background-image: url(${banana});
 
     animation: ${desctop} 1s;
-  }`
+  }
+`;

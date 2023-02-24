@@ -17,6 +17,12 @@ import { useAuth } from 'hooks';
 import { fetchDaily, fetchDailyRateByUserId } from 'redux/daily-rate/operation';
 import { Recommendation } from 'components/Recommendation/Recommendation';
 import { Summary } from 'components/Summary/Summary';
+import { useTheme } from '@mui/material/styles';
+import useMediaQuery from '@mui/material/useMediaQuery';
+import { useSelector } from 'react-redux';
+import { dailyRate } from 'redux/daily-rate/selection';
+ import {Typography} from '@mui/material'
+// import RecommendationPage from './RecommendationPage';
 
 const initialValues = {
   weight: '',
@@ -27,26 +33,36 @@ const initialValues = {
 };
 
 export const CalculateForm = () => {
-  const { user, isLoggedIn } = useAuth();
-
+  const [formData, setFormData] = useState(initialValues);
   const [open, setOpen] = useState(false);
+  const { isLoggedIn, user } = useAuth();
+  const [visible, setVisible] = useState('')
+  const dailyRateState = useSelector(dailyRate);
+
+
+  const theme = useTheme();
+  const mobile = useMediaQuery(theme.breakpoints.down('md'));
+
+  console.log(mobile)
   const handleModalOpen = () => {
     setOpen(!open);
   };
 
   const dispatch = useDispatch();
 
-  const dateChoose = {
-    date: '2020-12-31',
-  };
-
-  const handelSubmit = values => {
+  const handelSubmit = (values, { resetForm }) => {
     const { bloodType, ...res } = values;
     const newFormData = {
       ...res,
       bloodType: Number(bloodType),
     };
 
+    setFormData(newFormData);
+    mobile ? setVisible('none') : setVisible('block')
+
+    const dateChoose = {
+      date: '2020-12-31',
+    };
     const userLoginInfo = {
       userId: user.id,
       userData: newFormData,
@@ -71,15 +87,45 @@ export const CalculateForm = () => {
       date: '2020-12-31',
     };
   };
-
+console.log(dailyRateState)
   return (
     <>
-      <Formik initialValues={initialValues} onSubmit={handelSubmit}>
+<Box sx={{display: {xs: dailyRateState > 0 ? 'none': 'block', md: 'block', lg: 'block'}}}>
+<Box component="main" sx={{ display: 'flex' }}>
+<Box
+          component="div"
+          sx={{
+            paddingTop: {
+              sm: '32px',
+              md: '100px ',
+              lg: '140px ',
+            },
+            paddingLeft: {
+              sm: '20px',
+              md: '32px ',
+              lg: '16px ',
+            },
+            paddingBottom: {
+              sm: '100px',
+              md: '398px ',
+              lg: '111px ',
+            },
+            paddingRight: { sm: '20px' },
+            marginLeft: { sm: 'auto', md: '0' },
+            marginRight: { sm: 'auto', md: '0' },
+          }}
+        >
+<Typography component="h1" variant="h1">
+            Calculate your daily calorie
+            <br />
+            intake right now
+          </Typography>
+<Formik initialValues={initialValues} onSubmit={handelSubmit}>
         {({
           values,
 
-          handleChange,
-          setFieldValue,
+                handleChange,
+                setFieldValue,
 
           handleBlur,
         }) => (
@@ -249,9 +295,11 @@ export const CalculateForm = () => {
           </Form>
         )}
       </Formik>
-      {open && <Recommendation open={open} close={setOpen} />}
-
-      {isLoggedIn && <Summary />}
+</Box>
+{isLoggedIn && <Summary />}
+</Box>
+</Box>
+      {open && <Recommendation open={open} close={setOpen} values={formData} />}
     </>
   );
 };

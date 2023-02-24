@@ -1,5 +1,7 @@
-import { Box, Button } from '@mui/material';
 import { useSelector, useDispatch } from 'react-redux';
+
+import { Box, Button } from '@mui/material';
+
 import { selectUserName } from 'redux/auth/selectors';
 import { logout } from 'redux/auth/operation';
 
