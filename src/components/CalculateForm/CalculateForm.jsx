@@ -1,3 +1,9 @@
+import { useState } from 'react';
+import { getDayInfo } from 'redux/day-endpoints/operation';
+import { useDispatch } from 'react-redux';
+
+import { Form, Formik } from 'formik';
+
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import FormControl from '@mui/material/FormControl';
@@ -6,16 +12,12 @@ import FormLabel from '@mui/material/FormLabel';
 import Radio from '@mui/material/Radio';
 import RadioGroup from '@mui/material/RadioGroup';
 import TextField from '@mui/material/TextField';
-import { Form, Formik } from 'formik';
-import { Recommendation } from 'components/Recommendation/Recommendation';
-import { useState } from 'react';
-import { useRadioGroup } from '@mui/material/RadioGroup';
 import { styled } from '@mui/material/styles';
-import { Summary } from 'components/Summary/Summary';
+
 import { useAuth } from 'hooks';
-import { getDayInfo } from 'redux/day-endpoints/operation';
-import { useDispatch } from 'react-redux';
 import { fetchDaily, fetchDailyRateByUserId } from 'redux/daily-rate/operation';
+import { Recommendation } from 'components/Recommendation/Recommendation';
+import { Summary } from 'components/Summary/Summary';
 
 const initialValues = {
   weight: '',
@@ -59,14 +61,6 @@ export const CalculateForm = () => {
 
     dispatch(getDayInfo(dateChoose));
   };
-
-  const StyledFormControlLabel = styled(props => (
-    <FormControlLabel {...props} />
-  ))(({ theme, checked }) => ({
-    '.MuiFormControlLabel-label': checked && {
-      color: theme.palette.primary.main,
-    },
-  }));
 
   return (
     <>
