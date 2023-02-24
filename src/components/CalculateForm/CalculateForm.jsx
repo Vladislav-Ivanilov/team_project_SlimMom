@@ -39,7 +39,6 @@ export const CalculateForm = () => {
 
   const { isLoggedIn, user } = useAuth();
   const [visible, setVisible] = useState('');
-  const [visible, setVisible] = useState('');
   const dailyRateState = useSelector(dailyRate);
 
   let { weight, bloodType, age, desiredWeight, height } = user.userData;
