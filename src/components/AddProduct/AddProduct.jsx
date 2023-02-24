@@ -19,14 +19,11 @@ export const AddProduct = () => {
   };
 
   const handleSubmit = (values, actions) => {
-    console.log(values.id);
-    console.log(values.weight);
     const requestInfo = {
       date: day.date,
       productId: values.id,
       weight: values.weight,
     };
-    console.log('requestInfo:', requestInfo);
     dispatch(addEatenProduct(requestInfo));
 
     actions.resetForm();

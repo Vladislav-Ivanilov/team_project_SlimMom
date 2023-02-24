@@ -12,7 +12,6 @@ import { dailyRate } from 'redux/daily-rate/selection';
 import Divider from '@mui/material/Divider';
 import IconButton from '@mui/material/IconButton';
 import ClearIcon from '@mui/icons-material/Clear';
-import RecommendationPage from './RecommendationPage';
 
 const style = theme => ({
   position: 'absolute',
@@ -35,14 +34,6 @@ export const Recommendation = memo(({ open, close, values }) => {
   if (isLoggedIn) {
     dailyRateState = user.userData.dailyRate;
   }
-
-  // if (window.innerWidth < '768' ){
-  //   return <RecommendationPage/>
-  // }else {
-  //   console.log(window.innerWidth)
-  //   return (
-  //     <Box component='div'
-  // {window.innerWidth < 768 &&  <RecommendationPage/>}
 
   return (
     <Box component="div">

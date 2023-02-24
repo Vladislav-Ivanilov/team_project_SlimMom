@@ -37,7 +37,6 @@ export const RegisterForm = () => {
 
     dispatch(register(newUser));
 
-    //  console.log(newUser);
     resetForm();
     setSubmitting(false);
   };
