@@ -106,6 +106,10 @@ const theme = createTheme({
       fontSize: 14,
       marginBottom: '10px',
     },
+    ol: {
+      paddingLeft: '17px',
+      width: '330px'
+    }
   },
   components: {
     MuiFormControlLabel: {
