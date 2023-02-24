@@ -24,6 +24,9 @@ export const AddProduct = () => {
       productId: values.id,
       weight: values.weight,
     };
+    if (requestInfo.productId === null) {
+      return;
+    }
     dispatch(addEatenProduct(requestInfo));
 
     actions.resetForm();
@@ -54,6 +57,9 @@ export const AddProduct = () => {
               value={values.name}
               onChange={(e, newValue) => {
                 handleChange(e);
+                if (newValue.id === null) {
+                  return;
+                }
                 setFieldValue('id', newValue.id);
               }}
               renderInput={params => (
