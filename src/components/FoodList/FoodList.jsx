@@ -5,7 +5,6 @@ import { notAllowedProducts } from 'redux/daily-rate/selection';
 import { randomProducts } from 'redux/daily-rate/selection';
 import { selectAccessProducts } from 'redux/auth/selectors';
 
-
 import { useAuth } from 'hooks/useAuth';
 import { Typography } from '@mui/material';
 
@@ -37,9 +36,13 @@ export const FoodList = memo(({ values }) => {
   }
 
   return (
-    <Typography variant='ol' component='ol'>
+    <Typography variant="ol" component="ol">
       {notAllowedProductsList.map(item => {
-        return <Typography variant='li' component='li'>{item}</Typography>;
+        return (
+          <Typography variant="li" component="li">
+            {item}
+          </Typography>
+        );
       })}
     </Typography>
   );

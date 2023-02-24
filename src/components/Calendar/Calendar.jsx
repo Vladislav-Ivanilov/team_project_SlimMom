@@ -8,6 +8,7 @@ import { DesktopDatePicker } from '@mui/x-date-pickers/DesktopDatePicker';
 import { getDayInfo } from 'redux/day-endpoints/operation';
 import { setDate } from 'redux/day-endpoints/slice';
 import { selectIsLoggedIn } from 'redux/auth/selectors';
+
 const today = new Date();
 const formattedDate = today.toISOString().slice(0, 10);
 
@@ -34,6 +35,8 @@ export const Calendar = () => {
     dispatch(getDayInfo(dateObject));
     dispatch(setDate(dateObject));
   };
+
+  console.log('formattedDate', formattedDate);
   return (
     <LocalizationProvider dateAdapter={AdapterDayjs}>
       <Stack spacing={3} sx={{ width: '400px' }}>
