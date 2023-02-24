@@ -1,5 +1,5 @@
 import { AddProduct } from 'components/AddProduct/AddProduct';
-import ProductList from 'components/ProductList/ProductList';
+import { ProductList } from 'components/ProductList/ProductList';
 import { Calendar } from 'components/Calendar/Calendar';
 import { Summary } from 'components/Summary/Summary';
 

@@ -70,23 +70,3 @@ export const fetchCurrentUser = createAsyncThunk(
     }
   }
 );
-
-// export const sessionRefreshing = createAsyncThunk(
-//   'auth/refresh',
-//   async (_, { rejectWithValue, getState }) => {
-//     const state = getState();
-//     const persistedsessionId = { sessionId: state.auth.sessionId };
-
-//     if (persistedsessionId === null) {
-//       return rejectWithValue('Ops...');
-//     }
-//     try {
-//       token.set(state.auth.refreshToken);
-//       const { data } = await axios.post('/auth/refresh', persistedsessionId);
-//       token.set(data.newAccessToken);
-//       return data;
-//     } catch (error) {
-//       return rejectWithValue(error.massage);
-//     }
-//   }
-// );

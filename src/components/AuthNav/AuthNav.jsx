@@ -1,4 +1,4 @@
-import {Ul, NavLinkStyles} from './AuthNav.styled'
+import { Ul, NavLinkStyles } from './AuthNav.styled';
 
 export const AuthNav = () => {
   return (

@@ -1,7 +1,7 @@
-import { FoodList } from 'components/FoodList/FoodList';
 import { useSelector } from 'react-redux';
 import { dayInfo } from 'redux/day-endpoints/selectors';
 import { selectDay } from 'redux/day-endpoints/selectors';
+import { FoodList } from 'components/FoodList/FoodList';
 
 export const Summary = () => {
   const { kcalConsumed, kcalLeft, dailyRate, percentsOfDailyRate } =

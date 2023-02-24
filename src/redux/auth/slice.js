@@ -31,7 +31,9 @@ const authSlice = createSlice({
       state.sessionId = action.payload.sid;
       state.isLoggedIn = true;
 
-      if (!state.random){return}
+      if (!state.random) {
+        return;
+      }
       for (let index = 4; index > state.randomProducts.length; index - 1) {
         state.randomProducts.push(
           action.payload.user.userData.notAllowedProducts[
@@ -70,12 +72,6 @@ const authSlice = createSlice({
         action.payload.notAllowedProducts;
       state.user.userData.dailyRate = action.payload.dailyRate;
     },
-    // [sessionRefreshing.fulfilled](state, action) {
-    //     state.accessToken = action.payload.newAccessToken;
-    //     state.refreshToken = action.payload.newRefreshToken;
-    //     state.sessionId = action.payload.sessionId;
-    //     state.isLoggedIn = true;
-    // },
   },
 });
 
