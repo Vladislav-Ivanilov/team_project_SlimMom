@@ -24,7 +24,8 @@ export const Calendar = () => {
     }
 
     const requestInfo = { date: formattedDate };
-    //dispatch(setDate(requestInfo));
+
+    dispatch(setDate(requestInfo));
 
     dispatch(getDayInfo(requestInfo));
   }, [dispatch, isLoggedIn]);
@@ -35,11 +36,7 @@ export const Calendar = () => {
     dispatch(getDayInfo(dateObject));
 
     dispatch(setDate(dateObject));
-    console.log('dateObject:', dateObject);
   };
-
-  console.log('dateValue:', dateValue);
-  console.log('formattedDate', formattedDate);
 
   return (
     <LocalizationProvider dateAdapter={AdapterDayjs}>
