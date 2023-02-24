@@ -108,7 +108,7 @@ const theme = createTheme({
     },
     ol: {
       paddingLeft: '17px',
-      width: '330px'
+      maxWidth: '330px',
     }
   },
   components: {
