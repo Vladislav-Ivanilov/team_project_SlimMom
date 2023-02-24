@@ -33,7 +33,7 @@ const ProductList = () => {
       dayId: dayId,
       eatenProductId: id,
     };
-    console.log(requestInfo);
+
     dispatch(deleteEatenProduct(requestInfo));
     dispatch(setDeleteProductId(id));
   };

@@ -19,8 +19,6 @@ export const AddProduct = () => {
   };
 
   const handleSubmit = (values, actions) => {
-    console.log(values.id);
-    console.log(values.weight);
     const requestInfo = {
       date: day.date,
       productId: values.id,
