@@ -8,11 +8,11 @@ import { RestrictedRoute } from './RestrictedRoute';
 import { useAuth } from 'hooks/useAuth';
 import { fetchCurrentUser } from 'redux/auth/operation';
 
+import { LoginPage } from 'pages/Login';
+import { RegisterPage } from 'pages/Register';
 import { CalculatorPage } from 'pages/Calculator';
 import { DiaryPage } from 'pages/Diary';
 import { ErrorPage } from 'pages/ErrorPage';
-import { LoginPage } from 'pages/Login';
-import { RegisterPage } from 'pages/Register';
 
 import { Layout } from './Layout/Layout';
 

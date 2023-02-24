@@ -11,9 +11,7 @@ const initialState = {
 };
 
 const handlePending = () => {};
-const handleRejected = () => {
-  console.log(`error`);
-};
+const handleRejected = () => {};
 
 const dayEndpointsSlice = createSlice({
   name: 'dayEndpoints',
@@ -28,7 +26,6 @@ const dayEndpointsSlice = createSlice({
   },
   extraReducers: {
     [addEatenProduct.fulfilled](state, action) {
-      console.log(`add:`, action.payload);
       state.eatenProducts.push(action.payload.eatenProduct);
     },
     [getDayInfo.fulfilled](state, action) {
@@ -43,7 +40,6 @@ const dayEndpointsSlice = createSlice({
     [addEatenProduct.pending]: handlePending,
     [deleteEatenProduct.rejected]: handleRejected,
     [deleteEatenProduct.fulfilled]: (state, action) => {
-      console.log(`delete:`, action.payload);
       const { productId } = action.payload;
 
       state.eatenProducts = state.eatenProducts.filter(
