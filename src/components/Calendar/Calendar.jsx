@@ -36,7 +36,6 @@ export const Calendar = () => {
     dispatch(setDate(dateObject));
   };
 
-  console.log('formattedDate', formattedDate);
   return (
     <LocalizationProvider dateAdapter={AdapterDayjs}>
       <Stack spacing={3} sx={{ width: '400px' }}>
