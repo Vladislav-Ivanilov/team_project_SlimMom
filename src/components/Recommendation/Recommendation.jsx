@@ -36,14 +36,6 @@ export const Recommendation = memo(({ open, close, values }) => {
     dailyRateState = user.userData.dailyRate;
   }
 
-  // if (window.innerWidth < '768' ){
-  //   return <RecommendationPage/>
-  // }else {
-  //   console.log(window.innerWidth)
-  //   return (
-  //     <Box component='div'
-  // {window.innerWidth < 768 &&  <RecommendationPage/>}
-
   return (
     <Box component="div">
       <Modal

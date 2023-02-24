@@ -68,18 +68,6 @@ export const CalculateForm = () => {
     },
   }));
 
-  function MyFormControlLabel(props) {
-    const radioGroup = useRadioGroup();
-
-    let checked = false;
-
-    if (radioGroup) {
-      checked = radioGroup.value === props.value;
-    }
-
-    return <StyledFormControlLabel checked={checked} {...props} />;
-  }
-
   return (
     <>
       <Formik initialValues={initialValues} onSubmit={handelSubmit}>
