@@ -20,7 +20,6 @@ export const deleteEatenProduct = createAsyncThunk(
   async (productData, thunkApi) => {
     try {
       const { data } = await axios.delete('/day', { data: { ...productData } });
-      // console.log(`deleteEaten:`, productData.eatenProductId, data);
       return { productId: productData.eatenProductId, data };
     } catch (error) {
       return thunkApi.rejectWithValue(error.message);
@@ -30,9 +29,9 @@ export const deleteEatenProduct = createAsyncThunk(
 
 export const getDayInfo = createAsyncThunk(
   '/getDayInfo',
-  async (date, { rejectWithValue }) => {
+  async (value, { rejectWithValue }) => {
     try {
-      const { data } = await axios.post('/day/info', date);
+      const { data } = await axios.post('/day/info', value);
       return data;
     } catch (error) {
       return rejectWithValue(error.message);
