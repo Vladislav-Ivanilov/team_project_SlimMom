@@ -33,10 +33,6 @@ const initialValues = {
   bloodType: '',
 };
 
-// setTimeout(() => {
-//   alert('I love async JS!');
-// }, 2000);
-
 export const CalculateForm = () => {
   const [open, setOpen] = useState(false);
   const [formData, setFormData] = useState(initialValues);
