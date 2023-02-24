@@ -24,6 +24,7 @@ export const Calendar = () => {
     }
 
     const requestInfo = { date: formattedDate };
+
     dispatch(setDate(requestInfo));
 
     dispatch(getDayInfo(requestInfo));
@@ -33,6 +34,7 @@ export const Calendar = () => {
     setDateValue(newValue.format('YYYY-MM-DD'));
     const dateObject = { date: newValue.format('YYYY-MM-DD') };
     dispatch(getDayInfo(dateObject));
+
     dispatch(setDate(dateObject));
   };
 
