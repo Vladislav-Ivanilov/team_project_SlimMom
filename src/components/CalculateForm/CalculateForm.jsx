@@ -29,53 +29,72 @@ const initialValues = {
   height: '',
   age: '',
   desiredWeight: '',
-  bloodType: 1,
+  bloodType: '',
 };
 
 export const CalculateForm = () => {
-  const [formData, setFormData] = useState(initialValues);
   const [open, setOpen] = useState(false);
+  const [formData, setFormData] = useState(initialValues);
+
   const { isLoggedIn, user } = useAuth();
   const [visible, setVisible] = useState('');
   const dailyRateState = useSelector(dailyRate);
 
+  let { weight, bloodType, age, desiredWeight, height } = user.userData;
+
   const theme = useTheme();
   const mobile = useMediaQuery(theme.breakpoints.down('md'));
 
-  console.log(mobile);
   const handleModalOpen = () => {
     setOpen(!open);
   };
 
   const dispatch = useDispatch();
 
-  const handelSubmit = (values, { resetForm }) => {
-    const { bloodType, ...res } = values;
+  const options = { day: '2-digit', month: '2-digit', year: 'numeric' };
+  let dateTodey = new Date()
+    .toLocaleDateString('uk-UA', options)
+    .split('.')
+    .reverse()
+    .join('-');
+
+  const handelSubmit = values => {
+    const { weight, age, desiredWeight, height, bloodType } = values;
+
     const newFormData = {
-      ...res,
-      bloodType: Number(bloodType),
+      weight: weight ? weight : user.userData.weight,
+      age: age ? age : user.userData.age,
+      desiredWeight: desiredWeight
+        ? desiredWeight
+        : user.userData.desiredWeight,
+      height: height ? height : user.userData.height,
+      bloodType: bloodType ? Number(bloodType) : user.userData.bloodType,
     };
 
     setFormData(newFormData);
+
     mobile ? setVisible('none') : setVisible('block');
 
     const dateChoose = {
-      date: '2020-12-31',
+      date: dateTodey,
     };
     const userLoginInfo = {
       userId: user.id,
       userData: newFormData,
     };
 
-    isLoggedIn ? dispatch(getDayInfo(dateChoose)) : handleModalOpen();
-
     isLoggedIn
       ? dispatch(fetchDailyRateByUserId(userLoginInfo))
       : dispatch(fetchDaily(newFormData));
 
-    dispatch(getDayInfo(dateChoose));
+    isLoggedIn ? dispatch(getDayInfo(dateChoose)) : handleModalOpen();
+
+    const userLoginedInfo = {
+      userId: user.id,
+      userData: newFormData,
+    };
   };
-  console.log(dailyRateState);
+
   return (
     <>
       <Box
@@ -146,7 +165,11 @@ export const CalculateForm = () => {
                       <TextField
                         fullWidth
                         name="height"
-                        value={values.height || ''}
+                        value={
+                          (values.height ? (height = false) : height) ||
+                          values.height ||
+                          ''
+                        }
                         type="number"
                         onChange={handleChange}
                         required
@@ -162,7 +185,9 @@ export const CalculateForm = () => {
                       <TextField
                         fullWidth
                         name="age"
-                        value={values.age || ''}
+                        value={
+                          (values.age ? (age = false) : age) || values.age || ''
+                        }
                         type="number"
                         onChange={handleChange}
                         required
@@ -177,7 +202,11 @@ export const CalculateForm = () => {
                       />
                       <TextField
                         fullWidth
-                        value={values.weight || ''}
+                        value={
+                          (values.weight ? (weight = false) : weight) ||
+                          values.weight ||
+                          ''
+                        }
                         onChange={handleChange}
                         type="number"
                         name="weight"
@@ -206,7 +235,13 @@ export const CalculateForm = () => {
                       <TextField
                         fullWidth
                         name="desiredWeight"
-                        value={values.desiredWeight || ''}
+                        value={
+                          (values.desiredWeight
+                            ? (desiredWeight = false)
+                            : desiredWeight) ||
+                          values.desiredWeight ||
+                          ''
+                        }
                         onChange={handleChange}
                         type="number"
                         required
@@ -235,32 +270,49 @@ export const CalculateForm = () => {
                           row
                           aria-labelledby="demo-row-radio-buttons-group-label"
                           name="bloodType"
+                          defaultValue={bloodType}
                         >
                           <FormControlLabel
                             onChange={handleChange}
                             value={1}
-                            checked={values.bloodType === '1'}
+                            checked={
+                              values.bloodType === '1'
+                                ? (bloodType = '1')
+                                : '' || bloodType == '1'
+                            }
                             control={<Radio sx={{ color: '#9B9FAA' }} />}
                             label="1"
                           />
                           <FormControlLabel
                             onChange={handleChange}
                             value={2}
-                            checked={values.bloodType === '2'}
+                            checked={
+                              values.bloodType === '2'
+                                ? (bloodType = '2')
+                                : '' || bloodType == '2'
+                            }
                             control={<Radio sx={{ color: '#9B9FAA' }} />}
                             label="2"
                           />
                           <FormControlLabel
                             onChange={handleChange}
                             value={3}
-                            checked={values.bloodType === '3'}
+                            checked={
+                              values.bloodType === '3'
+                                ? (bloodType = '3')
+                                : '' || bloodType == '3'
+                            }
                             control={<Radio sx={{ color: '#9B9FAA' }} />}
                             label="3"
                           />
                           <FormControlLabel
                             onChange={handleChange}
                             value={4}
-                            checked={values.bloodType === '4'}
+                            checked={
+                              values.bloodType === '4'
+                                ? (bloodType = '4')
+                                : '' || bloodType == '4'
+                            }
                             control={<Radio sx={{ color: '#9B9FAA' }} />}
                             label="4"
                           />
