@@ -67,8 +67,6 @@ export const CalculateForm = () => {
       userData: newFormData,
     };
 
-    setFormData(newFormData);
-
     const dateChoose = {
       date: '2020-12-31',
     };
