@@ -1,3 +1,6 @@
+import { memo } from 'react';
+import { useSelector } from 'react-redux';
+
 import { Button } from '@mui/material';
 import Backdrop from '@mui/material/Backdrop';
 import Box from '@mui/material/Box';
@@ -5,13 +8,12 @@ import Fade from '@mui/material/Fade';
 import Modal from '@mui/material/Modal';
 import Typography from '@mui/material/Typography';
 import { FoodList } from 'components/FoodList/FoodList';
-import { useAuth } from 'hooks';
-import { memo } from 'react';
-import { useSelector } from 'react-redux';
-import { dailyRate } from 'redux/daily-rate/selection';
 import Divider from '@mui/material/Divider';
 import IconButton from '@mui/material/IconButton';
 import ClearIcon from '@mui/icons-material/Clear';
+
+import { useAuth } from 'hooks';
+import { dailyRate } from 'redux/daily-rate/selection';
 
 const style = theme => ({
   position: 'absolute',

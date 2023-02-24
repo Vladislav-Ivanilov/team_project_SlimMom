@@ -24,7 +24,6 @@ export const Calendar = () => {
     }
 
     const requestInfo = { date: formattedDate };
-    //dispatch(setDate(requestInfo));
 
     dispatch(getDayInfo(requestInfo));
   }, [dispatch, isLoggedIn]);
