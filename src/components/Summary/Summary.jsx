@@ -1,12 +1,9 @@
 import { FoodList } from 'components/FoodList/FoodList';
-import { getDayInfo } from 'redux/day-endpoints/operation';
-import { useDispatch, useSelector } from 'react-redux';
-import { useEffect } from 'react';
+import { useSelector } from 'react-redux';
 import { dayInfo } from 'redux/day-endpoints/selectors';
 import { selectDay } from 'redux/day-endpoints/selectors';
 
 export const Summary = () => {
-  const dispatch = useDispatch();
   const { kcalConsumed, kcalLeft, dailyRate, percentsOfDailyRate } =
     useSelector(dayInfo);
   const day = useSelector(selectDay);
@@ -20,10 +17,6 @@ export const Summary = () => {
   if (day) {
     date = day.date.split('-').reverse().join('/');
   }
-
-  useEffect(() => {
-    dispatch(getDayInfo(date));
-  }, [dispatch]);
 
   return (
     <>

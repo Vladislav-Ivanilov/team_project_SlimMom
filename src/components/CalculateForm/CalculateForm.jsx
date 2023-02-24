@@ -15,6 +15,7 @@ import { Summary } from 'components/Summary/Summary';
 import { useAuth } from 'hooks';
 import { getDayInfo } from 'redux/day-endpoints/operation';
 import { useDispatch } from 'react-redux';
+import { fetchDaily, fetchDailyRateByUserId } from 'redux/daily-rate/operation';
 
 const initialValues = {
   weight: '',
@@ -27,7 +28,7 @@ const initialValues = {
 export const CalculateForm = () => {
   const [formData, setFormData] = useState(initialValues);
 
-  const { isLoggedIn } = useAuth();
+  const { user, isLoggedIn } = useAuth();
 
   const [open, setOpen] = useState(false);
   const handleModalOpen = () => {
@@ -42,16 +43,26 @@ export const CalculateForm = () => {
       ...res,
       bloodType: Number(bloodType),
     };
+    isLoggedIn ? dispatch(getDayInfo(dateChoose)) : handleModalOpen();
+
+    isLoggedIn
+      ? dispatch(fetchDailyRateByUserId(userLoginedInfo))
+      : dispatch(fetchDaily(newFormData));
+
+    dispatch(getDayInfo(dateChoose));
+
+    console.log(isLoggedIn);
+
+    const userLoginedInfo = {
+      userId: user.id,
+      userData: newFormData,
+    };
 
     setFormData(newFormData);
 
     const dateChoose = {
       date: '2020-12-31',
     };
-
-    isLoggedIn ? dispatch(getDayInfo(dateChoose)) : handleModalOpen();
-
-    dispatch(getDayInfo(dateChoose));
 
     // dispatch(fetchDaily(newFormData));
     // handleModalOpen();
@@ -254,7 +265,7 @@ export const CalculateForm = () => {
           </Form>
         )}
       </Formik>
-      {open && <Recommendation open={open} close={setOpen} values={formData} />}
+      {open && <Recommendation open={open} close={setOpen} />}
 
       {isLoggedIn && <Summary />}
     </>
