@@ -19,6 +19,16 @@ export const Summary = () => {
     date = day.date.split('-').reverse().join('/');
   }
 
+  const summery = {
+    kcalConsumed: kcalConsumed ? Math.round(kcalConsumed) : '000',
+    kcalLeft: kcalLeft ? Math.round(kcalLeft) : '000',
+    dailyRate: dailyRate ? Math.round(dailyRate) : '000',
+    percentsOfDailyRate: percentsOfDailyRate
+      ? `${Math.round(percentsOfDailyRate)}%`
+      : '000 kcal',
+    date,
+  };
+
   return (
     <>
       {/* <BackgroundSummery/> */}
@@ -53,16 +63,16 @@ export const Summary = () => {
           </Box>
           <Box component="ul">
             <Typography variant="liSummery" component="li">
-              {Math.round(kcalLeft)} kcal
+              {Math.round(summery.kcalLeft)} kcal
             </Typography>
             <Typography variant="liSummery" component="li">
-              {kcalConsumed} kcal
+              {summery.kcalConsumed} kcal
             </Typography>
             <Typography variant="liSummery" component="li">
-              {dailyRate} kcal
+              {summery.dailyRate} kcal
             </Typography>
             <Typography variant="liSummery" component="li">
-              {Math.round(percentsOfDailyRate)}%
+              {Math.round(summery.percentsOfDailyRate)}%
             </Typography>
           </Box>
         </Box>
