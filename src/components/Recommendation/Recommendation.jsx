@@ -12,7 +12,6 @@ import { dailyRate } from 'redux/daily-rate/selection';
 import Divider from '@mui/material/Divider';
 import IconButton from '@mui/material/IconButton';
 import ClearIcon from '@mui/icons-material/Clear';
-import RecommendationPage from './RecommendationPage';
 
 const style = theme => ({
   position: 'absolute',
