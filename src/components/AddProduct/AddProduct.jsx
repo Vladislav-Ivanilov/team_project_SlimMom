@@ -24,12 +24,13 @@ export const AddProduct = () => {
       productId: values.id,
       weight: values.weight,
     };
-    if (requestInfo.productId === null) {
+    if (!values.id) {
       return;
     }
     dispatch(addEatenProduct(requestInfo));
 
     actions.resetForm();
+    values.weight = '';
   };
 
   const onChange = evt => {
@@ -57,7 +58,7 @@ export const AddProduct = () => {
               value={values.name}
               onChange={(e, newValue) => {
                 handleChange(e);
-                if (newValue.id === null) {
+                if (!newValue) {
                   return;
                 }
                 setFieldValue('id', newValue.id);
