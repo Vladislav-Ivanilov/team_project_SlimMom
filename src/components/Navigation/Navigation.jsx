@@ -1,8 +1,9 @@
 import { Ul, NavLinkStyles } from '../AuthNav/AuthNav.styled';
+import { Box } from '@mui/material';
 
 export const Navigation = () => {
   return (
-    <nav>
+    <Box component="nav" sx={{ display: { xs: 'none', lg: 'block' } }}>
       <Ul>
         <li>
           <NavLinkStyles to="/diary">Diary</NavLinkStyles>
@@ -11,6 +12,6 @@ export const Navigation = () => {
           <NavLinkStyles to="/">Calculator</NavLinkStyles>
         </li>
       </Ul>
-    </nav>
+    </Box>
   );
 };

@@ -1,7 +1,7 @@
 import { useDispatch, useSelector } from 'react-redux';
 
 import { Formik, Form } from 'formik';
-import { TextField, Fab, Autocomplete } from '@mui/material';
+import { TextField, Autocomplete, Box, Button } from '@mui/material';
 import AddIcon from '@mui/icons-material/Add';
 import { productSearch } from 'redux/productSearch/operation';
 import { selectProduct } from 'redux/productSearch/selection';
@@ -50,42 +50,47 @@ export const AddProduct = () => {
       <Formik initialValues={initialValues} onSubmit={handleSubmit}>
         {({ values, handleChange, setFieldValue }) => (
           <Form>
-            <Autocomplete
-              disablePortal
-              id="combo-box-demo"
-              options={autocompleteOptions}
-              sx={{ width: 300 }}
-              value={values.name}
-              onChange={(e, newValue) => {
-                handleChange(e);
-                if (!newValue) {
-                  return;
-                }
-                setFieldValue('id', newValue.id);
-              }}
-              renderInput={params => (
-                <TextField
-                  type="input"
-                  onChange={onChange}
-                  {...params}
-                  label="Enter product name"
-                  name="name"
-                  id="name"
-                />
-              )}
-            />
-            <TextField
-              id="grams"
-              label="Grams"
-              type="input"
-              variant="standard"
-              name="weight"
-              value={values.weight}
-              onChange={handleChange}
-            />
-            <Fab type="submit" color="primary" aria-label="add">
-              <AddIcon />
-            </Fab>
+            <Box sx={{ display: { lg: 'flex' } }}>
+              <Autocomplete
+                disablePortal
+                id="combo-box-demo"
+                options={autocompleteOptions}
+                sx={{ width: 300 }}
+                value={values.name}
+                onChange={(e, newValue) => {
+                  handleChange(e);
+                  if (!newValue) {
+                    return;
+                  }
+                  setFieldValue('id', newValue.id);
+                }}
+                renderInput={params => (
+                  <TextField
+                    sx={{ maxWidth: { xs: '280px', md: '240px' }, marginRight: { lg: '50px' } }}
+                    type="input"
+                    onChange={onChange}
+                    {...params}
+                    label="Enter product name"
+                    name="name"
+                    id="name"
+                    variant="standard"
+                  />
+                )}
+              />
+              <TextField
+                sx={{ maxWidth: { xs: '280px', md: '106px' }, marginRight: { md: '87px', lg: '60px' } }}
+                id="grams"
+                label="Grams"
+                type="input"
+                variant="standard"
+                name="weight"
+                value={values.weight}
+                onChange={handleChange}
+              />
+              <Button type="submit" color="primary" aria-label="add" variant="circular">
+                <AddIcon />
+              </Button>
+            </Box>
           </Form>
         )}
       </Formik>

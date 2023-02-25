@@ -1,13 +1,15 @@
 import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import Stack from '@mui/material/Stack';
-import TextField from '@mui/material/TextField';
+
 import { LocalizationProvider } from '@mui/x-date-pickers';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { DesktopDatePicker } from '@mui/x-date-pickers/DesktopDatePicker';
 import { getDayInfo } from 'redux/day-endpoints/operation';
 import { setDate } from 'redux/day-endpoints/slice';
 import { selectIsLoggedIn } from 'redux/auth/selectors';
+import { Box } from '@mui/material';
+import { InputCalendar } from './Calendar.styled';
 
 const today = new Date();
 const formattedDate = today.toISOString().slice(0, 10);
@@ -40,12 +42,23 @@ export const Calendar = () => {
 
   return (
     <LocalizationProvider dateAdapter={AdapterDayjs}>
-      <Stack spacing={3} sx={{ width: '400px' }}>
+      <Stack>
         <DesktopDatePicker
-          inputFormat="MM/DD/YYYY"
+          inputFormat="MM.DD.YYYY"
           value={dateValue}
           onChange={onChange}
-          renderInput={params => <TextField {...params} />}
+          renderInput={({ inputRef, inputProps, InputProps }) => (
+            <Box
+              sx={{
+                display: 'flex',
+                alignItems: 'center',
+                marginBottom: '60px',
+              }}
+            >
+              <InputCalendar ref={inputRef} {...inputProps} />
+              {InputProps?.endAdornment}
+            </Box>
+          )}
         />
       </Stack>
     </LocalizationProvider>

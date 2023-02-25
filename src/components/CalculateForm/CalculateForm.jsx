@@ -52,11 +52,7 @@ export const CalculateForm = () => {
   const dispatch = useDispatch();
 
   const options = { day: '2-digit', month: '2-digit', year: 'numeric' };
-  let dateTodey = new Date()
-    .toLocaleDateString('uk-UA', options)
-    .split('.')
-    .reverse()
-    .join('-');
+  let dateTodey = new Date().toLocaleDateString('uk-UA', options).split('.').reverse().join('-');
 
   const handelSubmit = values => {
     const { weight, age, desiredWeight, height, bloodType } = values;
@@ -64,9 +60,7 @@ export const CalculateForm = () => {
     const newFormData = {
       weight: weight ? weight : user.userData.weight,
       age: age ? age : user.userData.age,
-      desiredWeight: desiredWeight
-        ? desiredWeight
-        : user.userData.desiredWeight,
+      desiredWeight: desiredWeight ? desiredWeight : user.userData.desiredWeight,
       height: height ? height : user.userData.height,
       bloodType: bloodType ? Number(bloodType) : user.userData.bloodType,
     };
@@ -83,9 +77,7 @@ export const CalculateForm = () => {
       userData: newFormData,
     };
 
-    isLoggedIn
-      ? dispatch(fetchDailyRateByUserId(userLoginInfo))
-      : dispatch(fetchDaily(newFormData));
+    isLoggedIn ? dispatch(fetchDailyRateByUserId(userLoginInfo)) : dispatch(fetchDaily(newFormData));
 
     isLoggedIn ? dispatch(getDayInfo(dateChoose)) : handleModalOpen();
 
@@ -116,7 +108,7 @@ export const CalculateForm = () => {
                 lg: '140px ',
               },
               paddingLeft: {
-                sm: '20px',
+                xs: '20px',
                 md: '32px ',
                 lg: '16px ',
               },
@@ -125,14 +117,12 @@ export const CalculateForm = () => {
                 md: isLoggedIn ? '48px' : '398px ',
                 lg: '88px ',
               },
-              paddingRight: { sm: '20px' },
+              paddingRight: { xs: '20px' },
               marginLeft: { sm: 'auto', md: '0' },
               marginRight: { sm: 'auto', md: '0' },
             }}
           >
-            <Typography component="h1" variant="h1" sx={{fontSize: {md: '34px'},
-        marginBottom: {md: '68px'},
-      }}>
+            <Typography component="h1" variant="h1" sx={{ fontSize: { md: '34px' }, marginBottom: { md: '68px' } }}>
               Calculate your daily calorie
               <br />
               intake right now
@@ -167,11 +157,7 @@ export const CalculateForm = () => {
                       <TextField
                         fullWidth
                         name="height"
-                        value={
-                          (values.height ? (height = false) : height) ||
-                          values.height ||
-                          ''
-                        }
+                        value={(values.height ? (height = false) : height) || values.height || ''}
                         type="number"
                         onChange={handleChange}
                         required
@@ -187,9 +173,7 @@ export const CalculateForm = () => {
                       <TextField
                         fullWidth
                         name="age"
-                        value={
-                          (values.age ? (age = false) : age) || values.age || ''
-                        }
+                        value={(values.age ? (age = false) : age) || values.age || ''}
                         type="number"
                         onChange={handleChange}
                         required
@@ -204,11 +188,7 @@ export const CalculateForm = () => {
                       />
                       <TextField
                         fullWidth
-                        value={
-                          (values.weight ? (weight = false) : weight) ||
-                          values.weight ||
-                          ''
-                        }
+                        value={(values.weight ? (weight = false) : weight) || values.weight || ''}
                         onChange={handleChange}
                         type="number"
                         name="weight"
@@ -238,11 +218,7 @@ export const CalculateForm = () => {
                         fullWidth
                         name="desiredWeight"
                         value={
-                          (values.desiredWeight
-                            ? (desiredWeight = false)
-                            : desiredWeight) ||
-                          values.desiredWeight ||
-                          ''
+                          (values.desiredWeight ? (desiredWeight = false) : desiredWeight) || values.desiredWeight || ''
                         }
                         onChange={handleChange}
                         type="number"
@@ -262,10 +238,7 @@ export const CalculateForm = () => {
                           marginTop: { sm: '32px', md: '40px' },
                         }}
                       >
-                        <FormLabel
-                          sx={{ color: '#9B9FAA' }}
-                          id="demo-row-radio-buttons-group-label"
-                        >
+                        <FormLabel sx={{ color: '#9B9FAA' }} id="demo-row-radio-buttons-group-label">
                           Blood type *
                         </FormLabel>
                         <RadioGroup
@@ -277,44 +250,28 @@ export const CalculateForm = () => {
                           <FormControlLabel
                             onChange={handleChange}
                             value={1}
-                            checked={
-                              values.bloodType === '1'
-                                ? (bloodType = '1')
-                                : '' || bloodType == '1'
-                            }
+                            checked={values.bloodType === '1' ? (bloodType = '1') : '' || bloodType == '1'}
                             control={<Radio sx={{ color: '#9B9FAA' }} />}
                             label="1"
                           />
                           <FormControlLabel
                             onChange={handleChange}
                             value={2}
-                            checked={
-                              values.bloodType === '2'
-                                ? (bloodType = '2')
-                                : '' || bloodType == '2'
-                            }
+                            checked={values.bloodType === '2' ? (bloodType = '2') : '' || bloodType == '2'}
                             control={<Radio sx={{ color: '#9B9FAA' }} />}
                             label="2"
                           />
                           <FormControlLabel
                             onChange={handleChange}
                             value={3}
-                            checked={
-                              values.bloodType === '3'
-                                ? (bloodType = '3')
-                                : '' || bloodType == '3'
-                            }
+                            checked={values.bloodType === '3' ? (bloodType = '3') : '' || bloodType == '3'}
                             control={<Radio sx={{ color: '#9B9FAA' }} />}
                             label="3"
                           />
                           <FormControlLabel
                             onChange={handleChange}
                             value={4}
-                            checked={
-                              values.bloodType === '4'
-                                ? (bloodType = '4')
-                                : '' || bloodType == '4'
-                            }
+                            checked={values.bloodType === '4' ? (bloodType = '4') : '' || bloodType == '4'}
                             control={<Radio sx={{ color: '#9B9FAA' }} />}
                             label="4"
                           />

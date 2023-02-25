@@ -43,25 +43,33 @@ export const ProductList = () => {
     <Box
       sx={{
         flexGrow: 1,
+        marginTop: { xs: '30px', md: '60px' },
       }}
     >
-      <Grid container spacing={2}>
+      <Grid container spacing={1}>
         {eatenProducts.map(item => {
           return (
-            <Grid container item key={item.id}>
-              <Grid item xs={5}>
-                <Item>{item.title}</Item>
+            <Grid container item key={item.id} sx={{ maxWidth: '100%' }}>
+              <Grid
+                item
+                xs={5}
+                sx={{
+                  marginRight: { lg: '48px' },
+                  maxWidth: { xs: '130px', md: '240px' },
+                }}
+              >
+                <Item sx={{ padding: { lg: '0 0 20px 0' } }}>{item.title}</Item>
               </Grid>
-              <Grid item xs={2}>
+              <Grid sx={{ marginRight: { lg: '32px' }, maxWidth: { xs: '49px', md: '106px' } }} item xs={2}>
                 <Item>{item.weight}</Item>
               </Grid>
-              <Grid item xs={2}>
+              <Grid item xs={2} sx={{ marginRight: { lg: '32px' }, maxWidth: { xs: '58px', md: '106px' } }}>
                 <Item>{Math.ceil(item.kcal)}</Item>
               </Grid>
               <Grid item xs={1}>
-                <Item>
-                  <IconButton onClick={() => onClickDeleteProduct(item.id)}>
-                    <CloseIcon sx={{ width: '12px', height: '12px' }} />
+                <Item sx={{ maxWidth: { sx: '10px', md: '12px' }, border: 'none' }}>
+                  <IconButton onClick={() => onClickDeleteProduct(item.id)} sx={{ padding: '0px' }}>
+                    <CloseIcon sx={{ width: { sx: '10px', md: '12px' } }} />
                   </IconButton>
                 </Item>
               </Grid>

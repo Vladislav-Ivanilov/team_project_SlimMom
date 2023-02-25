@@ -116,9 +116,7 @@ const theme = createTheme({
     MuiFormControlLabel: {
       styleOverrides: {
         root: ({ ownerState }) => ({
-          ...(ownerState.checked === true
-            ? { color: '#FC842D' }
-            : { color: '#9B9FAA' }),
+          ...(ownerState.checked === true ? { color: '#FC842D' } : { color: '#9B9FAA' }),
         }),
       },
     },
@@ -163,6 +161,19 @@ const theme = createTheme({
               textAlign: 'center',
               boxShadow: `0px 4px 10px rgba(252, 132, 45, 0.5)`,
               dropShadow: `0px 4px 4px rgba(0, 0, 0, 0.25)`,
+
+              '&:hover': {
+                backgroundColor: COLOR.darkOrange,
+              },
+            }),
+          ...(ownerState.variant === 'circular' &&
+            ownerState.color === 'primary' && {
+              backgroundColor: COLOR.orange,
+              color: COLOR.white,
+              boxShadow: `0px 4px 10px rgba(252, 132, 45, 0.5)`,
+              dropShadow: `0px 4px 4px rgba(0, 0, 0, 0.25)`,
+              borderRadius: '50%',
+              padding: '18px',
 
               '&:hover': {
                 backgroundColor: COLOR.darkOrange,
