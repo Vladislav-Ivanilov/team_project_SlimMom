@@ -18,19 +18,19 @@ export const AddProduct = () => {
     id: null,
   };
 
-  const handleSubmit = (values, actions) => {
+  const handleSubmit = (values, { resetForm }) => {
     const requestInfo = {
       date: day.date,
       productId: values.id,
       weight: values.weight,
     };
-    if (!values.id) {
+    if (requestInfo.productId === null) {
+      resetForm();
       return;
     }
     dispatch(addEatenProduct(requestInfo));
 
-    actions.resetForm();
-    values.weight = '';
+    resetForm();
   };
 
   const onChange = evt => {

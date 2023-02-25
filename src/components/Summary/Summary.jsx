@@ -1,8 +1,8 @@
 import { useSelector } from 'react-redux';
 import { dayInfo } from 'redux/day-endpoints/selectors';
 import { selectDay } from 'redux/day-endpoints/selectors';
-import BackgroundSummery from 'components/Background/BackgroundSummery/BackgroundSummery';
 import { FoodList } from 'components/FoodList/FoodList';
+import { Box, Typography } from '@mui/material';
 
 export const Summary = () => {
   const { kcalConsumed, kcalLeft, dailyRate, percentsOfDailyRate } =
@@ -19,18 +19,71 @@ export const Summary = () => {
     date = day.date.split('-').reverse().join('/');
   }
 
+  const summery = {
+    kcalConsumed: kcalConsumed ? Math.round(kcalConsumed) : '000',
+    kcalLeft: kcalLeft ? Math.round(kcalLeft) : '000',
+    dailyRate: dailyRate ? Math.round(dailyRate) : '000',
+    percentsOfDailyRate: percentsOfDailyRate
+      ? `${Math.round(percentsOfDailyRate)}%`
+      : '000 kcal',
+    date,
+  };
+
   return (
     <>
-    <BackgroundSummery/>
-      <h3>{`Summary for ${date}`}</h3>
-      <ul>
-        <li>Left {Math.round(kcalLeft)} kcal</li>
-        <li>Consumed {kcalConsumed} kcal</li>
-        <li>Daily rate {dailyRate} kcal</li>
-        <li>n% of normal {Math.round(percentsOfDailyRate)}%</li>
-      </ul>
-      <h3>Food not recommended</h3>
-      <FoodList />
+      {/* <BackgroundSummery/> */}
+      <Box
+        sx={{
+          display: 'flex',
+          flexDirection: {xs: 'column', md: 'row', lg: 'column'},
+          justifyContent: {md: 'space-around'},
+          maxWidth: {lg: '270px', md: '100%', xs: '270px',},
+          width: '100%',
+        }}
+      >
+<Box>
+<Typography
+          variant="h4"
+          component="h4"
+        >{`Summary for ${date}`}</Typography>
+        <Box sx={{ display: 'flex', justifyContent: 'space-between' }}>
+          <Box component="ul" sx={{ marginBottom: { lg: '60px', xs: '40px' } }}>
+            <Typography variant="liSummery" component="li">
+              Left
+            </Typography>
+            <Typography variant="liSummery" component="li">
+              Consumed{' '}
+            </Typography>
+            <Typography variant="liSummery" component="li">
+              Daily rate{' '}
+            </Typography>
+            <Typography variant="liSummery" component="li">
+              n% of normal{' '}
+            </Typography>
+          </Box>
+          <Box component="ul">
+            <Typography variant="liSummery" component="li">
+              {Math.round(summery.kcalLeft)} kcal
+            </Typography>
+            <Typography variant="liSummery" component="li">
+              {summery.kcalConsumed} kcal
+            </Typography>
+            <Typography variant="liSummery" component="li">
+              {summery.dailyRate} kcal
+            </Typography>
+            <Typography variant="liSummery" component="li">
+              {Math.round(summery.percentsOfDailyRate)}%
+            </Typography>
+          </Box>
+        </Box>
+</Box>
+<Box>
+<Typography variant="h4" component="h4">
+          Food not recommended
+        </Typography>
+        <FoodList />
+</Box>
+      </Box>
     </>
   );
 };
