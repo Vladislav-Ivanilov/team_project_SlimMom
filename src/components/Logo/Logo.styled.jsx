@@ -33,8 +33,6 @@ export const LogoImg = styled.img`
 `;
 
 export const LogoText = styled.img`
-  display: none;
-
   @media screen and (min-width: ${breakpoints.md}) {
     display: block;
     width: 105px;
