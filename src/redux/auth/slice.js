@@ -37,9 +37,7 @@ const authSlice = createSlice({
       for (let index = 4; index > state.randomProducts.length; index - 1) {
         state.randomProducts.push(
           action.payload.user.userData.notAllowedProducts[
-            getRandomElement(
-              action.payload.user.userData.notAllowedProducts.length - 1
-            )
+            getRandomElement(action.payload.user.userData.notAllowedProducts.length - 1)
           ]
         );
       }
@@ -59,17 +57,14 @@ const authSlice = createSlice({
       for (let index = 4; index > state.randomProducts.length; index - 1) {
         state.randomProducts.push(
           action.payload.userData.notAllowedProducts[
-            getRandomElement(
-              action.payload.userData.notAllowedProducts.length - 1
-            )
+            getRandomElement(action.payload.userData.notAllowedProducts.length - 1)
           ]
         );
       }
     },
     [fetchDailyRateByUserId.fulfilled](state, action) {
       state.user.userData = action.meta.arg.userData;
-      state.user.userData.notAllowedProducts =
-        action.payload.notAllowedProducts;
+      state.user.userData.notAllowedProducts = action.payload.notAllowedProducts;
       state.user.userData.dailyRate = action.payload.dailyRate;
     },
   },

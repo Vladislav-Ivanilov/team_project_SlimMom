@@ -7,7 +7,7 @@ import { ThemeProvider } from '@mui/material/styles';
 import { App } from 'components/App';
 import { store, persistor } from 'redux/store';
 import theme from 'styles/theme';
-import GlobalStyle from './styles/GlobalStyles';
+import { GlobalStyle } from './styles/GlobalStyles';
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>

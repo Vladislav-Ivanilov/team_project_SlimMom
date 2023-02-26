@@ -6,10 +6,7 @@ import { login } from 'redux/auth/operation';
 
 const validationSchemeForm = yup.object().shape({
   email: yup.string().email('Email is invalid').required('Email is required'),
-  password: yup
-    .string()
-    .min(8)
-    .required('Password may contain at least 8 characters'),
+  password: yup.string().min(8).required('Password may contain at least 8 characters'),
 });
 
 const initialValues = {
@@ -20,7 +17,7 @@ const initialValues = {
 export const LoginForm = () => {
   const dispatch = useDispatch();
 
-  const handleSubmit = (values, { setSubmitting, resetForm }) => {
+  const handleSubmit = (values, { resetForm }) => {
     dispatch(login(values));
 
     resetForm();
@@ -61,11 +58,7 @@ export const LoginForm = () => {
         Log In
       </Typography>
 
-      <Formik
-        initialValues={initialValues}
-        onSubmit={handleSubmit}
-        validationSchema={validationSchemeForm}
-      >
+      <Formik initialValues={initialValues} onSubmit={handleSubmit} validationSchema={validationSchemeForm}>
         {({ values, handleChange, handleBlur, touched, errors }) => (
           <Form>
             <Box

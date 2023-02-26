@@ -1,6 +1,6 @@
+import { useState } from 'react';
 import { Box, Button } from '@mui/material';
 import AddIcon from '@mui/icons-material/Add';
-import { useState } from 'react';
 import { AddMobile } from './AddMobile';
 
 export const OpenModalBtn = () => {
@@ -17,7 +17,7 @@ export const OpenModalBtn = () => {
           <AddIcon />
         </Button>
       </Box>
-      {openAdd && <AddMobile onClick={onClick}/>}
+      {openAdd && <AddMobile onClick={onClick} />}
     </>
   );
 };

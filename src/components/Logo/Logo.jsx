@@ -4,7 +4,7 @@ import logoDesc from '../Image/logoDesc.png';
 import { Container, LogoImg, LogoText, LogoDesc } from './Logo.styled';
 import { useAuth } from 'hooks';
 import { useTheme } from '@mui/material/styles';
-import useMediaQuery from '@mui/material/useMediaQuery';
+import { useMediaQuery } from '@mui/material';
 
 export const Logo = () => {
   const { isLoggedIn } = useAuth();

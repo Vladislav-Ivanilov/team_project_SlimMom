@@ -1,5 +1,4 @@
-import Stack from '@mui/material/Stack';
-import CircularProgress from '@mui/material/CircularProgress';
+import { Stack, CircularProgress } from '@mui/material/';
 
 export default function CircularColor() {
   return (

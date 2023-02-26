@@ -2,7 +2,7 @@ import { createGlobalStyle } from 'styled-components';
 import Verdana from '../fonts/Verdana.ttf';
 import VerdanaBold from '../fonts/Verdana-Bold.ttf';
 
-const GlobalStyle = createGlobalStyle`
+export const GlobalStyle = createGlobalStyle`
   @font-face {
     font-family: 'Verdana';
     font-style: normal;
@@ -56,5 +56,3 @@ img {
   height: auto;
 }
 `;
-
-export default GlobalStyle;

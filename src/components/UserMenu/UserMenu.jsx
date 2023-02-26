@@ -1,11 +1,8 @@
 import { useSelector, useDispatch } from 'react-redux';
-import { Box, Button, IconButton, Typography } from '@mui/material';
+import { Box, Button, IconButton, Typography, Divider } from '@mui/material';
 import { selectUserName } from 'redux/auth/selectors';
 import { logout } from 'redux/auth/operation';
-import Divider from '@mui/material/Divider';
-import MenuIcon from '@mui/icons-material/Menu';
-import CloseIcon from '@mui/icons-material/Close';
-
+import { Menu, Close } from '@mui/icons-material/';
 
 export const UserMenu = ({ handleOpenMenu, toggle }) => {
   const dispatch = useDispatch();
@@ -36,7 +33,7 @@ export const UserMenu = ({ handleOpenMenu, toggle }) => {
           </Box>
 
           <IconButton sx={{ display: { lg: 'none' } }} onClick={() => handleOpenMenu()}>
-            {toggle ? <CloseIcon /> : <MenuIcon />}
+            {toggle ? <Close /> : <Menu />}
           </IconButton>
         </Box>
       </Box>

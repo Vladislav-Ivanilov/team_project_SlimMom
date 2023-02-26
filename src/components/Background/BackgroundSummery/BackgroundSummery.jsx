@@ -1,14 +1,8 @@
-import {
-  BGContainer,
-  BgImages,
-  WhiteWrapp,
-  GreyWrapp,
-} from './BackgroundSummery.styled';
-import Box from '@mui/material/Box';
-import Grid from '@mui/material/Grid';
+import { BGContainer, BgImages, WhiteWrapp, GreyWrapp } from './BackgroundSummery.styled';
+import { Box, Grid } from '@mui/material/';
 import { Summary } from 'components/Summary/Summary';
 
-const BackgroundSummery = () => {
+export const BackgroundSummery = () => {
   return (
     <>
       <BGContainer>
@@ -29,5 +23,3 @@ const BackgroundSummery = () => {
     </>
   );
 };
-
-export default BackgroundSummery;

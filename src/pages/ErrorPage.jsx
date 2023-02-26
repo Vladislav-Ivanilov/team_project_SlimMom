@@ -1,9 +1,9 @@
-import eroor from '../components/Image/404.jpg';
+import error from '../components/Image/404.jpg';
 
 export const ErrorPage = () => {
   return (
     <>
-      <img src={eroor} alt="Page not found" />
+      <img src={error} alt="Page not found" />
       <button>Home</button>
     </>
   );

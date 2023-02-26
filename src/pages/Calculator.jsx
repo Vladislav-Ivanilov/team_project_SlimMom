@@ -6,7 +6,7 @@ export const CalculatorPage = () => {
   const { isLoggedIn } = useAuth();
   return (
     <>
-  {!isLoggedIn && <BackgroundCalc/>}
+      {!isLoggedIn && <BackgroundCalc />}
       <CalculateForm />
     </>
   );

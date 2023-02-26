@@ -2,9 +2,8 @@ import { useSelector, useDispatch } from 'react-redux';
 import { Box, Paper, Grid, IconButton, List, Typography } from '@mui/material';
 import CloseIcon from '@mui/icons-material/Close';
 import { styled } from '@mui/material/styles';
-import { selectEatenProducts } from 'redux/day-endpoints/selectors';
+import { selectEatenProducts, selectDateId } from 'redux/day-endpoints/selectors';
 import { deleteEatenProduct } from 'redux/day-endpoints/operation';
-import { selectDateId } from 'redux/day-endpoints/selectors';
 import { setDeleteProductId } from 'redux/day-endpoints/slice';
 
 export const Item = styled(Paper)(({ theme }) => ({
@@ -114,7 +113,9 @@ export const ProductList = () => {
           />
         </>
       ) : (
-        <Typography component='h2' variant='h2' sx={{marginTop: '60px'}}>Start adding your products</Typography>
+        <Typography component="h2" variant="h2" sx={{ marginTop: '60px' }}>
+          Start adding your products
+        </Typography>
       )}
     </Box>
   );

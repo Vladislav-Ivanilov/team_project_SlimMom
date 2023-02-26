@@ -9,21 +9,18 @@ const token = {
   },
 };
 
-export const fetchCurrentUser = createAsyncThunk(
-  'user/info',
-  async (_, { getState, rejectWithValue }) => {
-    const state = getState();
-    const persistedToken = state.auth.accessToken;
+export const fetchCurrentUser = createAsyncThunk('user/info', async (_, { getState, rejectWithValue }) => {
+  const state = getState();
+  const persistedToken = state.auth.accessToken;
 
-    if (persistedToken === null) {
-      return rejectWithValue();
-    }
-    try {
-      token.set(persistedToken);
-      const { data } = await axios.get('/user');
-      return data;
-    } catch (error) {
-      return rejectWithValue(error.massage);
-    }
+  if (persistedToken === null) {
+    return rejectWithValue();
   }
-);
+  try {
+    token.set(persistedToken);
+    const { data } = await axios.get('/user');
+    return data;
+  } catch (error) {
+    return rejectWithValue(error.massage);
+  }
+});

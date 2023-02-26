@@ -1,26 +1,24 @@
 import { useState } from 'react';
-import { getDayInfo } from 'redux/day-endpoints/operation';
-import { useDispatch } from 'react-redux';
-
+import { useSelector, useDispatch } from 'react-redux';
 import { Form, Formik } from 'formik';
-
-import Box from '@mui/material/Box';
-import Button from '@mui/material/Button';
-import FormControl from '@mui/material/FormControl';
-import FormControlLabel from '@mui/material/FormControlLabel';
-import FormLabel from '@mui/material/FormLabel';
-import Radio from '@mui/material/Radio';
-import RadioGroup from '@mui/material/RadioGroup';
-import TextField from '@mui/material/TextField';
-
 import { useAuth } from 'hooks';
 import { fetchDaily, fetchDailyRateByUserId } from 'redux/daily-rate/operation';
-import { Recommendation } from 'components/Recommendation/Recommendation';
-import BackgroundSummery from '../Background/BackgroundSummery/BackgroundSummery';
-
-import { useSelector } from 'react-redux';
 import { dailyRate } from 'redux/daily-rate/selection';
-import { Typography } from '@mui/material';
+import { getDayInfo } from 'redux/day-endpoints/operation';
+
+import { Recommendation } from 'components/Recommendation/Recommendation';
+import { BackgroundSummery } from '../Background/BackgroundSummery/BackgroundSummery';
+import {
+  Box,
+  Button,
+  FormControl,
+  FormControlLabel,
+  FormLabel,
+  Radio,
+  RadioGroup,
+  TextField,
+  Typography,
+} from '@mui/material';
 
 const initialValues = {
   weight: '',
