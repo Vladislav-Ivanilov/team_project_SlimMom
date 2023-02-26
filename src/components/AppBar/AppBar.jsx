@@ -23,7 +23,6 @@ export const AppBar = () => {
   const dispatch = useDispatch();
 
   const location = useLocation();
-  console.log(location.pathname);
 
   const handleOpenMenu = () => {
     setToggle(!toggle);

@@ -2,7 +2,7 @@ import styled from 'styled-components';
 
 export const InputCalendar = styled.input`
   border: none;
-  font-size: 18px;
+  font-size: 22px;
   color: #212121;
   font-weight: 700;
   line-height: 1.2;
