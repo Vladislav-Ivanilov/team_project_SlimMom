@@ -17,11 +17,7 @@ export const AddProduct = () => {
   const theme = useTheme();
   const mobile = useMediaQuery(theme.breakpoints.down('md'));
 
-
-    
-
   let initialValues = {
-
     name: '',
     weight: '',
     id: null,
