@@ -31,7 +31,6 @@ export const Summary = () => {
 
   return (
     <>
-      {/* <BackgroundSummery/> */}
       <Box
         sx={{
           display: 'flex',

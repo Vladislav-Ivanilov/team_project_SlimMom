@@ -52,7 +52,7 @@ export const Calendar = () => {
               sx={{
                 display: 'flex',
                 alignItems: 'center',
-                marginBottom: '60px',
+                marginBottom: { md: '60px'},
               }}
             >
               <InputCalendar ref={inputRef} {...inputProps} />

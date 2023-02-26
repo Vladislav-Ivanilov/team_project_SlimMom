@@ -173,7 +173,8 @@ const theme = createTheme({
               boxShadow: `0px 4px 10px rgba(252, 132, 45, 0.5)`,
               dropShadow: `0px 4px 4px rgba(0, 0, 0, 0.25)`,
               borderRadius: '50%',
-              padding: '18px',
+              padding: '12px',
+              minWidth: '48px',
 
               '&:hover': {
                 backgroundColor: COLOR.darkOrange,
