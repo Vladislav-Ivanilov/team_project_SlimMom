@@ -42,9 +42,7 @@ const dayEndpointsSlice = createSlice({
     [deleteEatenProduct.fulfilled]: (state, action) => {
       const { productId } = action.payload;
 
-      state.eatenProducts = state.eatenProducts.filter(
-        product => product.id !== productId
-      );
+      state.eatenProducts = state.eatenProducts.filter(product => product.id !== productId);
     },
   },
 });

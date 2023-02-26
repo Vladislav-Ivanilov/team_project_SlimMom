@@ -1,7 +1,7 @@
 import { useDispatch } from 'react-redux';
-import { Typography, TextField, Box, Button } from '@mui/material';
-import * as yup from 'yup';
 import { Formik, Form } from 'formik';
+import * as yup from 'yup';
+import { Typography, TextField, Box, Button } from '@mui/material';
 import { register } from 'redux/auth/operation';
 
 const validationSchemeForm = yup.object().shape({
@@ -11,10 +11,7 @@ const validationSchemeForm = yup.object().shape({
       "Name may contain only letters, apostrophe, dash and spaces. For example Adrian, Jacob Mercer, Charles d'Artagnan"
     ),
   email: yup.string().email('Email is invalid').required('Email is required'),
-  password: yup
-    .string()
-    .min(8)
-    .required('Password may contain at least 8 characters'),
+  password: yup.string().min(8).required('Password may contain at least 8 characters'),
 });
 
 const initialValues = {
@@ -75,11 +72,7 @@ export const RegisterForm = () => {
         Register
       </Typography>
 
-      <Formik
-        initialValues={initialValues}
-        onSubmit={handleSubmit}
-        validationSchema={validationSchemeForm}
-      >
+      <Formik initialValues={initialValues} onSubmit={handleSubmit} validationSchema={validationSchemeForm}>
         {({ values, handleChange, handleBlur, touched, errors }) => (
           <Form>
             <Box

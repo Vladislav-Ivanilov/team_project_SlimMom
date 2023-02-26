@@ -28,7 +28,6 @@ export const BGContainer = styled.div`
   right: 0;
   z-index: -1000;
   width: 100vw;
-  /* min-height: 1160px; */
   overflow: hidden;
 
   @media screen and (min-width: 768px) {
@@ -37,7 +36,6 @@ export const BGContainer = styled.div`
     top: 0;
     z-index: -1000;
     width: 100vw;
-    /* min-height: 1024px; */
     height: 1000px;
     overflow: hidden;
   }
@@ -48,7 +46,6 @@ export const BGContainer = styled.div`
     z-index: -1000;
     width: 100vw;
     height: 850px;
-    /* min-height: 768px; */
     overflow: hidden;
   }
 `;
@@ -96,7 +93,6 @@ export const GreyWrapp = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  /* height: 433px; */
   padding: 40px 20px;
 
   @media (min-width: 768px) {

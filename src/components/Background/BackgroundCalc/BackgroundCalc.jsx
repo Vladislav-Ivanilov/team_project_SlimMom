@@ -1,15 +1,9 @@
-import {
-  BGContainer,
-  Decspot,
-  Banana,
-  Leaves,
-  Strawberry,
-} from './BackgroundCalc.styled';
+import { BGContainer, Desktop, Banana, Leaves, Strawberry } from './BackgroundCalc.styled';
 
 export const BackgroundCalc = () => {
   return (
     <BGContainer>
-      <Decspot />
+      <Desktop />
       <Leaves />
       <Strawberry />
       <Banana />

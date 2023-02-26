@@ -1,14 +1,14 @@
 import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import Stack from '@mui/material/Stack';
 
 import { LocalizationProvider } from '@mui/x-date-pickers';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { DesktopDatePicker } from '@mui/x-date-pickers/DesktopDatePicker';
+
 import { getDayInfo } from 'redux/day-endpoints/operation';
 import { setDate } from 'redux/day-endpoints/slice';
 import { selectIsLoggedIn } from 'redux/auth/selectors';
-import { Box } from '@mui/material';
+import { Box, Stack } from '@mui/material';
 import { InputCalendar } from './Calendar.styled';
 
 const today = new Date();
@@ -52,7 +52,7 @@ export const Calendar = () => {
               sx={{
                 display: 'flex',
                 alignItems: 'center',
-                marginBottom: { md: '60px'},
+                marginBottom: { md: '60px' },
               }}
             >
               <InputCalendar ref={inputRef} {...inputProps} />

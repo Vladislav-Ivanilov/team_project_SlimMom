@@ -1,14 +1,12 @@
 import { useDispatch, useSelector } from 'react-redux';
-
 import { Formik, Form } from 'formik';
-import { TextField, Autocomplete, Box, Button } from '@mui/material';
+import { TextField, Autocomplete, Box, Button, useMediaQuery } from '@mui/material';
 import AddIcon from '@mui/icons-material/Add';
+import { useTheme } from '@mui/material/styles';
 import { productSearch } from 'redux/productSearch/operation';
 import { selectProduct } from 'redux/productSearch/selection';
 import { addEatenProduct } from 'redux/day-endpoints/operation';
 import { selectDay } from 'redux/day-endpoints/selectors';
-import { useTheme } from '@mui/material/styles';
-import useMediaQuery from '@mui/material/useMediaQuery';
 
 export const AddProduct = () => {
   const dispatch = useDispatch();

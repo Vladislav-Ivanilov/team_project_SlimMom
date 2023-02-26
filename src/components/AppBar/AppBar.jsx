@@ -1,20 +1,18 @@
+import { useState } from 'react';
+import { useLocation } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
 import { useAuth } from 'hooks';
-import { Header } from './AppBar.styled';
-
 import { Logo } from 'components/Logo/Logo';
 import { AuthNav } from 'components/AuthNav/AuthNav';
 import { UserMenu } from 'components/UserMenu/UserMenu';
 import { Navigation } from '../Navigation/Navigation';
-import Divider from '@mui/material/Divider';
-import { Box, IconButton } from '@mui/material';
-import BurgerMenu from 'components/BurgerMenu/BurgerMenu';
-import { useState } from 'react';
-import { Typography, Button } from '@mui/material';
-import { useDispatch, useSelector } from 'react-redux';
+import { BurgerMenu } from 'components/BurgerMenu/BurgerMenu';
 import { selectUserName } from 'redux/auth/selectors';
 import { logout } from 'redux/auth/operation';
 import KeyboardReturnIcon from '@mui/icons-material/KeyboardReturn';
-import { useLocation } from 'react-router-dom';
+import { Typography, Button, Box, IconButton, Divider } from '@mui/material';
+
+import { Header } from './AppBar.styled';
 
 export const AppBar = () => {
   const { isLoggedIn } = useAuth();

@@ -5,7 +5,7 @@ import strawberry from '../../Image/Strawberry_1280.png';
 import leaves from '../../Image/leaves_1280.png';
 import banana from '../../Image/Banan_1280.png';
 
-const desctop = keyframes`
+const desktop = keyframes`
   0% {
     transform: translatex(420px);
   }
@@ -44,7 +44,7 @@ export const BGContainer = styled.div`
   }
 `;
 
-export const Decspot = styled.div`
+export const Desktop = styled.div`
   display: none;
   @media screen and (min-width: 768px) {
     display: block;
@@ -87,7 +87,7 @@ export const Strawberry = styled.div`
     height: 374px;
     background-image: url(${strawberry});
 
-    animation: ${desctop} 1s;
+    animation: ${desktop} 1s;
   }
 `;
 
@@ -136,6 +136,6 @@ export const Banana = styled.div`
     height: 552px;
     background-image: url(${banana});
 
-    animation: ${desctop} 1s;
+    animation: ${desktop} 1s;
   }
 `;

@@ -1,17 +1,16 @@
-import Backdrop from '@mui/material/Backdrop';
-import Box from '@mui/material/Box';
-import Fade from '@mui/material/Fade';
-import Modal from '@mui/material/Modal';
-import { useAuth } from 'hooks';
 import { memo } from 'react';
 import { useSelector } from 'react-redux';
-import { dailyRate } from 'redux/daily-rate/selection';
-import IconButton from '@mui/material/IconButton';
+
+import { Backdrop, Box, Fade, Modal, IconButton, useMediaQuery } from '@mui/material';
 import ClearIcon from '@mui/icons-material/Clear';
-import useMediaQuery from '@mui/material/useMediaQuery';
 import { useTheme } from '@mui/material/styles';
-import GoBack from '../GoBack/GoBack';
-import RecommendationPage from '../Recommendation/RecommendationPage'
+
+import { useAuth } from 'hooks';
+
+import { dailyRate } from 'redux/daily-rate/selection';
+
+import { GoBack } from '../GoBack/GoBack';
+import { RecommendationPage } from './RecommendationPage';
 
 const style = {
   position: 'absolute',
@@ -63,16 +62,10 @@ export const Recommendation = memo(({ open, close, values }) => {
       >
         <Fade in={open}>
           <Box sx={style}>
-            <IconButton
-              sx={{ position: 'absolute', top: '24px', right: '24px' }}
-              onClick={() => close(false)}
-            >
+            <IconButton sx={{ position: 'absolute', top: '24px', right: '24px' }} onClick={() => close(false)}>
               <ClearIcon />
             </IconButton>
-            <RecommendationPage
-              dailyRateState={dailyRateState}
-              values={values}
-            />
+            <RecommendationPage dailyRateState={dailyRateState} values={values} />
           </Box>
         </Fade>
       </Modal>

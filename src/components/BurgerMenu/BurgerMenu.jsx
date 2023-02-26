@@ -1,7 +1,7 @@
 import { Box } from '@mui/material';
 import { Container, NavLinkStyle, ListMenu } from './BurgerMenu.styled';
 
-const BurgerMenu = ({ handleOpenMenu }) => {
+export const BurgerMenu = ({ handleOpenMenu }) => {
   return (
     <Container>
       <Box component="nav">
@@ -21,5 +21,3 @@ const BurgerMenu = ({ handleOpenMenu }) => {
     </Container>
   );
 };
-
-export default BurgerMenu;
