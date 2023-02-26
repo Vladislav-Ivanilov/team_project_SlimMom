@@ -14,6 +14,7 @@ export const AddProduct = () => {
   const day = useSelector(selectDay);
 
   const initialValues = {
+    name: '',
     weight: '',
     id: null,
   };
@@ -24,6 +25,7 @@ export const AddProduct = () => {
       productId: values.id,
       weight: values.weight,
     };
+
     if (requestInfo.productId === null) {
       resetForm();
       return;
@@ -62,6 +64,7 @@ export const AddProduct = () => {
                   if (!newValue) {
                     return;
                   }
+                  setFieldValue('name', newValue.label);
                   setFieldValue('id', newValue.id);
                 }}
                 renderInput={params => (
