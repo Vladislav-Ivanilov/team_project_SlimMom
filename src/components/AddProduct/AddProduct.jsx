@@ -59,7 +59,6 @@ export const AddProduct = () => {
             <Box
               sx={{
                 display: { xs: 'flex' },
-                alignItems: 'flex-end',
                 flexDirection: { xs: 'column', md: 'row' },
                 alignItems: { xs: 'center', md: 'flex-start' },
               }}
