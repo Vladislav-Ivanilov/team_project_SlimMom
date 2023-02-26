@@ -17,7 +17,12 @@ export const AddProduct = () => {
   const theme = useTheme();
   const mobile = useMediaQuery(theme.breakpoints.down('md'));
 
+
+    
+
   let initialValues = {
+
+    name: '',
     weight: '',
     id: null,
   };
@@ -28,6 +33,7 @@ export const AddProduct = () => {
       productId: values.id,
       weight: values.weight,
     };
+
     if (requestInfo.productId === null) {
       resetForm();
       return;
@@ -74,6 +80,7 @@ export const AddProduct = () => {
                   if (!newValue) {
                     return;
                   }
+                  setFieldValue('name', newValue.label);
                   setFieldValue('id', newValue.id);
                 }}
                 renderInput={params => (
