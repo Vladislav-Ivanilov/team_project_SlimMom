@@ -17,12 +17,10 @@ import { useAuth } from 'hooks';
 import { fetchDaily, fetchDailyRateByUserId } from 'redux/daily-rate/operation';
 import { Recommendation } from 'components/Recommendation/Recommendation';
 import BackgroundSummery from '../Background/BackgroundSummery/BackgroundSummery';
-import { useTheme } from '@mui/material/styles';
-import useMediaQuery from '@mui/material/useMediaQuery';
+
 import { useSelector } from 'react-redux';
 import { dailyRate } from 'redux/daily-rate/selection';
 import { Typography } from '@mui/material';
-// import RecommendationPage from './RecommendationPage';
 
 const initialValues = {
   weight: '',
@@ -37,13 +35,10 @@ export const CalculateForm = () => {
   const [formData, setFormData] = useState(initialValues);
 
   const { isLoggedIn, user } = useAuth();
-  const [visible, setVisible] = useState('');
+
   const dailyRateState = useSelector(dailyRate);
 
   let { weight, bloodType, age, desiredWeight, height } = user.userData;
-
-  const theme = useTheme();
-  const mobile = useMediaQuery(theme.breakpoints.down('md'));
 
   const handleModalOpen = () => {
     setOpen(!open);
@@ -52,7 +47,7 @@ export const CalculateForm = () => {
   const dispatch = useDispatch();
 
   const options = { day: '2-digit', month: '2-digit', year: 'numeric' };
-  let dateTodey = new Date().toLocaleDateString('uk-UA', options).split('.').reverse().join('-');
+  let dateToday = new Date().toLocaleDateString('uk-UA', options).split('.').reverse().join('-');
 
   const handelSubmit = values => {
     const { weight, age, desiredWeight, height, bloodType } = values;
@@ -67,10 +62,8 @@ export const CalculateForm = () => {
 
     setFormData(newFormData);
 
-    mobile ? setVisible('none') : setVisible('block');
-
     const dateChoose = {
-      date: dateTodey,
+      date: dateToday,
     };
     const userLoginInfo = {
       userId: user.id,
@@ -80,11 +73,6 @@ export const CalculateForm = () => {
     isLoggedIn ? dispatch(fetchDailyRateByUserId(userLoginInfo)) : dispatch(fetchDaily(newFormData));
 
     isLoggedIn ? dispatch(getDayInfo(dateChoose)) : handleModalOpen();
-
-    const userLoginedInfo = {
-      userId: user.id,
-      userData: newFormData,
-    };
   };
 
   return (
@@ -250,28 +238,28 @@ export const CalculateForm = () => {
                           <FormControlLabel
                             onChange={handleChange}
                             value={1}
-                            checked={values.bloodType === '1' ? (bloodType = '1') : '' || bloodType == '1'}
+                            checked={values.bloodType === '1' ? (bloodType = '1') : '' || bloodType === '1'}
                             control={<Radio sx={{ color: '#9B9FAA' }} />}
                             label="1"
                           />
                           <FormControlLabel
                             onChange={handleChange}
                             value={2}
-                            checked={values.bloodType === '2' ? (bloodType = '2') : '' || bloodType == '2'}
+                            checked={values.bloodType === '2' ? (bloodType = '2') : '' || bloodType === '2'}
                             control={<Radio sx={{ color: '#9B9FAA' }} />}
                             label="2"
                           />
                           <FormControlLabel
                             onChange={handleChange}
                             value={3}
-                            checked={values.bloodType === '3' ? (bloodType = '3') : '' || bloodType == '3'}
+                            checked={values.bloodType === '3' ? (bloodType = '3') : '' || bloodType === '3'}
                             control={<Radio sx={{ color: '#9B9FAA' }} />}
                             label="3"
                           />
                           <FormControlLabel
                             onChange={handleChange}
                             value={4}
-                            checked={values.bloodType === '4' ? (bloodType = '4') : '' || bloodType == '4'}
+                            checked={values.bloodType === '4' ? (bloodType = '4') : '' || bloodType === '4'}
                             control={<Radio sx={{ color: '#9B9FAA' }} />}
                             label="4"
                           />
