@@ -1,24 +1,28 @@
 import { useState } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
+import { getDayInfo } from 'redux/day-endpoints/operation';
+import { useDispatch } from 'react-redux';
+
 import { Form, Formik } from 'formik';
+
+import Box from '@mui/material/Box';
+import Button from '@mui/material/Button';
+import FormControl from '@mui/material/FormControl';
+import FormControlLabel from '@mui/material/FormControlLabel';
+import FormLabel from '@mui/material/FormLabel';
+import Radio from '@mui/material/Radio';
+import RadioGroup from '@mui/material/RadioGroup';
+import TextField from '@mui/material/TextField';
+
 import { useAuth } from 'hooks';
 import { fetchDaily, fetchDailyRateByUserId } from 'redux/daily-rate/operation';
-import { dailyRate } from 'redux/daily-rate/selection';
-import { getDayInfo } from 'redux/day-endpoints/operation';
-
 import { Recommendation } from 'components/Recommendation/Recommendation';
-import { BackgroundSummery } from '../Background/BackgroundSummery/BackgroundSummery';
-import {
-  Box,
-  Button,
-  FormControl,
-  FormControlLabel,
-  FormLabel,
-  Radio,
-  RadioGroup,
-  TextField,
-  Typography,
-} from '@mui/material';
+import { Summary } from 'components/Summary/Summary';
+import { useTheme } from '@mui/material/styles';
+import useMediaQuery from '@mui/material/useMediaQuery';
+import { useSelector } from 'react-redux';
+import { dailyRate } from 'redux/daily-rate/selection';
+import { Typography } from '@mui/material';
+// import RecommendationPage from './RecommendationPage';
 
 const initialValues = {
   weight: '',
@@ -33,10 +37,13 @@ export const CalculateForm = () => {
   const [formData, setFormData] = useState(initialValues);
 
   const { isLoggedIn, user } = useAuth();
-
+  const [visible, setVisible] = useState('');
   const dailyRateState = useSelector(dailyRate);
 
   let { weight, bloodType, age, desiredWeight, height } = user.userData;
+
+  const theme = useTheme();
+  const mobile = useMediaQuery(theme.breakpoints.down('md'));
 
   const handleModalOpen = () => {
     setOpen(!open);
@@ -45,7 +52,7 @@ export const CalculateForm = () => {
   const dispatch = useDispatch();
 
   const options = { day: '2-digit', month: '2-digit', year: 'numeric' };
-  let dateToday = new Date().toLocaleDateString('uk-UA', options).split('.').reverse().join('-');
+  let dateTodey = new Date().toLocaleDateString('uk-UA', options).split('.').reverse().join('-');
 
   const handelSubmit = values => {
     const { weight, age, desiredWeight, height, bloodType } = values;
@@ -60,8 +67,10 @@ export const CalculateForm = () => {
 
     setFormData(newFormData);
 
+    mobile ? setVisible('none') : setVisible('block');
+
     const dateChoose = {
-      date: dateToday,
+      date: dateTodey,
     };
     const userLoginInfo = {
       userId: user.id,
@@ -71,6 +80,11 @@ export const CalculateForm = () => {
     isLoggedIn ? dispatch(fetchDailyRateByUserId(userLoginInfo)) : dispatch(fetchDaily(newFormData));
 
     isLoggedIn ? dispatch(getDayInfo(dateChoose)) : handleModalOpen();
+
+    const userLoginedInfo = {
+      userId: user.id,
+      userData: newFormData,
+    };
   };
 
   return (
@@ -94,21 +108,21 @@ export const CalculateForm = () => {
                 lg: '140px ',
               },
               paddingLeft: {
-                xs: '20px',
+                sm: '20px',
                 md: '32px ',
                 lg: '16px ',
               },
               paddingBottom: {
-                sm: isLoggedIn ? '41px' : '100px',
-                md: isLoggedIn ? '48px' : '398px ',
-                lg: '88px ',
+                sm: '100px',
+                md: '398px ',
+                lg: '111px ',
               },
-              paddingRight: { xs: '20px' },
+              paddingRight: { sm: '20px' },
               marginLeft: { sm: 'auto', md: '0' },
               marginRight: { sm: 'auto', md: '0' },
             }}
           >
-            <Typography component="h1" variant="h1" sx={{ fontSize: { md: '34px' }, marginBottom: { md: '68px' } }}>
+            <Typography component="h1" variant="h1">
               Calculate your daily calorie
               <br />
               intake right now
@@ -227,41 +241,32 @@ export const CalculateForm = () => {
                         <FormLabel sx={{ color: '#9B9FAA' }} id="demo-row-radio-buttons-group-label">
                           Blood type *
                         </FormLabel>
-                        <RadioGroup
-                          row
-                          aria-labelledby="demo-row-radio-buttons-group-label"
-                          name="bloodType"
-                          defaultValue={bloodType}
-                        >
+                        <RadioGroup row aria-labelledby="demo-row-radio-buttons-group-label" name="bloodType">
                           <FormControlLabel
                             onChange={handleChange}
-                            value={1}
-                            // eslint-disable-next-line eqeqeq
-                            checked={values.bloodType === '1' ? (bloodType = '1') : '' || bloodType == '1'}
+                            value="1"
+                            checked={!!(values.bloodType === '1') ? !!(bloodType = '1') : '' || !!(bloodType == '1')}
                             control={<Radio sx={{ color: '#9B9FAA' }} />}
                             label="1"
                           />
                           <FormControlLabel
                             onChange={handleChange}
-                            value={2}
-                            // eslint-disable-next-line eqeqeq
-                            checked={values.bloodType === '2' ? (bloodType = '2') : '' || bloodType == '2'}
+                            value="2"
+                            checked={!!(values.bloodType === '2') ? !!(bloodType = '2') : '' || !!(bloodType == '2')}
                             control={<Radio sx={{ color: '#9B9FAA' }} />}
                             label="2"
                           />
                           <FormControlLabel
                             onChange={handleChange}
-                            value={3}
-                            // eslint-disable-next-line eqeqeq
-                            checked={values.bloodType === '3' ? (bloodType = '3') : '' || bloodType == '3'}
+                            value="3"
+                            checked={!!(values.bloodType === '3') ? !!(bloodType = '3') : '' || !!(bloodType == '3')}
                             control={<Radio sx={{ color: '#9B9FAA' }} />}
                             label="3"
                           />
                           <FormControlLabel
                             onChange={handleChange}
-                            value={4}
-                            // eslint-disable-next-line eqeqeq
-                            checked={values.bloodType === '4' ? (bloodType = '4') : '' || bloodType == '4'}
+                            value="4"
+                            checked={!!(values.bloodType === '4') ? !!(bloodType = '4') : '' || !!(bloodType == '4')}
                             control={<Radio sx={{ color: '#9B9FAA' }} />}
                             label="4"
                           />
@@ -293,7 +298,7 @@ export const CalculateForm = () => {
               )}
             </Formik>
           </Box>
-          {isLoggedIn && <BackgroundSummery />}
+          {isLoggedIn && <Summary />}
         </Box>
       </Box>
       {open && <Recommendation open={open} close={setOpen} values={formData} />}
