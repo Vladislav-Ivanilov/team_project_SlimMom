@@ -52,7 +52,7 @@ export const Summary = () => {
             </Box>
             <Box component="ul">
               <Typography variant="liSummery" component="li">
-                {Math.round(summery.kcalLeft)} kcal
+                {summery.kcalLeft} kcal
               </Typography>
               <Typography variant="liSummery" component="li">
                 {summery.kcalConsumed} kcal
@@ -61,7 +61,7 @@ export const Summary = () => {
                 {summery.dailyRate} kcal
               </Typography>
               <Typography variant="liSummery" component="li">
-                {Math.round(summery.percentsOfDailyRate)}%
+                {summery.percentsOfDailyRate}
               </Typography>
             </Box>
           </Box>
