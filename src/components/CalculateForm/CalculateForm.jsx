@@ -236,28 +236,32 @@ export const CalculateForm = () => {
                           <FormControlLabel
                             onChange={handleChange}
                             value={1}
-                            checked={values.bloodType === '1' ? (bloodType = '1') : '' || bloodType === '1'}
+                            // eslint-disable-next-line eqeqeq
+                            checked={values.bloodType === '1' ? (bloodType = '1') : '' || bloodType == '1'}
                             control={<Radio sx={{ color: '#9B9FAA' }} />}
                             label="1"
                           />
                           <FormControlLabel
                             onChange={handleChange}
                             value={2}
-                            checked={values.bloodType === '2' ? (bloodType = '2') : '' || bloodType === '2'}
+                            // eslint-disable-next-line eqeqeq
+                            checked={values.bloodType === '2' ? (bloodType = '2') : '' || bloodType == '2'}
                             control={<Radio sx={{ color: '#9B9FAA' }} />}
                             label="2"
                           />
                           <FormControlLabel
                             onChange={handleChange}
                             value={3}
-                            checked={values.bloodType === '3' ? (bloodType = '3') : '' || bloodType === '3'}
+                            // eslint-disable-next-line eqeqeq
+                            checked={values.bloodType === '3' ? (bloodType = '3') : '' || bloodType == '3'}
                             control={<Radio sx={{ color: '#9B9FAA' }} />}
                             label="3"
                           />
                           <FormControlLabel
                             onChange={handleChange}
                             value={4}
-                            checked={values.bloodType === '4' ? (bloodType = '4') : '' || bloodType === '4'}
+                            // eslint-disable-next-line eqeqeq
+                            checked={values.bloodType === '4' ? (bloodType = '4') : '' || bloodType == '4'}
                             control={<Radio sx={{ color: '#9B9FAA' }} />}
                             label="4"
                           />
