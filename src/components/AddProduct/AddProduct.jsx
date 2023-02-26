@@ -7,13 +7,21 @@ import { productSearch } from 'redux/productSearch/operation';
 import { selectProduct } from 'redux/productSearch/selection';
 import { addEatenProduct } from 'redux/day-endpoints/operation';
 import { selectDay } from 'redux/day-endpoints/selectors';
+import { useTheme } from '@mui/material/styles';
+import useMediaQuery from '@mui/material/useMediaQuery';
 
 export const AddProduct = () => {
   const dispatch = useDispatch();
 
   const day = useSelector(selectDay);
+  const theme = useTheme();
+  const mobile = useMediaQuery(theme.breakpoints.down('md'));
 
-  const initialValues = {
+
+    
+
+  let initialValues = {
+
     name: '',
     weight: '',
     id: null,
@@ -52,12 +60,20 @@ export const AddProduct = () => {
       <Formik initialValues={initialValues} onSubmit={handleSubmit}>
         {({ values, handleChange, setFieldValue }) => (
           <Form>
-            <Box sx={{ display: { lg: 'flex' } }}>
+            <Box
+              sx={{
+                display: { xs: 'flex' },
+                alignItems: 'flex-end',
+                flexDirection: { xs: 'column', md: 'row' },
+                alignItems: { xs: 'center', md: 'flex-start' },
+              }}
+            >
               <Autocomplete
+                freeSolo
                 disablePortal
                 id="combo-box-demo"
                 options={autocompleteOptions}
-                sx={{ width: 300 }}
+                sx={{ width: '240px', marginRight: { lg: '48px', md: '22px' } }}
                 value={values.name}
                 onChange={(e, newValue) => {
                   handleChange(e);
@@ -69,7 +85,14 @@ export const AddProduct = () => {
                 }}
                 renderInput={params => (
                   <TextField
-                    sx={{ maxWidth: { xs: '280px', md: '240px' }, marginRight: { lg: '50px' } }}
+                    sx={{
+                      width: '100%',
+                      marginBottom: { xs: '32px', md: '0' },
+                      maxWidth: { xs: '280px', md: '240px' },
+                      marginRight: { lg: '50px' },
+                      label: { color: '#9B9FAA' },
+                      padding: { xs: '8px 0px 0px 0px', md: '20px 0px 0px 0px' },
+                    }}
                     type="input"
                     onChange={onChange}
                     {...params}
@@ -81,7 +104,14 @@ export const AddProduct = () => {
                 )}
               />
               <TextField
-                sx={{ maxWidth: { xs: '280px', md: '106px' }, marginRight: { md: '87px', lg: '60px' } }}
+                sx={{
+                  width: '100%',
+                  maxWidth: { xs: '280px', md: '107px' },
+                  marginRight: { md: '87px', lg: '60px' },
+                  label: { color: '#9B9FAA' },
+                  padding: { xs: '8px 0px 0px 0px', md: '20px 0px 0px 0px' },
+                  marginBottom: { xs: '60px', md: '0' },
+                }}
                 id="grams"
                 label="Grams"
                 type="input"
@@ -90,9 +120,24 @@ export const AddProduct = () => {
                 value={values.weight}
                 onChange={handleChange}
               />
-              <Button type="submit" color="primary" aria-label="add" variant="circular">
-                <AddIcon />
-              </Button>
+              {mobile ? (
+                <Button
+                  sx={{
+                    textTransform: 'capitalize',
+                    marginBottom: { xs: '20px', md: '0px' },
+                    marginRight: { md: '32px' },
+                    padding: { xs: '13px 50px', lg: '13px 37px' },
+                  }}
+                  type="submit"
+                  variant="contained"
+                >
+                  Add
+                </Button>
+              ) : (
+                <Button type="submit" color="primary" aria-label="add" variant="circular">
+                  <AddIcon />
+                </Button>
+              )}
             </Box>
           </Form>
         )}
