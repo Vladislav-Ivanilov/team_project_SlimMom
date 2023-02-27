@@ -55,6 +55,40 @@ export const fetchCurrentUser = createAsyncThunk('user/info', async (_, { getSta
     const { data } = await axios.get('/user');
     return data;
   } catch (error) {
-    return rejectWithValue(error.message);
+    if (error.response.status === 401) {
+      try {
+        const persistedSessionId = { sid: state.auth.sessionId };
+        console.log(persistedSessionId);
+        token.set(state.auth.refreshToken);
+        const refresh = await axios.post('/auth/refresh', persistedSessionId);
+        token.set(refresh.data.newAccessToken);
+        const { data } = await axios.get('/user');
+        return { data: data, refresh: refresh.data };
+      } catch (err) {
+        return rejectWithValue(err.message);
+      }
+    }
+    console.log(error.response.status);
+    // return rejectWithValue(error.message);
   }
 });
+
+// export const sessionRefreshing = createAsyncThunk(
+//     'auth/refresh',
+//     async (_, thunkApi) => {
+//         const state = thunkApi.getState();
+//         const persistedSid = { sid: state.auth.sid };
+
+//         if (persistedSid === null) {
+//             return thunkApi.rejectWithValue();
+//         }
+//         try {
+//             token.set(state.auth.refreshToken);
+//             const { data } = await axios.post('/auth/refresh', persistedSid);
+//             token.set(data.newAccessToken);
+//             return data;
+//         } catch (error) {
+//             console.log(error.message);
+//         }
+//     }
+// );
