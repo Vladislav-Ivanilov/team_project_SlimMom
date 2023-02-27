@@ -27,6 +27,7 @@ const dayEndpointsSlice = createSlice({
   extraReducers: {
     [addEatenProduct.fulfilled](state, action) {
       state.eatenProducts.push(action.payload.eatenProduct);
+      state.daySummary = { ...action.payload.daySummary };
     },
     [getDayInfo.fulfilled](state, action) {
       if (!action.payload.eatenProducts) {
@@ -40,8 +41,8 @@ const dayEndpointsSlice = createSlice({
     [addEatenProduct.pending]: handlePending,
     [deleteEatenProduct.rejected]: handleRejected,
     [deleteEatenProduct.fulfilled]: (state, action) => {
-      const { productId } = action.payload;
-
+      const { productId, data } = action.payload;
+      state.daySummary = { ...data.newDaySummary };
       state.eatenProducts = state.eatenProducts.filter(product => product.id !== productId);
     },
   },
