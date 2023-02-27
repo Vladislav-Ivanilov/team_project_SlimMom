@@ -106,7 +106,7 @@ export const AddProduct = () => {
                   marginBottom: { xs: '60px', md: '0' },
                 }}
                 id="grams"
-                label="Grams"
+                label="Weight"
                 type="input"
                 variant="standard"
                 name="weight"
