@@ -46,7 +46,7 @@ export const ProductList = () => {
               maxHeight: { lg: '320px', md: '240px', xs: '220px' },
               marginTop: { xs: '30px', md: '60px' },
               maxWidth: { md: '650px' },
-              overflowY: 'scroll',
+              overflowY: eatenProducts.length > 3 ? 'scroll' : 'hidden',
             }}
           >
             <Grid container spacing={1}>
