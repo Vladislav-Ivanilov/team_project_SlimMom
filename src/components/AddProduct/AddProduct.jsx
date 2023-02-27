@@ -112,6 +112,7 @@ export const AddProduct = () => {
                 name="weight"
                 value={values.weight}
                 onChange={handleChange}
+                inputProps={{ pattern: '[0-9]*' }}
               />
               {mobile ? (
                 <Button
