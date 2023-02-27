@@ -10,6 +10,7 @@ const initialState = {
   refreshToken: null,
   sessionId: null,
   isLoggedIn: false,
+  isFetchingCurrent: false,
 };
 
 const authSlice = createSlice({
@@ -47,17 +48,39 @@ const authSlice = createSlice({
       state.sessionId = null;
       state.isLoggedIn = false;
     },
+    [fetchCurrentUser.pending](state) {
+      state.isFetchingCurrent = true;
+    },
     [fetchCurrentUser.fulfilled](state, action) {
-      state.user = action.payload;
-      state.isLoggedIn = true;
+      const { data, refresh } = action.payload;
 
-      for (let index = 4; index > state.randomProducts.length; index - 1) {
-        state.randomProducts.push(
-          action.payload.userData.notAllowedProducts[
-            getRandomElement(action.payload.userData.notAllowedProducts.length - 1)
-          ]
-        );
+      if (refresh) {
+        state.user = data;
+        state.accessToken = refresh.newAccessToken;
+        state.refreshToken = refresh.newRefreshToken;
+        state.sessionId = refresh.sid;
+
+        for (let index = 4; index > state.randomProducts.length; index - 1) {
+          state.randomProducts.push(
+            data.userData.notAllowedProducts[getRandomElement(data.userData.notAllowedProducts.length - 1)]
+          );
+        }
+      } else {
+        state.user = action.payload;
+        for (let index = 4; index > state.randomProducts.length; index - 1) {
+          state.randomProducts.push(
+            action.payload.userData.notAllowedProducts[
+              getRandomElement(action.payload.userData.notAllowedProducts.length - 1)
+            ]
+          );
+        }
       }
+
+      state.isFetchingCurrent = false;
+      state.isLoggedIn = true;
+    },
+    [fetchCurrentUser.rejected](state) {
+      state.isFetchingCurrent = false;
     },
     [fetchDailyRateByUserId.fulfilled](state, action) {
       state.user.userData = action.meta.arg.userData;
