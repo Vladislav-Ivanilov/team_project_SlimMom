@@ -227,17 +227,12 @@ export const CalculateForm = () => {
                         <FormLabel sx={{ color: '#9B9FAA' }} id="demo-row-radio-buttons-group-label">
                           Blood type *
                         </FormLabel>
-                        <RadioGroup
-                          row
-                          aria-labelledby="demo-row-radio-buttons-group-label"
-                          name="bloodType"
-                          defaultValue={bloodType}
-                        >
+                        <RadioGroup row aria-labelledby="demo-row-radio-buttons-group-label" name="bloodType">
                           <FormControlLabel
                             onChange={handleChange}
                             value={1}
                             // eslint-disable-next-line eqeqeq
-                            checked={values.bloodType === '1' ? (bloodType = '1') : '' || bloodType == '1'}
+                            checked={!!(values.bloodType === '1') ? !!(bloodType = '1') : '' || !!(bloodType == '1')}
                             control={<Radio sx={{ color: '#9B9FAA' }} />}
                             label="1"
                           />
@@ -245,7 +240,7 @@ export const CalculateForm = () => {
                             onChange={handleChange}
                             value={2}
                             // eslint-disable-next-line eqeqeq
-                            checked={values.bloodType === '2' ? (bloodType = '2') : '' || bloodType == '2'}
+                            checked={!!(values.bloodType === '2') ? !!(bloodType = '2') : '' || !!(bloodType == '2')}
                             control={<Radio sx={{ color: '#9B9FAA' }} />}
                             label="2"
                           />
@@ -253,7 +248,7 @@ export const CalculateForm = () => {
                             onChange={handleChange}
                             value={3}
                             // eslint-disable-next-line eqeqeq
-                            checked={values.bloodType === '3' ? (bloodType = '3') : '' || bloodType == '3'}
+                            checked={!!(values.bloodType === '3') ? !!(bloodType = '3') : '' || !!(bloodType == '3')}
                             control={<Radio sx={{ color: '#9B9FAA' }} />}
                             label="3"
                           />
@@ -261,7 +256,7 @@ export const CalculateForm = () => {
                             onChange={handleChange}
                             value={4}
                             // eslint-disable-next-line eqeqeq
-                            checked={values.bloodType === '4' ? (bloodType = '4') : '' || bloodType == '4'}
+                            checked={!!(values.bloodType === '4') ? !!(bloodType = '4') : '' || !!(bloodType == '4')}
                             control={<Radio sx={{ color: '#9B9FAA' }} />}
                             label="4"
                           />
